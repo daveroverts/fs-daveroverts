@@ -20,10 +20,10 @@ module.exports = {
             title: `Blog`,
             slug: `/blog`,
           },
-          {
-            title: `About`,
-            slug: `/about`,
-          },
+          // {
+          //   title: `About`,
+          //   slug: `/about`,
+          // },
           {
             title: `Specs`,
             slug: `/specs`
@@ -33,6 +33,10 @@ module.exports = {
           {
             name: `Twitter`,
             url: `https://twitter.com/daveroverts`,
+          },
+          {
+            name: `Youtube`,
+            url: `http://youtube.com/daveroverts`,
           },
         ],
       },

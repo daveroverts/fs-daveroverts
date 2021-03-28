@@ -6,8 +6,8 @@ const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
 
 module.exports = {
   siteMetadata: {
-    siteTitle: `FS Daveroverts`,
-    siteTitleAlt: `FS Daveroverts`,
+    siteTitle: `FS Dave Roverts`,
+    siteTitleAlt: `FS Dave Roverts`,
     author: `@daveroverts`,
   },
   plugins: [
@@ -45,7 +45,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `FS daveroverts`,
+        name: `FS Dave Roverts`,
         short_name: `fs-daveroverts`,
         description: `Just some random flight simulator website by Dave Roverts`,
         start_url: `/`,

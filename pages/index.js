@@ -1,3 +1,4 @@
+import { parseISO } from 'date-fns'
 import fs from 'fs'
 import matter from 'gray-matter'
 import Link from 'next/link'
@@ -20,7 +21,9 @@ export default function Index({ posts }) {
               as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
               href={`/posts/[slug]`}
             >
-              <a>{post.data.title}</a>
+              <a>{post.data.title} {post.data.date && <>
+                {' - '} {parseISO(post.data.date).toLocaleDateString()}
+              </>}</a>
             </Link>
           </li>
         ))}
@@ -39,6 +42,8 @@ export function getStaticProps() {
       data,
       filePath,
     }
+  }).sort((a, b) => {
+    return new Date(b.data.date) - new Date(a.data.date)
   })
 
   return { props: { posts } }

@@ -20,6 +20,7 @@ const components = {
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
   TestComponent: dynamic(() => import('../../components/TestComponent')),
+  Youtube: dynamic(() => import('../../components/Youtube')),
   Head,
 }
 

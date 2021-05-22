@@ -1,8 +1,10 @@
+import { Divider } from "@chakra-ui/layout";
+import { Link, ListItem, Text, UnorderedList } from "@chakra-ui/layout";
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import fs from "fs";
 import matter from "gray-matter";
-import Link from "next/link";
+import NextLink from "next/link";
 import path from "path";
 import Layout from "../components/Layout";
 import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
@@ -10,19 +12,16 @@ import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 export default function Index({ posts }) {
   return (
     <Layout>
-      <h1>Home Page</h1>
-      <p>
-      <h2>Latest Posts</h2>
-      <hr></hr>
-      </p>
-      <ul>
+      <Text fontSize="6xl">Latest Posts</Text>
+      <Divider m={4} />
+      <UnorderedList>
         {posts.map((post) => (
-          <li key={post.filePath}>
-            <Link
+          <ListItem key={post.filePath}>
+            <NextLink
               as={`/posts/${post.filePath.replace(/\.mdx?$/, "")}`}
               href={`/posts/[slug]`}
             >
-              <a>
+              <Link>
                 {post.data.title}{" "}
                 {post.data.date && (
                   <>
@@ -30,11 +29,11 @@ export default function Index({ posts }) {
                     {format(parseISO(post.data.date), "P", { locale: enGB })}
                   </>
                 )}
-              </a>
-            </Link>
-          </li>
+              </Link>
+            </NextLink>
+          </ListItem>
         ))}
-      </ul>
+      </UnorderedList>
     </Layout>
   );
 }

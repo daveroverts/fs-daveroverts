@@ -1,63 +1,31 @@
+import { Text } from "@chakra-ui/layout";
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import dynamic from "next/dynamic";
-import Head from "next/head";
-import Link from "next/link";
 import path from "path";
 import Layout from "../../components/Layout";
 import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
 
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
-const components = {
-  // It also works with dynamically-imported components, which is especially
-  // useful for conditionally loading components for certain routes.
-  // See the notes in README.md for more details.
-  Youtube: dynamic(() => import("../../components/Youtube")),
-  Head,
-};
-
 export default function PostPage({ source, frontMatter }) {
   return (
     <Layout>
-      <header>
-        <nav>
-          <Link href="/">
-            <a>👈 Go back home</a>
-          </Link>
-        </nav>
-      </header>
       <div className="post-header">
-        <h1>{frontMatter.title}</h1>
+        <Text fontSize="6xl">{frontMatter.title}</Text>
         {frontMatter.date && (
-          <h4>{format(parseISO(frontMatter.date), "P", { locale: enGB })}</h4>
+          <Text fontSize="3xl">
+            {format(parseISO(frontMatter.date), "P", { locale: enGB })}
+          </Text>
         )}
         {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
+          <Text className="description">{frontMatter.description}</Text>
         )}
       </div>
       <main>
-        <MDXRemote {...source} components={components} />
+        <MDXRemote {...source} />
       </main>
-
-      <style jsx>{`
-        .post-header h1 {
-          margin-bottom: 0;
-        }
-
-        .post-header {
-          margin-bottom: 2rem;
-        }
-        .description {
-          opacity: 0.6;
-        }
-      `}</style>
     </Layout>
   );
 }

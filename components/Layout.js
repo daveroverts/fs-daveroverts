@@ -1,10 +1,12 @@
 import { Flex, Text } from "@chakra-ui/layout";
 import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
 
 export default function Layout({ children }) {
   return (
     <>
       <Flex direction="column" alignItems="center" justify="flex-start">
+        <Navbar />
         {children}
         <Footer>
           <Text>

@@ -11,14 +11,12 @@ import fs from "fs";
 import matter from "gray-matter";
 import NextLink from "next/link";
 import path from "path";
-import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
 import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
 
 export default function Index({ posts }) {
   return (
     <Layout>
-    <Hero />
       <Text fontSize="6xl">Latest Posts</Text>
       <Divider m={4} />
       <UnorderedList>

@@ -10,6 +10,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  useBreakpointValue,
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -57,9 +58,11 @@ export const Navbar = () => {
             display={"block"}
             p={2}
             rounded={"md"}
-            fontSize={"sm"}
+            fontSize={"md"}
             fontWeight={500}
-            color={useColorModeValue("gray.600", "gray.200")}
+            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+            fontFamily={'heading'}
+            color={useColorModeValue('gray.800', 'white')}
             _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
           >
             FS Dave Roverts ✈

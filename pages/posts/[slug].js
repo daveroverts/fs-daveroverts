@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/layout";
+import { Heading, Text } from "@chakra-ui/layout";
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import fs from "fs";
@@ -13,7 +13,7 @@ export default function PostPage({ source, frontMatter }) {
   return (
     <Layout>
       <div className="post-header">
-        <Text fontSize="6xl">{frontMatter.title}</Text>
+        <Heading>{frontMatter.title}</Heading>
         {frontMatter.date && (
           <Text fontSize="3xl">
             {format(parseISO(frontMatter.date), "P", { locale: enGB })}

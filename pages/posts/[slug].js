@@ -3,7 +3,6 @@ import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import { MDXRemote } from "next-mdx-remote";
 import Layout from "../../components/Layout";
-import MDXComponents from "../../components/MDXComponents";
 import { getFileBySlug, getFiles } from "../../lib/mdx";
 
 export default function PostPage({ mdxSource, frontMatter }) {

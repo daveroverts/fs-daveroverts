@@ -8,8 +8,8 @@ import {
   Divider,
   useColorMode,
 } from "@chakra-ui/react";
-import { jsx } from "@emotion/react";
 import NextLink from "next/link";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const CustomLink = (props) => {
   const { colorMode } = useColorMode();
@@ -29,7 +29,9 @@ const CustomLink = (props) => {
     );
   }
 
-  return <Link color={color[colorMode]} isExternal {...props} />;
+  return <Link color={color[colorMode]} isExternal {...props}>
+    {props.children} <ExternalLinkIcon mx="2px" />
+  </Link>;
 };
 
 const Quote = (props) => {
@@ -112,6 +114,20 @@ const Hr = () => {
   return <Divider borderColor={borderColor[colorMode]} my={4} w="100%" />;
 };
 
+const Youtube = (props) => {
+  return (
+    <iframe
+      width="560"
+      height="315"
+      src={props.src}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  );
+}
+
 const MDXComponents = {
   h1: (props) => <Heading as="h1" size="xl" my={4} {...props} />,
   h2: (props) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
@@ -130,6 +146,7 @@ const MDXComponents = {
   ol: (props) => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
   li: (props) => <Box as="li" pb={1} {...props} />,
   blockquote: Quote,
+  Youtube: Youtube
 };
 
 export default MDXComponents;

@@ -20,7 +20,8 @@ export default function Index({ posts }) {
         {posts.map((post) => (
           <ListItem key={post.slug}>
             <NextLink
-              href={`/posts/${post.slug}`}
+              href={`posts/${post.slug}`}
+              passHref
             >
               <Link>
                 {post.title}{" "}

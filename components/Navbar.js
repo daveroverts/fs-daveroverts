@@ -20,6 +20,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import NextLink from "next/link";
 
 export const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -52,21 +53,22 @@ export const Navbar = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Link
-            href="/"
-            role={"group"}
-            display={"block"}
-            p={2}
-            rounded={"md"}
-            fontSize={"md"}
-            fontWeight={500}
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}
-            _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-          >
-            FS Dave Roverts ✈
-          </Link>
+          <NextLink href="/" passHref>
+            <Link
+              role={"group"}
+              display={"block"}
+              p={2}
+              rounded={"md"}
+              fontSize={"md"}
+              fontWeight={500}
+              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              fontFamily={"heading"}
+              color={useColorModeValue("gray.800", "white")}
+              _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+            >
+              FS Dave Roverts ✈
+            </Link>
+          </NextLink>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -88,19 +90,20 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={useColorModeValue("gray.600", "gray.200")}
-                _hover={{
-                  textDecoration: "none",
-                  color: useColorModeValue("gray.800", "white"),
-                }}
-              >
-                {navItem.label}
-              </Link>
+              <NextLink href={navItem.href ?? "#"}>
+                <Link
+                  p={2}
+                  fontSize={"sm"}
+                  fontWeight={500}
+                  color={useColorModeValue("gray.600", "gray.200")}
+                  _hover={{
+                    textDecoration: "none",
+                    color: useColorModeValue("gray.800", "white"),
+                  }}
+                >
+                  {navItem.label}
+                </Link>
+              </NextLink>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -128,38 +131,39 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
-    <Link
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
+    <NextLink href={href} passHref>
+      <Link
+        role={"group"}
+        display={"block"}
+        p={2}
+        rounded={"md"}
+        _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      >
+        <Stack direction={"row"} align={"center"}>
+          <Box>
+            <Text
+              transition={"all .3s ease"}
+              _groupHover={{ color: "pink.400" }}
+              fontWeight={500}
+            >
+              {label}
+            </Text>
+            <Text fontSize={"sm"}>{subLabel}</Text>
+          </Box>
+          <Flex
             transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
+            transform={"translateX(-10px)"}
+            opacity={0}
+            _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
+            justify={"flex-end"}
+            align={"center"}
+            flex={1}
           >
-            {label}
-          </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-        >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Link>
+            <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+          </Flex>
+        </Stack>
+      </Link>
+    </NextLink>
   );
 };
 
@@ -220,9 +224,11 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
-                {child.label}
-              </Link>
+              <NextLink key={child.label} href={child.href} passHref>
+                <Link py={2}>
+                  {child.label}
+                </Link>
+              </NextLink>
             ))}
         </Stack>
       </Collapse>
@@ -235,24 +241,24 @@ const NAV_ITEMS = [
     label: "Home",
     href: "/",
   },
-  {
-    label: "Blog",
-    // TODO: Get last 3 posts dynamically
-    children: [
-      {
-        label: "Amsterdam - Berlin CityXchange",
-        href: "/posts/2021-05-16-amsterdam-berlin-city-xchange",
-      },
-      {
-        label: "Maastricht Madness",
-        href: "/posts/2021-05-09-maastricht-madness",
-      },
-      {
-        label: "Cross the Pond Westbound 2021",
-        href: "/posts/2021-04-24-cross-the-pond-westbound-2021",
-      },
-    ],
-  },
+  // {
+  //   label: "Blog",
+  //   // TODO: Get last 3 posts dynamically
+  //   children: [
+  //     {
+  //       label: "Amsterdam - Berlin CityXchange",
+  //       href: "/posts/2021-05-16-amsterdam-berlin-city-xchange",
+  //     },
+  //     {
+  //       label: "Maastricht Madness",
+  //       href: "/posts/2021-05-09-maastricht-madness",
+  //     },
+  //     {
+  //       label: "Cross the Pond Westbound 2021",
+  //       href: "/posts/2021-04-24-cross-the-pond-westbound-2021",
+  //     },
+  //   ],
+  // },
   {
     label: "About",
     href: "/about",

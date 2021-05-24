@@ -1,15 +1,12 @@
 import { Heading, Text } from "@chakra-ui/layout";
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
-import fs from "fs";
-import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
-import path from "path";
 import Layout from "../../components/Layout";
-import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
+import MDXComponents from "../../components/MDXComponents";
+import { getFileBySlug, getFiles } from "../../lib/mdx";
 
-export default function PostPage({ source, frontMatter }) {
+export default function PostPage({ mdxSource, frontMatter }) {
   return (
     <Layout>
       <div className="post-header">
@@ -24,44 +21,27 @@ export default function PostPage({ source, frontMatter }) {
         )}
       </div>
       <main>
-        <MDXRemote {...source} />
+        <MDXRemote {...mdxSource} />
       </main>
     </Layout>
   );
 }
 
-export const getStaticProps = async ({ params }) => {
-  const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`);
-  const source = fs.readFileSync(postFilePath);
-
-  const { content, data } = matter(source);
-
-  const mdxSource = await serialize(content, {
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [],
-    },
-    scope: data,
-  });
+export async function getStaticPaths() {
+  const posts = await getFiles("posts");
 
   return {
-    props: {
-      source: mdxSource,
-      frontMatter: data,
-    },
-  };
-};
-
-export const getStaticPaths = async () => {
-  const paths = postFilePaths
-    // Remove file extensions for page paths
-    .map((path) => path.replace(/\.mdx?$/, ""))
-    // Map the path into the static paths object required by Next.js
-    .map((slug) => ({ params: { slug } }));
-
-  return {
-    paths,
+    paths: posts.map((p) => ({
+      params: {
+        slug: p.replace(/\.mdx/, ""),
+      },
+    })),
     fallback: false,
   };
-};
+}
+
+export async function getStaticProps({ params }) {
+  const post = await getFileBySlug("posts", params.slug);
+
+  return { props: post };
+}

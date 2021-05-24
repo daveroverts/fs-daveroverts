@@ -7,12 +7,9 @@ import {
 } from "@chakra-ui/layout";
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
-import fs from "fs";
-import matter from "gray-matter";
 import NextLink from "next/link";
-import path from "path";
 import Layout from "../components/Layout";
-import { postFilePaths, POSTS_PATH } from "../utils/mdxUtils";
+import { getAllFilesFrontMatter } from '../lib/mdx'
 
 export default function Index({ posts }) {
   return (
@@ -21,17 +18,16 @@ export default function Index({ posts }) {
       <Divider m={4} />
       <UnorderedList>
         {posts.map((post) => (
-          <ListItem key={post.filePath}>
+          <ListItem key={post.slug}>
             <NextLink
-              as={`/posts/${post.filePath.replace(/\.mdx?$/, "")}`}
-              href={`/posts/[slug]`}
+              href={`/posts/${post.slug}`}
             >
               <Link>
-                {post.data.title}{" "}
-                {post.data.date && (
+                {post.title}{" "}
+                {post.date && (
                   <>
                     {" - "}{" "}
-                    {format(parseISO(post.data.date), "P", { locale: enGB })}
+                    {format(parseISO(post.date), "P", { locale: enGB })}
                   </>
                 )}
               </Link>
@@ -43,21 +39,8 @@ export default function Index({ posts }) {
   );
 }
 
-export function getStaticProps() {
-  const posts = postFilePaths
-    .map((filePath) => {
-      const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
-      const { content, data } = matter(source);
-
-      return {
-        content,
-        data,
-        filePath,
-      };
-    })
-    .sort((a, b) => {
-      return new Date(b.data.date) - new Date(a.data.date);
-    });
+export async function getStaticProps() {
+  const posts = await getAllFilesFrontMatter('posts')
 
   return { props: { posts } };
 }

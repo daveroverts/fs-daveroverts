@@ -237,7 +237,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Blog",
-    // TODO: Get last 3 posts
+    // TODO: Get last 3 posts dynamically
     children: [
       {
         label: "Amsterdam - Berlin CityXchange",

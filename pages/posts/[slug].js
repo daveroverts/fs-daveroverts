@@ -1,4 +1,4 @@
-import { Heading, Text } from "@chakra-ui/layout";
+import { Box, Container, Heading, Text } from "@chakra-ui/layout";
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import { MDXRemote } from "next-mdx-remote";
@@ -8,20 +8,27 @@ import { getFileBySlug, getFiles } from "../../lib/mdx";
 export default function PostPage({ mdxSource, frontMatter }) {
   return (
     <Layout>
-      <div className="post-header">
-        <Heading>{frontMatter.title}</Heading>
-        {frontMatter.date && (
-          <Text fontSize="3xl">
+      <Container>
+        <Box>
+          <Heading>{frontMatter.title}</Heading>
+          {frontMatter.date && (
+            <Text
+            color="gray.500"
+            minWidth="105px"
+            // textAlign={["left", "right"]}
+            // mb={[4, 0]}
+          >
             {format(parseISO(frontMatter.date), "P", { locale: enGB })}
           </Text>
-        )}
-        {frontMatter.description && (
-          <Text className="description">{frontMatter.description}</Text>
-        )}
-      </div>
-      <main>
-        <MDXRemote {...mdxSource} />
-      </main>
+          )}
+          {frontMatter.description && (
+            <Text className="description">{frontMatter.description}</Text>
+          )}
+        </Box>
+        <main>
+          <MDXRemote {...mdxSource} />
+        </main>
+      </Container>
     </Layout>
   );
 }

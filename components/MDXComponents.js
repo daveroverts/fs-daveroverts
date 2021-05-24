@@ -8,6 +8,7 @@ import {
   Divider,
   useColorMode,
 } from "@chakra-ui/react";
+import Image from "next/image";
 import NextLink from "next/link";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
@@ -29,9 +30,11 @@ const CustomLink = (props) => {
     );
   }
 
-  return <Link color={color[colorMode]} isExternal {...props}>
-    {props.children} <ExternalLinkIcon mx="2px" />
-  </Link>;
+  return (
+    <Link color={color[colorMode]} isExternal {...props}>
+      {props.children} <ExternalLinkIcon mx="2px" />
+    </Link>
+  );
 };
 
 const Quote = (props) => {
@@ -126,7 +129,20 @@ const Youtube = (props) => {
       allowFullScreen
     ></iframe>
   );
-}
+};
+
+const CustomImage = (props) => {
+  return (
+      <Image
+        src={props.src}
+        alt={props.alt}
+        layout="responsive"
+        width={16}
+        height={9}
+        quality={100}
+      />  
+  );
+};
 
 const MDXComponents = {
   h1: (props) => <Heading as="h1" size="xl" my={4} {...props} />,
@@ -145,8 +161,9 @@ const MDXComponents = {
   ul: (props) => <Box as="ul" pt={2} pl={4} ml={2} {...props} />,
   ol: (props) => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
   li: (props) => <Box as="li" pb={1} {...props} />,
+  img: CustomImage,
   blockquote: Quote,
-  Youtube: Youtube
+  Youtube: Youtube,
 };
 
 export default MDXComponents;

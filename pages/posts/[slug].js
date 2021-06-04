@@ -15,8 +15,7 @@ export default function PostPage({ mdxSource, frontMatter }) {
             <Text
             color="gray.500"
             minWidth="105px"
-            // textAlign={["left", "right"]}
-            // mb={[4, 0]}
+            mb={[4, 4]}
           >
             {format(parseISO(frontMatter.date), "P", { locale: enGB })}
           </Text>

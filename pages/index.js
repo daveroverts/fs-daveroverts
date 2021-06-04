@@ -5,9 +5,9 @@ import {
   Flex,
   Heading,
   Link,
+  List,
   ListItem,
   Text,
-  UnorderedList,
 } from "@chakra-ui/layout";
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
@@ -25,10 +25,10 @@ export default function Index({ posts }) {
     <Layout>
       <Text fontSize="6xl">Latest Posts</Text>
       <Divider m={4} />
-      <UnorderedList>
+      <List>
         {posts.map((post) => (
           <ListItem key={post.slug}>
-            <NextLink href={`posts/${post.slug}`} passHref>
+            <NextLink href={`/posts/${post.slug}`} passHref>
               <Link w="100%" _hover={{ textDecoration: "none" }}>
                 <Box mb={10} display="block" width="100%">
                   <Flex
@@ -64,7 +64,7 @@ export default function Index({ posts }) {
             </NextLink>
           </ListItem>
         ))}
-      </UnorderedList>
+      </List>
     </Layout>
   );
 }

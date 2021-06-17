@@ -107,6 +107,78 @@ const DocsHeading = (props) => (
   </Heading>
 );
 
+const H1 = (props) => {
+  return (
+    <Heading as="h1" size="xl" my={4} {...props} />
+  )
+}
+
+const H2 = (props) => {
+  return (
+    <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />
+  )
+}
+
+const H3 = (props) => {
+  return (
+    <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />
+  )
+}
+
+const H4 = (props) => {
+  return (
+    <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />
+  )
+}
+
+const H5 = (props) => {
+  return (
+    <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />
+  )
+}
+
+const H6 = (props) => {
+  return (
+    <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />
+  )
+}
+
+const InlineCode = (props) => {
+  return (
+    <Code colorScheme="yellow" fontSize="0.84em" {...props} />
+  )
+}
+
+const Br = (props) => {
+  return (
+    <Box height="24px" {...props} />
+  )
+}
+
+const P = (props) => {
+  return (
+    <Text as="p" mt={0} lineHeight="tall" {...props} />
+  )
+}
+
+const Ul = (props) => {
+  return (
+    <Box as="ul" pt={2} pl={4} ml={2} {...props} />
+  )
+}
+
+const Ol = (props) => {
+  return (
+    <Box as="ol" pt={2} pl={4} ml={2} {...props} />
+  )
+}
+
+const Li = (props) => {
+  return (
+    <Box as="li" pb={1} {...props} />
+  )
+}
+
 const Hr = () => {
   const { colorMode } = useColorMode();
   const borderColor = {
@@ -133,34 +205,32 @@ const Youtube = (props) => {
 
 const CustomImage = (props) => {
   return (
-      <Image
-        src={props.src}
-        alt={props.alt}
-        layout="responsive"
-        width={16}
-        height={9}
-        quality={100}
-      />  
+    <Image
+      src={props.src}
+      alt={props.alt}
+      layout="responsive"
+      width={16}
+      height={9}
+      quality={100}
+    />
   );
 };
 
 const MDXComponents = {
-  h1: (props) => <Heading as="h1" size="xl" my={4} {...props} />,
-  h2: (props) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
-  h3: (props) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
-  h4: (props) => <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />,
-  h5: (props) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
-  h6: (props) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
-  inlineCode: (props) => (
-    <Code colorScheme="yellow" fontSize="0.84em" {...props} />
-  ),
-  br: (props) => <Box height="24px" {...props} />,
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  h6: H6,
+  inlineCode: InlineCode,
+  br: Br,
   hr: Hr,
   a: CustomLink,
-  p: (props) => <Text as="p" mt={0} lineHeight="tall" {...props} />,
-  ul: (props) => <Box as="ul" pt={2} pl={4} ml={2} {...props} />,
-  ol: (props) => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
-  li: (props) => <Box as="li" pb={1} {...props} />,
+  p: P,
+  ul: Ul,
+  ol: Ol,
+  li: Li,
   img: CustomImage,
   blockquote: Quote,
   Youtube: Youtube,

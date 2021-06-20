@@ -1,10 +1,14 @@
 const title = 'FS Dave Roverts ✈️'
+const titleTemplate = `%s | ${title}`
+const defaultTitle = title
 const description =
     'Just some random flight simulator website by Dave Roverts'
 const url = 'https://fs.daveroverts.nl'
 
 const SEO = {
     title,
+    titleTemplate,
+    defaultTitle,
     description,
     canonical: url,
     openGraph: {

@@ -1,18 +1,19 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ThemeProvider } from 'next-themes'
 import { MDXProvider } from "@mdx-js/react";
-import theme from "../theme";
-import MDXComponents from "../components/MDXComponents";
+// import MDXComponents from "../components/MDXComponents";
 import { DefaultSeo } from "next-seo";
 import SEO from '../next-seo.config'
+import 'tailwindcss/tailwind.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider resetCSS={true} theme={theme}>
+    <ThemeProvider>
     <DefaultSeo {...SEO}/>
-      <MDXProvider components={MDXComponents}>
+      {/* <MDXProvider components={MDXComponents}> */}
+      <MDXProvider>
         <Component {...pageProps} />
       </MDXProvider>
-    </ChakraProvider>
+    </ThemeProvider>
   );
 }
 

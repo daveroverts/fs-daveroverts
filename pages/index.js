@@ -1,5 +1,3 @@
-import { format, parseISO } from "date-fns";
-import Link from "next/link";
 import Layout from "../components/Layout";
 import { getAllFilesFrontMatter } from "../lib/mdx";
 import BlogPost from '../components/BlogPost'
@@ -15,7 +13,7 @@ export default function Index({ posts }) {
       <div className="py-5">
         <h3 className="text-2xl font-bold">Latest posts</h3>
         <div>
-          <div className="grid md:grid-cols-2">
+          <div className="grid space-x-2 md:grid-cols-2">
             {posts.map((item) => (
               <div className="py-5" key={item.title}>
               <BlogPost post={item}/>

@@ -2,11 +2,7 @@ import Layout from "../components/Layout";
 
 export default function About() {
   return (
-    <Layout>
-      <div className="py-5">
-        <h3 className="text-2xl font-bold">Specs</h3>
-      </div>
-
+    <Layout title="Specs">
       <article className="py-5">
         <h3 className="text-2xl font-bold">Hardware</h3>
           <ul className="px-1 py-5 list-disc list-inside">

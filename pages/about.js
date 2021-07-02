@@ -6,11 +6,7 @@ import Layout from "../components/Layout";
 
 export default function About() {
   return (
-    <Layout>
-      <div className="py-5">
-        <h3 className="text-2xl font-bold">About</h3>
-      </div>
-
+    <Layout title="About">
       <article className="py-5">
         <Image src={deef733} alt="PJ-DPI Boeing 737-300" placeholder="blur" />
 

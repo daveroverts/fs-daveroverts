@@ -1,9 +1,8 @@
+import Image from 'next/image';
+import atc from 'public/static/images/about/atc.png';
+import deef733 from 'public/static/images/about/deef733.png';
+import tra737 from 'public/static/images/about/tra737.png';
 import Layout from "../components/Layout";
-import BlogPost from '../components/BlogPost'
-import Image from 'next/image'
-import deef733 from 'public/static/images/about/deef733.png'
-import tra737 from 'public/static/images/about/tra737.png'
-import atc from 'public/static/images/about/atc.png'
 
 export default function About() {
   return (
@@ -30,7 +29,7 @@ export default function About() {
             <li>FSLabs A319</li>
             <li>Qualitywings 787</li>
           </ul>
-          <li>Prepar3D V5</li>
+          <li>X-Plane 11</li>
           <ul className="px-8 list-disc list-inside">
             <li>Zibo 737-800</li>
             <li>IXEG 737-300</li>

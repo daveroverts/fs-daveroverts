@@ -7,13 +7,15 @@ import 'tailwindcss/tailwind.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider>
-    <DefaultSeo {...SEO}/>
-      {/* <MDXProvider components={MDXComponents}> */}
-      <MDXProvider>
-        <Component {...pageProps} />
-      </MDXProvider>
-    </ThemeProvider>
+    <>
+      {/* <ThemeProvider> */}
+        <DefaultSeo {...SEO} />
+        {/* <MDXProvider components={MDXComponents}> */}
+        <MDXProvider>
+          <Component {...pageProps} />
+        </MDXProvider>
+      {/* </ThemeProvider> */}
+    </>
   );
 }
 

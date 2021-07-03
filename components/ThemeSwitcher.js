@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { MoonIcon, SunIcon } from '@heroicons/react/outline';
 import { useTheme } from 'next-themes';
-import { SunIcon, MoonIcon } from '@heroicons/react/outline'
 import nightwind from 'nightwind/helper';
+import { useEffect, useState } from 'react';
 
 export const ThemeSwitcher = () => {
     const [mounted, setMounted] = useState(false)
@@ -22,7 +22,7 @@ export const ThemeSwitcher = () => {
     return (
         <>
             <button aria-label="Toggle theme" className="flex items-center justify-between p-3 text-xl font-bold rounded-md hover:bg-gray-200" onClick={toggle}>
-                {resolvedTheme !== 'dark' ? <MoonIcon className="w-5 h-5"/>  : <SunIcon className="w-5 h-5"/>}
+                {resolvedTheme !== 'dark' ? <MoonIcon className="w-5 h-5" /> : <SunIcon className="w-5 h-5" />}
             </button>
         </>
     )

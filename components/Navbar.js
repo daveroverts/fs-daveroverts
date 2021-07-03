@@ -42,7 +42,7 @@ export const Navbar = () => {
           <ThemeSwitcher />
         </div>
       </div>
-      <div className="flex justify-between space-x-5">
+      <div className="flex items-center justify-between space-x-5">
         <div className="space-x-5">
           {NAV_ITEMS_LEFT.map((item) => (
             <Link

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
 
 export const Navbar = () => {
   const NAV_ITEMS_LEFT = [
@@ -51,6 +52,9 @@ export const Navbar = () => {
               <a className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">{item.label}</a>
             </Link>
           ))}
+        </div>
+        <div className="space-x-5">
+          <VatsimStatusIndicator/>
         </div>
         <div className="space-x-5">
           {NAV_ITEMS_RIGHT.map((item) => (

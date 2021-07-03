@@ -11,7 +11,7 @@ export const VatsimStatusIndicator = () => {
 
     return (
         <a className="px-3 py-2 bg-gray-100 rounded-md cursor-default">
-            {data.callsign ? data.callsign : 'Offline'}
+            {data.callsign ? data.callsign : 'Offline'} {data.depArr ? `| ${data.depArr}` : null}
         </a>
     )
 }

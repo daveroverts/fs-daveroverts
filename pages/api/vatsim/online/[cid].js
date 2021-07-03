@@ -13,16 +13,25 @@ export default async function handler(req, res) {
     const controller = dataFeedRes.data.controllers.find(data => data.cid == cid)
 
     if (controller !== undefined) {
-      res.status(200).json({ callsign: controller.callsign })
+      res.status(200).json({
+        callsign: controller.callsign,
+        depArr: null
+      })
     }
 
     const pilot = dataFeedRes.data.pilots.find(data => data.cid == cid)
 
     if (pilot !== undefined) {
-      res.status(200).json({ callsign: pilot.callsign })
+      res.status(200).json({
+        callsign: pilot.callsign,
+        depArr: `${pilot.flight_plan.departure} - ${pilot.flight_plan.arrival}`
+      })
     }
 
-    res.status(200).json({ callsign: null })
+    res.status(200).json({
+      callsign: null,
+      depArr: null
+    })
 
   } catch (error) {
     console.log(error)

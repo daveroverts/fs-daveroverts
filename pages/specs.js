@@ -1,10 +1,14 @@
+import { NextSeo } from 'next-seo';
 import Layout from "../components/Layout";
 
 export default function About() {
+  const title = 'Specs'
   return (
-    <Layout title="Specs">
-      <article className="py-5">
-        <h3 className="text-2xl font-bold">Hardware</h3>
+    <>
+      <NextSeo title={title} />
+      <Layout title="Specs">
+        <article className="py-5">
+          <h3 className="text-2xl font-bold">Hardware</h3>
           <ul className="px-1 py-5 list-disc list-inside">
             <li>CPU: Intel Core i7-10700K</li>
             <li>Motherboard: Asus ROG Strix Z490-F Gaming</li>
@@ -22,7 +26,8 @@ export default function About() {
             <li>Mouse pad: Logitech G640 Gaming</li>
             <li>Joystick / Throttle: Saitek X52 Pro</li>
           </ul>
-      </article>
-    </Layout>
+        </article>
+      </Layout>
+    </>
   );
 }

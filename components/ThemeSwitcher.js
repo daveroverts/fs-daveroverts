@@ -5,10 +5,10 @@ import nightwind from 'nightwind/helper';
 
 export const ThemeSwitcher = () => {
     const [mounted, setMounted] = useState(false)
-    const { theme, setTheme } = useTheme()
+    const { resolvedTheme, setTheme } = useTheme()
     const toggle = () => {
         nightwind.beforeTransition()
-        if (theme !== 'dark') {
+        if (resolvedTheme !== 'dark') {
             setTheme('dark')
         } else {
             setTheme('light')
@@ -20,10 +20,10 @@ export const ThemeSwitcher = () => {
     if (!mounted) return null
 
     return (
-        <div className="flex items-center justify-between p-3 text-xl font-bold rounded-md hover:bg-gray-200">
-            <button aria-label="Toggle theme" onClick={toggle}>
-                {theme === 'dark' ? <SunIcon className="w-5 h-5"/> : <MoonIcon className="w-5 h-5"/>}
+        <>
+            <button aria-label="Toggle theme" className="flex items-center justify-between p-3 text-xl font-bold rounded-md hover:bg-gray-200" onClick={toggle}>
+                {resolvedTheme !== 'dark' ? <MoonIcon className="w-5 h-5"/>  : <SunIcon className="w-5 h-5"/>}
             </button>
-        </div>
+        </>
     )
 }

@@ -3,6 +3,9 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {},
+    nightwind: {
+      typography: true,
+    }
   },
   variants: {
     extend: {},
@@ -10,5 +13,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    require('nightwind'),
   ],
 }

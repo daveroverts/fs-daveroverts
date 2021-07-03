@@ -8,7 +8,11 @@ import 'tailwindcss/tailwind.css'
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <ThemeProvider attribute="class">
+      <ThemeProvider
+      attribute="class"
+      storageKey="nightwind-mode"
+      defaultTheme="system"
+      >
         <DefaultSeo {...SEO} />
         <MDXProvider components={MDXComponents}>
           <Component {...pageProps} />

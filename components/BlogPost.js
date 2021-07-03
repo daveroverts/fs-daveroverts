@@ -5,7 +5,7 @@ import { enGB } from "date-fns/locale";
 const BlogPost = ({ post }) => {
 
     return (
-        <article className="px-5 text-center transition border-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-700">
+        <article className="px-5 text-center transition border-2 rounded-full hover:bg-gray-50">
         <Link href={`/posts/${post.slug}`}>
             <a className="hover:underline">
                 <h5 className="text-xl">{post.title}</h5>

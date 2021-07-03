@@ -12,16 +12,10 @@ export default function PostPage({ mdxSource, frontMatter }) {
       <NextSeo
         title={frontMatter.title}
       />
-      <Layout title={frontMatter.title}>
+      <Layout title={frontMatter.title} subtitle={frontMatter.date ? format(parseISO(frontMatter.date), "P", { locale: enGB }) : undefined}>
           <div>
-            {frontMatter.date && (
-              <h5 className="text-lg"
-              >
-                {format(parseISO(frontMatter.date), "P", { locale: enGB })}
-              </h5>
-            )}
             {frontMatter.description && (
-              <p>{frontMatter.description}</p>
+              <p className="py-5">{frontMatter.description}</p>
             )}
           <article className="prose lg:prose-xl">
             <MDXRemote {...mdxSource} />

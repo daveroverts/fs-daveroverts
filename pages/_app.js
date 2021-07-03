@@ -8,13 +8,12 @@ import 'tailwindcss/tailwind.css'
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      {/* <ThemeProvider> */}
+      <ThemeProvider attribute="class">
         <DefaultSeo {...SEO} />
         <MDXProvider components={MDXComponents}>
-        {/* <MDXProvider> */}
           <Component {...pageProps} />
         </MDXProvider>
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </>
   );
 }

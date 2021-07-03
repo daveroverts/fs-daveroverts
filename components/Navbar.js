@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export const Navbar = () => {
   const NAV_ITEMS_LEFT = [
@@ -30,9 +31,16 @@ export const Navbar = () => {
 
   return (
     <div className="px-4 py-8 border-b-2">
-      <h2 className="pb-4 text-4xl font-bold">
-        FS Dave Roverts ✈️
-      </h2>
+      <div className="flex justify-between">
+        <div>
+          <h2 className="pb-4 text-4xl font-bold">
+            FS Dave Roverts ✈️
+          </h2>
+        </div>
+        <div>
+          <ThemeSwitcher />
+        </div>
+      </div>
       <div className="flex justify-between space-x-5">
         <div className="space-x-5">
           {NAV_ITEMS_LEFT.map((item) => (

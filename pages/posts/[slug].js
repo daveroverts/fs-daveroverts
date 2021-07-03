@@ -1,9 +1,8 @@
-import { Box, Container, Heading, Text } from "@chakra-ui/layout";
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import { MDXRemote } from "next-mdx-remote";
-import Layout from "../../components/Layout";
-import { getFileBySlug, getFiles } from "../../lib/mdx";
+import Layout from "components/Layout";
+import { getFileBySlug, getFiles } from "lib/mdx";
 import { NextSeo } from "next-seo";
 
 
@@ -13,27 +12,21 @@ export default function PostPage({ mdxSource, frontMatter }) {
       <NextSeo
         title={frontMatter.title}
       />
-      <Layout>
-        <Container>
-          <Box>
-            <Heading>{frontMatter.title}</Heading>
+      <Layout title={frontMatter.title}>
+          <div>
             {frontMatter.date && (
-              <Text
-                color="gray.500"
-                minWidth="105px"
-                mb={[4, 4]}
+              <h5 className="text-lg"
               >
                 {format(parseISO(frontMatter.date), "P", { locale: enGB })}
-              </Text>
+              </h5>
             )}
             {frontMatter.description && (
-              <Text className="description">{frontMatter.description}</Text>
+              <p>{frontMatter.description}</p>
             )}
-          </Box>
-          <main>
+          <article className="prose lg:prose-xl">
             <MDXRemote {...mdxSource} />
-          </main>
-        </Container>
+          </article>
+        </div>
       </Layout>
     </>
   );

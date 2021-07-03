@@ -11,6 +11,8 @@
   "dependencies": {
     "@chakra-ui/icons": "^1.0.13",
     "@emotion/react": "^11.4.0",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/typography": "^0.4.1",
     "date-fns": "^2.22.1",
     "gray-matter": "^4.0.3",
     "next": "^11.0.0",

@@ -13,8 +13,10 @@ export default function Layout({ children, title, subtitle }) {
           )}
         </div>
       )}
-      {children}
+      <main>
+        {children}
       <Footer />
+      </main>
     </div>
   );
 }

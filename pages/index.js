@@ -1,70 +1,21 @@
-import { useColorMode } from "@chakra-ui/color-mode";
-import {
-  Box,
-  Divider,
-  Flex,
-  Heading,
-  Link,
-  List,
-  ListItem,
-  Text,
-} from "@chakra-ui/layout";
-import { format, parseISO } from "date-fns";
-import { enGB } from "date-fns/locale";
-import NextLink from "next/link";
 import Layout from "../components/Layout";
 import { getAllFilesFrontMatter } from "../lib/mdx";
+import BlogPost from '../components/BlogPost'
 
 export default function Index({ posts }) {
-  const { colorMode } = useColorMode();
-  const secondaryTextColor = {
-    light: "gray.700",
-    dark: "gray.400",
-  };
   return (
-    <Layout>
-      <Text fontSize="6xl">Latest Posts</Text>
-      <Divider m={4} />
-      <List>
-        {posts.map((post) => (
-          <ListItem key={post.slug}>
-            <NextLink href={`/posts/${post.slug}`} passHref>
-              <Link w="100%" _hover={{ textDecoration: "none" }}>
-                <Box mb={10} display="block" width="100%">
-                  <Flex
-                    width="100%"
-                    align="flex-start"
-                    justifyContent="space-between"
-                    flexDirection={["column", "row"]}
-                  >
-                    <Flex
-                      flexDirection="column"
-                      align="flex-start"
-                      justifyContent="start"
-                      width="100%"
-                    >
-                      <Heading size="md" as="h3" mb={1} fontWeight="medium">
-                        {post.title}
-                      </Heading>
-                    </Flex>
-                    {post.date && (
-                      <Text
-                        color="gray.500"
-                        minWidth="105px"
-                        textAlign={["left", "right"]}
-                        mb={[4, 0]}
-                      >
-                        {format(parseISO(post.date), "P", { locale: enGB })}
-                      </Text>
-                    )}
-                  </Flex>
-                  {/* <Text color={secondaryTextColor[colorMode]}>Hoi</Text> */}
-                </Box>
-              </Link>
-            </NextLink>
-          </ListItem>
-        ))}
-      </List>
+    <Layout title="Hello there! 👋" subtitle="I'm Dave Roverts, 24 years old and from the Netherlands 🇳🇱. Web developer 🖥 by day, and flight simmer ✈️ in the evening.">
+
+      <div className="py-5">
+        <h3 className="text-2xl font-bold">Latest posts</h3>
+        <div className="grid space-x-2 md:grid-cols-2">
+          {posts.map((item) => (
+            <div className="py-5" key={item.title}>
+              <BlogPost post={item} />
+            </div>
+          ))}
+        </div>
+      </div>
     </Layout>
   );
 }

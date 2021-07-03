@@ -1,20 +1,22 @@
-import { Flex, Text } from "@chakra-ui/layout";
-import { Footer } from "./Footer";
+import Footer from "./Footer";
 import { Navbar } from "./Navbar";
 
-export default function Layout({ children }) {
+export default function Layout({ children, title, subtitle }) {
   return (
-    <>
-      <Flex direction="column" alignItems="center" justify="flex-start">
-        <Navbar />
+    <div className="container px-32 py-3 mx-auto">
+      <Navbar />
+      <main>
+        {title !== undefined && (
+          <div className="py-5">
+            <h3 className="text-2xl font-bold">{title}</h3>
+            {subtitle !== undefined && (
+              <p className="font-semibold">{subtitle}</p>
+            )}
+          </div>
+        )}
         {children}
-        <Footer>
-          <Text>
-            © 2021 {new Date().getFullYear() > 2021 ? "- 2021" : ""} by FS Dave
-            Roverts ✈️. All rights reserved.
-          </Text>
-        </Footer>
-      </Flex>
-    </>
+        <Footer />
+      </main>
+    </div>
   );
 }

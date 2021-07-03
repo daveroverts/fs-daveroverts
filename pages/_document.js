@@ -1,6 +1,4 @@
-import { ColorModeScript } from "@chakra-ui/react";
 import NextDocument, { Head, Html, Main, NextScript } from "next/document";
-import theme from "../theme";
 
 export default class Document extends NextDocument {
   render() {
@@ -12,8 +10,7 @@ export default class Document extends NextDocument {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
         </Head>
-        <body>
-          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <body className="dark:bg-gray-900">
           <Main />
           <NextScript />
         </body>

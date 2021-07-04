@@ -8,7 +8,7 @@ const BlogPost = ({ post }) => {
         <article className="px-5 py-2 text-center transition border-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800">
             <Link href={`/posts/${post.slug}`}>
                 <a className="hover:underline">
-                    <h5 className="text-xl">{post.title}</h5>
+                    <h4 className="text-xl">{post.title}</h4>
                     <h5 className="text-lg">
                         {format(parseISO(post.date), 'P', { locale: enGB })}
                     </h5>

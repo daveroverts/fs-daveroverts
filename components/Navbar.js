@@ -42,7 +42,7 @@ export const Navbar = () => {
           <ThemeSwitcher />
         </div>
       </div>
-      <div className="flex items-center justify-between space-x-5">
+      <div className="flex flex-col items-center justify-between space-x-5 space-y-5 md:space-y-0 md:flex-row">
         <div className="space-x-5">
           {NAV_ITEMS_LEFT.map((item) => (
             <Link
@@ -53,9 +53,7 @@ export const Navbar = () => {
             </Link>
           ))}
         </div>
-        <div className="space-x-5">
-          <VatsimStatusIndicator/>
-        </div>
+        <VatsimStatusIndicator/>
         <div className="space-x-5">
           {NAV_ITEMS_RIGHT.map((item) => (
             <Link

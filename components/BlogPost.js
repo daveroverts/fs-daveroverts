@@ -5,7 +5,7 @@ import Link from 'next/link';
 const BlogPost = ({ post }) => {
 
     return (
-        <article className="px-5 py-2 text-center transition border-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800">
+        <article className="flex flex-col justify-center min-h-full px-5 py-2 text-center transition border-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800">
             <Link href={`/posts/${post.slug}`}>
                 <a className="hover:underline">
                     <h4 className="text-xl">{post.title}</h4>

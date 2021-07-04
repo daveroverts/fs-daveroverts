@@ -34,9 +34,9 @@ export const Navbar = () => {
     <div className="px-4 py-8 border-b-2">
       <div className="flex justify-between">
         <div>
-          <h2 className="pb-4 text-4xl font-bold">
+          <h1 className="pb-4 text-4xl font-bold">
             FS Dave Roverts ✈️
-          </h2>
+          </h1>
         </div>
         <div>
           <ThemeSwitcher />

@@ -8,7 +8,7 @@ export default function Layout({ children, title, subtitle }) {
       <main>
         {title !== undefined && (
           <div className="py-5">
-            <h3 className="text-2xl font-bold">{title}</h3>
+            <h2 className="text-2xl font-bold">{title}</h2>
             {subtitle !== undefined && (
               <p className="font-semibold">{subtitle}</p>
             )}

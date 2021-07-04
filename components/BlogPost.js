@@ -4,9 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image'
 
 const BlogPost = ({ post }) => {
-
-    console.log(post)
-
     return (
         <article className="flex flex-col justify-center min-h-full text-center transition border-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800">
             <Link href={`/posts/${post.slug}`}>

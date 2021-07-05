@@ -2,7 +2,7 @@ const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.youtube-nocookie.com vitals.vercel-insights.com;
   child-src *.youtube.com *.youtube-nocookie.com *.google.com;
-  style-src 'self';
+  style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
   media-src 'none';
   connect-src *;

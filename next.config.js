@@ -1,7 +1,7 @@
 const ContentSecurityPolicy = `
   default-src 'self' vitals.vercel-insights.com;
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com;
-  child-src *.youtube.com *.google.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com https://fs-daveroverts-80j2224a9-daveroverts.vercel.app/;
+  child-src *.youtube.com *.google.com https://fs-daveroverts-80j2224a9-daveroverts.vercel.app/;
   style-src 'self';
   img-src * blob: data:;
   media-src 'none';

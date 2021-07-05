@@ -1,7 +1,7 @@
 const ContentSecurityPolicy = `
   default-src 'self' vitals.vercel-insights.com;
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com https://fs-daveroverts-80j2224a9-daveroverts.vercel.app/;
-  child-src *.youtube.com *.google.com https://fs-daveroverts-80j2224a9-daveroverts.vercel.app/;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com vitals.vercel-insights.com;
+  child-src *.youtube.com *.google.com vitals.vercel-insights.com;
   style-src 'self';
   img-src * blob: data:;
   media-src 'none';
@@ -33,6 +33,10 @@ const securityHeaders = [
   {
     key: 'Referrer-Policy',
     value: 'origin-when-cross-origin'
+  },
+  {
+    key: 'Strict-Transport-Security',
+    value: 'max-age=31536000; includeSubDomains; preload'
   },
   {
     key: 'Content-Security-Policy',

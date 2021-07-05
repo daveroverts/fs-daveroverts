@@ -1,3 +1,14 @@
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com vitals.vercel-insights.com;
+  child-src *.youtube.com *.google.com;
+  style-src 'self';
+  img-src * blob: data:;
+  media-src 'none';
+  connect-src *;
+  font-src 'self';
+`;
+
 const securityHeaders = [
   {
     key: 'X-DNS-Prefetch-Control',
@@ -23,10 +34,10 @@ const securityHeaders = [
     key: 'Referrer-Policy',
     value: 'origin-when-cross-origin'
   },
-  // {
-  //   key: 'Content-Security-Policy',
-  //   value: ''// Your CSP Policy
-  // }
+  {
+    key: 'Content-Security-Policy',
+    value: ContentSecurityPolicy.replace(/\n/g, '')
+  }
 ]
 
 module.exports = {

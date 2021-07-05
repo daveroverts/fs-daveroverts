@@ -1,6 +1,17 @@
 {
   "name": "fs-daveroverts",
+  "description": "Just some random flight simulator website by Dave Roverts",
   "version": "1.0.0",
+  "author": {
+    "name": "Dave Roverts",
+    "email": "me@daveroverts.nl",
+    "url": "https://daveroverts.nl"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveroverts/fs-daveroverts.git"
+  },
   "scripts": {
     "dev": "next",
     "dev:watch": "next-remote-watch ./data/posts",
@@ -16,7 +27,7 @@
     "axios": "^0.21.1",
     "date-fns": "^2.22.1",
     "gray-matter": "^4.0.3",
-    "next": "^11.0.0",
+    "next": "^11.0.1",
     "next-mdx-remote": "^3.0.2",
     "next-remote-watch": "1.0.0",
     "next-seo": "^4.26.0",
@@ -25,14 +36,12 @@
     "preact": "^10.5.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
     "swr": "^0.5.6"
   },
-  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.2.6",
-    "eslint": "^7.28.0",
-    "eslint-config-next": "^11.0.0",
+    "eslint": "^7.30.0",
+    "eslint-config-next": "^11.0.1",
     "postcss": "^8.3.5",
     "tailwindcss": "^2.2.4"
   }

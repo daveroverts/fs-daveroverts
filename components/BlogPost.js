@@ -5,9 +5,9 @@ import Image from 'next/image'
 
 const BlogPost = ({ post }) => {
     return (
-        <article className="flex flex-col justify-center min-h-full text-center transition border-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800">
-            <Link href={`/posts/${post.slug}`}>
-                <a className="hover:underline">
+        <Link href={`/posts/${post.slug}`}>
+            <a className="hover:underline">
+                <article className="flex flex-col justify-center min-h-full text-center transition border-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800">
                     {post.banner ? (
                         <div className="relative w-full h-80">
                             <Image
@@ -26,9 +26,9 @@ const BlogPost = ({ post }) => {
                             </h5>
                         </>
                     )}
-                </a>
-            </Link>
-        </article>
+                </article>
+            </a>
+        </Link>
     )
 }
 

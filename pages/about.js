@@ -49,7 +49,7 @@ export default function About() {
           <p className="py-3">Next to flying, I&apos;m also a controller currently holding both C3 and I1 ratings. My home division is the <a href="https://www.dutchvacc.nl" className="text-blue-400 hover:underline">Dutch VACC</a>.</p>
 
           <p className="py-3">Usually, you will find me controlling EHAA_CTR, which covers the Netherlands.</p>
-          <Image src={atc} alt="Amsterdam Radar" placeholder="blur" />
+          <Image src={atc} alt="Amsterdam Radar" placeholder="blur" quality={100} />
         </article>
       </Layout>
     </>

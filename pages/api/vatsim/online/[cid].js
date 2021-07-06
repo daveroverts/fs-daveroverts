@@ -1,6 +1,10 @@
 const axios = require('axios').default
 
 export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    res.status(400).end('Bad request');
+    return;
+  }
   const { cid } = req.query
 
   try {
@@ -38,4 +42,5 @@ export default async function handler(req, res) {
   }
 
   res.end()
+
 }

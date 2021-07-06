@@ -1,8 +1,7 @@
+import { NextSeo } from "next-seo";
+import BlogPost from '../components/BlogPost';
 import Layout from "../components/Layout";
 import { getAllFilesFrontMatter } from "../lib/mdx";
-import BlogPost from '../components/BlogPost'
-import { NextSeo } from "next-seo";
-import { getPlaiceholder } from "plaiceholder";
 
 export default function Index({ posts }) {
   const title = 'Home'
@@ -26,17 +25,6 @@ export default function Index({ posts }) {
 }
 
 export async function getStaticProps() {
-  const initialPosts = await getAllFilesFrontMatter("posts");
-  const posts = await Promise.all(initialPosts.map(async (post) => {
-    if (!post.banner) {
-      return post;
-    }
-
-    const { base64, img } = await getPlaiceholder(post.banner);
-    post.base64 = base64;
-    post.img = img;
-    return post;
-  }))
-
+  const posts = await getAllFilesFrontMatter("posts");
   return { props: { posts } };
 }

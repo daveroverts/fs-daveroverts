@@ -7,15 +7,15 @@ const BlogPost = ({ post }) => {
     return (
         <Link href={`/posts/${post.slug}`}>
             <a className="hover:underline">
-                <article className="flex flex-col justify-center min-h-full text-center transition border-2 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800">
+                <article className={`flex flex-col justify-center min-h-full text-center transition rounded-3xl hover:bg-gray-50 dark:hover:bg-gray-800 ${!post.banner ? 'border-2' : ''}`}>
                     {post.banner ? (
-                        <div className="relative w-full h-80">
+                        <div className="relative h-64 w-96 xl:w-full xl:h-96">
                             <Image
                                 src={post.banner}
                                 alt={post.title}
                                 layout="fill"
-                                objectFit="cover"
-                                className="rounded-full"
+                                objectFit="fill"
+                                className="rounded-3xl"
                             />
                         </div>
                     ) : (

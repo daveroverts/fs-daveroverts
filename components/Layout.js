@@ -3,7 +3,7 @@ import { Navbar } from "./Navbar";
 
 export default function Layout({ children, title, subtitle }) {
   return (
-    <div className="container px-32 py-3 mx-auto text-black">
+    <div className="container px-16 py-3 mx-auto text-black">
       <Navbar />
       <main>
         {title !== undefined && (

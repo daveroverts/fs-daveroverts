@@ -1,3 +1,5 @@
+const { withPlaiceholder } = require('@plaiceholder/next')
+
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.youtube-nocookie.com vitals.vercel-insights.com;
@@ -44,7 +46,7 @@ const securityHeaders = [
   }
 ]
 
-module.exports = {
+module.exports = withPlaiceholder({
   reactStrictMode: true,
   async headers() {
     return [
@@ -81,4 +83,4 @@ module.exports = {
 
     return config;
   },
-}
+})

@@ -1,7 +1,7 @@
+import { NextSeo } from "next-seo";
+import BlogPost from '../components/BlogPost';
 import Layout from "../components/Layout";
 import { getAllFilesFrontMatter } from "../lib/mdx";
-import BlogPost from '../components/BlogPost'
-import { NextSeo } from "next-seo";
 
 export default function Index({ posts }) {
   const title = 'Home'
@@ -26,6 +26,5 @@ export default function Index({ posts }) {
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter("posts");
-
   return { props: { posts } };
 }

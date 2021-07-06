@@ -15,5 +15,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('nightwind'),
+    require("@plaiceholder/tailwindcss"),
   ],
 }

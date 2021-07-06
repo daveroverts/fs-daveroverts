@@ -2,7 +2,11 @@ const axios = require('axios').default
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
-    res.status(400).end('Bad request');
+    res.status(405)
+    .setHeader(
+      'Allow',
+      'GET')
+    .end('Method Not Allowed');
     return;
   }
   const { cid } = req.query

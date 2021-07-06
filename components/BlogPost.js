@@ -16,6 +16,8 @@ const BlogPost = ({ post }) => {
                                 layout="fill"
                                 objectFit="fill"
                                 className="rounded-3xl"
+                                placeholder="blur"
+                                blurDataURL={post.base64}
                             />
                         </div>
                     ) : (

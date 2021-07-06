@@ -27,19 +27,16 @@ export default function Index({ posts }) {
 
 export async function getStaticProps() {
   const initialPosts = await getAllFilesFrontMatter("posts");
-  const posts2 = initialPosts.map(async (post) => {
+  const posts = await Promise.all(initialPosts.map(async (post) => {
     if (!post.banner) {
       return post;
     }
 
     const { base64, img } = await getPlaiceholder(post.banner);
-
-    post.base64 = base64,
+    post.base64 = base64;
     post.img = img;
     return post;
-  })
-  
-  const posts = await Promise.all(posts2)
+  }))
 
   return { props: { posts } };
 }

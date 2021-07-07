@@ -23,7 +23,6 @@
     "@emotion/react": "^11.4.0",
     "@heroicons/react": "^1.0.1",
     "@plaiceholder/next": "^2.1.0",
-    "@plaiceholder/tailwindcss": "^2.1.0",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "axios": "^0.21.1",

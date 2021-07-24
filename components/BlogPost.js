@@ -3,11 +3,11 @@ import { enGB } from "date-fns/locale";
 import Link from 'next/link';
 import Image from 'next/image'
 
-const BlogPost = ({ post }) => {
+const BlogPost = ({ post, index }) => {
     return (
         <Link href={`/posts/${post.slug}`}>
             <a className="hover:underline">
-                <article className={`transform hover:scale-105 flex flex-col justify-center min-h-full text-center transition rounded-3xl hover:bg-gray-50 dark:hover:bg-gray-800 ${!post.banner ? 'border-2' : ''}`}>
+                <article className={`transform hover:scale-105 flex flex-col justify-center min-h-full text-center transition rounded-3xl hover:bg-gray-50 dark:hover:bg-gray-800 ${!post.banner ? 'border-2' : ''} ${index % 2 ? 'hover:rotate-1' : 'hover:-rotate-1'}`}>
                     {post.banner ? (
                         <div className="relative h-64 w-96 xl:w-full xl:h-96">
                             <Image

@@ -5,7 +5,7 @@
   "author": {
     "name": "Dave Roverts",
     "email": "me@daveroverts.nl",
-    "url": "https://daveroverts.nl"
+    "url": "https://www.daveroverts.nl"
   },
   "license": "MIT",
   "repository": {
@@ -17,19 +17,19 @@
     "dev:watch": "next-remote-watch ./data/posts",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "@emotion/react": "^11.4.0",
-    "@heroicons/react": "^1.0.1",
+    "@heroicons/react": "^1.0.3",
     "@plaiceholder/next": "^2.1.0",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "axios": "^0.21.1",
-    "date-fns": "^2.22.1",
+    "date-fns": "^2.23.0",
     "gray-matter": "^4.0.3",
     "next": "^11.0.1",
-    "next-mdx-remote": "^3.0.2",
+    "next-mdx-remote": "^3.0.4",
     "next-remote-watch": "1.0.0",
     "next-seo": "^4.26.0",
     "next-themes": "^0.0.15",
@@ -42,10 +42,11 @@
     "swr": "^0.5.6"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.6",
-    "eslint": "^7.30.0",
+    "autoprefixer": "^10.3.1",
+    "eslint": "^7.32.0",
     "eslint-config-next": "^11.0.1",
-    "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4"
+    "husky": "^7.0.1",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.7"
   }
 }

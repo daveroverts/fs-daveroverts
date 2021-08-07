@@ -45,8 +45,12 @@ const securityHeaders = [
     value: ContentSecurityPolicy.replace(/\n/g, '')
   }
 ]
+// @ts-check
 
-module.exports = withPlaiceholder({
+/**
+ * @type {import('next').NextConfig}
+ **/
+const nextConfig = withPlaiceholder({
   reactStrictMode: true,
   async headers() {
     return [
@@ -84,3 +88,5 @@ module.exports = withPlaiceholder({
     return config;
   },
 })
+
+module.exports = nextConfig

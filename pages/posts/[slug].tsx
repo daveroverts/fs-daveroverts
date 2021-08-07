@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPaths } from 'next'
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import { MDXRemote } from "next-mdx-remote";
@@ -26,7 +27,7 @@ export default function PostPage({ mdxSource, frontMatter }) {
   );
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getFiles("posts");
 
   return {
@@ -39,8 +40,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const post = await getFileBySlug("posts", params.slug);
+export const getStaticProps: GetStaticProps = async (context) => {
+  const post = await getFileBySlug("posts", context.params.slug);
 
   return { props: post };
 }

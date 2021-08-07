@@ -1,4 +1,4 @@
-const Youtube = (props) => {
+const Youtube = (props: { src: string; }) => {
   return (
     <div className="aspect-w-16 aspect-h-9">
       <iframe

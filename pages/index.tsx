@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import { NextSeo } from "next-seo";
 import BlogPost from '../components/BlogPost';
 import Layout from "../components/Layout";
@@ -24,7 +25,7 @@ export default function Index({ posts }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   const posts = await getAllFilesFrontMatter("posts");
   return { props: { posts } };
 }

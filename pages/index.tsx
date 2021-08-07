@@ -28,7 +28,7 @@ export default function Index({ posts }) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (_context) => {
   const posts = await getAllFilesFrontMatter("posts");
   return { props: { posts } };
 };

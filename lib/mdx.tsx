@@ -52,14 +52,16 @@ export async function getAllFilesFrontMatter(type: string) {
     }, [])
     .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
 
-  return await Promise.all(sortedFiles.map(async (post) => {
-    if (!post.banner) {
-      return post;
-    }
+  return await Promise.all(
+    sortedFiles.map(async (post) => {
+      if (!post.banner) {
+        return post;
+      }
 
-    const { base64, img } = await getPlaiceholder(post.banner);
-    post.base64 = base64;
-    post.img = img;
-    return post;
-  }))
+      const { base64, img } = await getPlaiceholder(post.banner);
+      post.base64 = base64;
+      post.img = img;
+      return post;
+    })
+  );
 }

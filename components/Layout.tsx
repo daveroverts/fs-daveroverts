@@ -1,7 +1,11 @@
 import Footer from "./Footer";
 import { Navbar } from "./Navbar";
 
-export default function Layout({ children, title, subtitle }) {
+export default function Layout({
+  children,
+  title = undefined,
+  subtitle = undefined,
+}) {
   return (
     <div className="container px-16 py-3 mx-auto text-black">
       <Navbar />

@@ -1,8 +1,8 @@
-import { NextSeo } from 'next-seo';
+import { NextSeo } from "next-seo";
 import Layout from "../components/Layout";
 
 export default function About() {
-  const title = 'Specs'
+  const title = "Specs";
   return (
     <>
       <NextSeo title={title} />
@@ -21,7 +21,9 @@ export default function About() {
           </ul>
           <h3 className="text-2xl font-bold">Software</h3>
           <ul className="px-1 py-5 list-disc list-inside">
-            <li>Keyboard: Corsair K70 LUX Mechanical Gaming Keyboard - Red LED</li>
+            <li>
+              Keyboard: Corsair K70 LUX Mechanical Gaming Keyboard - Red LED
+            </li>
             <li>Mouse: Logitech G903 Hero</li>
             <li>Mouse pad: Logitech G640 Gaming</li>
             <li>Joystick / Throttle: Saitek X52 Pro</li>

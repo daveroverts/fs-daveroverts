@@ -1,60 +1,59 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-const axios = require('axios').default
+import type { NextApiRequest, NextApiResponse } from "next";
+const axios = require("axios").default;
 
 type Data = {
-  callsign: string
-  depArr: string
-}
+  callsign: string;
+  depArr: string;
+};
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  if (req.method !== 'GET') {
-    res.status(405)
-    .setHeader(
-      'Allow',
-      'GET')
-    .end('Method Not Allowed');
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
+  if (req.method !== "GET") {
+    res.status(405).setHeader("Allow", "GET").end("Method Not Allowed");
     return;
   }
-  const { cid } = req.query
+  const { cid } = req.query;
 
   try {
-    const statusRes = await axios('https://status.vatsim.net/status.json');
+    const statusRes = await axios("https://status.vatsim.net/status.json");
     const dataFeeds = statusRes.data.data.v3;
     const dataFeed = dataFeeds[Math.floor(Math.random() * dataFeeds.length)];
 
     const dataFeedRes = await axios(dataFeed);
 
-    const controller = dataFeedRes.data.controllers.find((data: { cid: string }) => data.cid == cid)
+    const controller = dataFeedRes.data.controllers.find(
+      (data: { cid: string }) => data.cid == cid
+    );
 
     if (controller !== undefined) {
       res.status(200).json({
         callsign: controller.callsign,
-        depArr: null
-      })
-      return res.end()
+        depArr: null,
+      });
+      return res.end();
     }
 
-    
-
-    const pilot = dataFeedRes.data.pilots.find((data: { cid: string }) => data.cid == cid)
+    const pilot = dataFeedRes.data.pilots.find(
+      (data: { cid: string }) => data.cid == cid
+    );
 
     if (pilot !== undefined) {
       res.status(200).json({
         callsign: pilot.callsign,
-        depArr: `${pilot.flight_plan.departure} - ${pilot.flight_plan.arrival}`
-      })
-      return res.end()
+        depArr: `${pilot.flight_plan.departure} - ${pilot.flight_plan.arrival}`,
+      });
+      return res.end();
     }
 
     res.status(200).json({
       callsign: null,
-      depArr: null
-    })
-
+      depArr: null,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
-  return res.end()
-
+  return res.end();
 }

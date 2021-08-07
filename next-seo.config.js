@@ -25,7 +25,7 @@ const SEO = {
         ]
     },
     twitter: {
-        handle: '@daveroverts',   
+        handle: '@daveroverts',
         site: '@daveroverts',
         cardType: 'summary_large_image'
     }

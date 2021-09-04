@@ -12,9 +12,9 @@ export default function Index({ posts }) {
         <div className="py-5">
           <h3 className="text-2xl font-bold">Latest posts</h3>
           <div className="grid space-x-2 lg:grid-cols-2">
-            {posts.map((item, index) => (
+            {posts.map((item) => (
               <div className="py-5" key={item.title}>
-                <BlogPost post={item} index={index} />
+                <BlogPost post={item} />
               </div>
             ))}
           </div>

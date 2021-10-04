@@ -3,10 +3,10 @@ const axios = require('axios').default
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     res.status(405)
-    .setHeader(
-      'Allow',
-      'GET')
-    .end('Method Not Allowed');
+      .setHeader(
+        'Allow',
+        'GET')
+      .end('Method Not Allowed');
     return;
   }
   const { cid } = req.query
@@ -25,6 +25,7 @@ export default async function handler(req, res) {
         callsign: controller.callsign,
         depArr: null
       })
+      return res.end()
     }
 
     const pilot = dataFeedRes.data.pilots.find(data => data.cid == cid)
@@ -34,6 +35,7 @@ export default async function handler(req, res) {
         callsign: pilot.callsign,
         depArr: `${pilot.flight_plan.departure} - ${pilot.flight_plan.arrival}`
       })
+      return res.end()
     }
 
     res.status(200).json({
@@ -45,6 +47,6 @@ export default async function handler(req, res) {
     console.log(error)
   }
 
-  res.end()
+  return res.end()
 
 }

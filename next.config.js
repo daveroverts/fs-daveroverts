@@ -2,11 +2,13 @@ const { withPlaiceholder } = require('@plaiceholder/next')
 
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.youtube-nocookie.com vitals.vercel-insights.com;
-  child-src *.youtube.com *.youtube-nocookie.com *.google.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' vitals.vercel-insights.com;
+  child-src 'self';
   style-src 'self' 'unsafe-inline';
-  img-src * blob: data:;
+  img-src * blob: data: i.ytimg.com;
+  object-src 'none';
   media-src 'none';
+  frame-src www.youtube-nocookie.com;
   connect-src *;
   font-src 'self';
 `;

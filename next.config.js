@@ -2,7 +2,7 @@ const { withPlaiceholder } = require('@plaiceholder/next')
 
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' vitals.vercel-insights.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' vitals.vercel-insights.com;
   child-src 'self';
   style-src 'self' 'unsafe-inline';
   img-src * blob: data: i.ytimg.com;

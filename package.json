@@ -23,9 +23,9 @@
   "dependencies": {
     "@heroicons/react": "^1.0.5",
     "@plaiceholder/next": "^2.2.0",
-    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/typography": "^0.4.1",
-    "axios": "^0.21.4",
+    "axios": "^0.24.0",
     "date-fns": "^2.25.0",
     "gray-matter": "^4.0.3",
     "next": "^12.0.1",
@@ -34,7 +34,7 @@
     "next-seo": "^4.28.1",
     "next-themes": "^0.0.15",
     "nightwind": "^1.1.12",
-    "plaiceholder": "^2.0.1",
+    "plaiceholder": "^2.2.0",
     "preact": "^10.5.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -42,11 +42,11 @@
     "swr": "^1.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.3.1",
+    "autoprefixer": "^10.3.7",
     "eslint": "^7.32.0",
     "eslint-config-next": "^12.0.1",
-    "husky": "^7.0.1",
-    "postcss": "^8.3.6",
-    "tailwindcss": "^2.2.7"
+    "husky": "^7.0.4",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17"
   }
 }

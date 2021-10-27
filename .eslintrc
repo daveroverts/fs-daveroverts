@@ -1,3 +1,7 @@
 {
-  "extends": "next"
+  "extends": "next",
+  "rules": {
+    // TODO: Temporary disabled until it's fixed
+    "@next/next/no-document-import-in-page": "off"
+  }
 }

@@ -50,6 +50,7 @@ const securityHeaders = [
 
 module.exports = withPlaiceholder({
   reactStrictMode: true,
+  swcMinify: true,
   async headers() {
     return [
       {

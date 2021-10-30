@@ -53,7 +53,7 @@ export const Navbar = () => {
             </Link>
           ))}
         </div>
-        <VatsimStatusIndicator/>
+        <VatsimStatusIndicator />
         <div className="space-x-5">
           {NAV_ITEMS_RIGHT.map((item) => (
             <Link

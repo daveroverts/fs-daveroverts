@@ -1,3 +1,4 @@
+import Emoji from "a11y-react-emoji";
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
@@ -35,7 +36,7 @@ export const Navbar = () => {
       <div className="flex justify-between">
         <div>
           <h1 className="pb-4 text-4xl font-bold">
-            FS Dave Roverts ✈️
+            FS Dave Roverts <Emoji className="font-medium" symbol="✈️" />
           </h1>
         </div>
         <div>

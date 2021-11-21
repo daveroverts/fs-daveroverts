@@ -44,7 +44,7 @@ export default function About() {
 
           <Image src={tra737} alt="Transavia B737-700 final Marrakech GMMX" placeholder="blur" />
 
-          <h3 className="py-3 text-2xl font-bold">Online flying / ATC <Emoji symbol="📡" /></h3>
+          <h3 className="py-3 text-2xl font-bold">Online flying / ATC <Emoji className="font-medium" symbol="📡" /></h3>
           <p className="py-3">All my flights are flown on the <a href="https://www.vatsim.net/" className="text-blue-400 hover:underline">VATSIM network</a></p>
 
           <p className="py-3">Next to flying, I&apos;m also a controller currently holding both C3 and I1 ratings. My home division is the <a href="https://www.dutchvacc.nl" className="text-blue-400 hover:underline">Dutch VACC</a>.</p>

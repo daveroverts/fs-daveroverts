@@ -1,3 +1,4 @@
+import Emoji from 'a11y-react-emoji';
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import atc from 'public/static/images/about/atc.png';
@@ -9,14 +10,14 @@ export default function About() {
   const title = 'About'
   return (
     <>
-    <NextSeo title={title} />
+      <NextSeo title={title} />
       <Layout title={title}>
         <article className="py-5">
           <Image src={deef733} alt="PJ-DPI Boeing 737-300" placeholder="blur" />
 
-          <h3 className="text-2xl font-bold">Hello there! 👋</h3>
+          <h3 className="text-2xl font-bold">Hello there! <Emoji className="font-medium" symbol="👋" /></h3>
 
-          <p className="py-3">I&apos;m Dave Roverts, 24 years old and from the Netherlands 🇳🇱. Web developer 🖥 by day, and flight simmer ✈️ in the evening.</p>
+          <p className="py-3">I&apos;m Dave Roverts, 24 years old and from the Netherlands <Emoji symbol="🇳🇱" />. Web developer <Emoji symbol="🖥" /> by day, and flight simmer <Emoji symbol="✈️" /> in the evening.</p>
 
           <p className="py-3">At the time of writing, I use the following flight sims and aircraft:</p>
           <ul className="list-disc list-inside">
@@ -43,7 +44,7 @@ export default function About() {
 
           <Image src={tra737} alt="Transavia B737-700 final Marrakech GMMX" placeholder="blur" />
 
-          <h3 className="py-3 text-2xl font-bold">Online flying / ATC 📡</h3>
+          <h3 className="py-3 text-2xl font-bold">Online flying / ATC <Emoji symbol="📡" /></h3>
           <p className="py-3">All my flights are flown on the <a href="https://www.vatsim.net/" className="text-blue-400 hover:underline">VATSIM network</a></p>
 
           <p className="py-3">Next to flying, I&apos;m also a controller currently holding both C3 and I1 ratings. My home division is the <a href="https://www.dutchvacc.nl" className="text-blue-400 hover:underline">Dutch VACC</a>.</p>

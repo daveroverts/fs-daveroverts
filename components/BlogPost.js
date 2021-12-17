@@ -8,7 +8,7 @@ const BlogPost = ({ post }) => {
         <Link href={`/posts/${post.slug}`}>
             <a className="hover:underline">
                 <article className={`overflow-hidden group flex flex-col justify-center min-h-full text-center rounded-3xl ${!post.banner ? 'border-2 hover:bg-gray-50 dark:hover:bg-gray-800' : ''}`}>
-                    <div className="transition duration-1000 transform group-hover:scale-105">
+                    <div className="transition duration-1000 group-hover:scale-105">
 
 
                         {post.banner ? (

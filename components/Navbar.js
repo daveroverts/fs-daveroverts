@@ -2,8 +2,11 @@ import Emoji from "a11y-react-emoji";
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
+import { useRouter } from "next/router";
 
 export const Navbar = () => {
+  const router = useRouter();
+
   const NAV_ITEMS_LEFT = [
     {
       label: "Home",
@@ -50,7 +53,7 @@ export const Navbar = () => {
               key={item.label}
               href={item.href}
             >
-              <a className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">{item.label}</a>
+              <a className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200' : 'bg-gray-100 hover:bg-gray-200'}`}>{item.label}</a>
             </Link>
           ))}
         </div>
@@ -61,7 +64,7 @@ export const Navbar = () => {
               key={item.label}
               href={item.href}
             >
-              <a className="px-3 py-2 bg-gray-100 rounded-md hover:bg-gray-200">{item.label}</a>
+              <a className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200' : 'bg-gray-100 hover:bg-gray-200'}`}>{item.label}</a>
             </Link>
           ))}
         </div>

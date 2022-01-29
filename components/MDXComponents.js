@@ -1,15 +1,10 @@
+import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+
 const Youtube = (props) => {
   return (
     <div className="aspect-w-16 aspect-h-9">
-      <iframe
-        width="560"
-        height="315"
-        src={props.src}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
+      <LiteYouTubeEmbed id={props.id} noCookie={true} />
     </div>
   );
 };

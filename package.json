@@ -28,7 +28,7 @@
     "a11y-react-emoji": "1.2.0",
     "axios": "0.24.0",
     "date-fns": "2.26.0",
-    "fathom-client": "3.4.0",
+    "fathom-client": "3.4.1",
     "gray-matter": "4.0.3",
     "next": "12.0.4",
     "next-mdx-remote": "3.0.8",

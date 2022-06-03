@@ -53,7 +53,6 @@ module.exports = withPlaiceholder({
     formats: ['image/avif', 'image/webp']
   },
   reactStrictMode: true,
-  swcMinify: true,
   async headers() {
     return [
       {

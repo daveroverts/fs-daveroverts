@@ -1,6 +1,14 @@
 {
   "extends": [
-    "config:base",
-    "schedule:weekly"
+    "github>daveroverts/renovate-config",
+    "group:linters"
+  ],
+  "packageRules": [
+    {
+      "matchSourceUrlPrefixes": [
+        "https://github.com/tailwindlabs"
+      ],
+      "groupName": "Tailwind CSS"
+    }
   ]
 }

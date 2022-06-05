@@ -38,7 +38,7 @@ export const Navbar = () => {
     <div className="px-4 py-8 border-b-2">
       <div className="flex justify-between">
         <div>
-          <h1 className="pb-4 text-4xl font-bold">
+          <h1 className="pb-4 text-4xl font-bold dark:text-white">
             FS Dave Roverts <Emoji className="font-medium" symbol="✈️" />
           </h1>
         </div>
@@ -53,7 +53,7 @@ export const Navbar = () => {
               key={item.label}
               href={item.href}
             >
-              <a className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200' : 'bg-gray-100 hover:bg-gray-200'}`}>{item.label}</a>
+              <a className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200 dark:bg-gray-700 dark:text-white' : 'hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white'}`}>{item.label}</a>
             </Link>
           ))}
         </div>
@@ -64,7 +64,7 @@ export const Navbar = () => {
               key={item.label}
               href={item.href}
             >
-              <a className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200' : 'bg-gray-100 hover:bg-gray-200'}`}>{item.label}</a>
+              <a className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200 dark:bg-gray-700 dark:text-white' : 'hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white'}`}>{item.label}</a>
             </Link>
           ))}
         </div>

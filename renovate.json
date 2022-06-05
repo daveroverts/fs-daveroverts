@@ -5,10 +5,13 @@
   ],
   "packageRules": [
     {
-      "matchSourceUrlPrefixes": [
-        "https://github.com/tailwindlabs"
+      "groupName": "Tailwind CSS",
+      "matchPackageNames": [
+        "tailwindcss"
       ],
-      "groupName": "Tailwind CSS"
+      "matchPackagePrefixes": [
+        "@tailwindcss/"
+      ]
     }
   ]
 }

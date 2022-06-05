@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import Layout from "../components/Layout";
 
-export default function About() {
+export default function Specs() {
   const title = 'Specs'
   return (
     <>

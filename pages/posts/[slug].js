@@ -13,11 +13,11 @@ export default function PostPage({ mdxSource, frontMatter }) {
         title={frontMatter.title}
       />
       <Layout title={frontMatter.title} subtitle={frontMatter.date ? format(parseISO(frontMatter.date), "P", { locale: enGB }) : undefined}>
-          <div>
-            {frontMatter.description && (
-              <p className="py-5">{frontMatter.description}</p>
-            )}
-          <article className="prose lg:prose-xl">
+        <div>
+          {frontMatter.description && (
+            <p className="py-5">{frontMatter.description}</p>
+          )}
+          <article className="prose lg:prose-xl dark:prose-invert">
             <MDXRemote {...mdxSource} />
           </article>
         </div>

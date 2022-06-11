@@ -4,21 +4,8 @@
     "local>daveroverts/renovate-config",
     "group:linters"
   ],
-  "packageRules": [
-    {
-      "groupName": "Tailwind CSS",
-      "matchPackageNames": [
-        "tailwindcss"
-      ],
-      "matchPackagePrefixes": [
-        "@tailwindcss/"
-      ]
-    },
-    {
-      "groupName": "Plaiceholder",
-      "matchSourceUrlPrefixes": [
-        "https://github.com/joe-bell/plaiceholder"
-      ]
-    }
-  ]
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  }
 }

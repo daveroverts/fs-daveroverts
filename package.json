@@ -47,7 +47,7 @@
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "husky": "8.0.1",
-    "postcss": "8.4.16",
+    "postcss": "8.4.17",
     "tailwindcss": "3.1.8"
   }
 }

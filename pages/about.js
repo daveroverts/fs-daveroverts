@@ -17,7 +17,7 @@ export default function About() {
 
           <h3 className="text-2xl font-bold">Hello there! <Emoji className="font-medium" symbol="👋" /></h3>
 
-          <p className="py-3">I&apos;m Dave Roverts, 24 years old and from the Netherlands <Emoji symbol="🇳🇱" />. Web developer <Emoji symbol="🖥" /> by day, and flight simmer <Emoji symbol="✈️" /> in the evening.</p>
+          <p className="py-3">I&apos;m Dave Roverts, 25 years old and from the Netherlands <Emoji symbol="🇳🇱" />. Web developer <Emoji symbol="🖥" /> by day, and flight simmer <Emoji symbol="✈️" /> in the evening.</p>
 
           <p className="py-3">At the time of writing, I use the following flight sims and aircraft:</p>
           <ul className="list-disc list-inside">

@@ -52,8 +52,8 @@ export const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-            >
-              <a className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200 dark:bg-gray-700 dark:text-white' : 'hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white'}`}>{item.label}</a>
+              className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200 dark:bg-gray-700 dark:text-white' : 'hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white'}`}>
+              {item.label}
             </Link>
           ))}
         </div>
@@ -63,8 +63,8 @@ export const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-            >
-              <a className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200 dark:bg-gray-700 dark:text-white' : 'hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white'}`}>{item.label}</a>
+              className={`px-3 py-2 rounded-md ${router.pathname === item.href ? 'bg-gray-200 dark:bg-gray-700 dark:text-white' : 'hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white'}`}>
+              {item.label}
             </Link>
           ))}
         </div>

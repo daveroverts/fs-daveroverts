@@ -1,7 +1,7 @@
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from "next/legacy/image";
 
 const BlogPost = ({ post }) => {
     return (

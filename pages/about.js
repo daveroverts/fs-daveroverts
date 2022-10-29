@@ -1,6 +1,6 @@
 import Emoji from 'a11y-react-emoji';
 import { NextSeo } from 'next-seo';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import atc from 'public/static/images/about/atc.png';
 import deef733 from 'public/static/images/about/deef733.png';
 import tra737 from 'public/static/images/about/tra737.png';

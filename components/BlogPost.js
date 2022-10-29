@@ -1,7 +1,7 @@
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
 import Link from 'next/link';
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const BlogPost = ({ post }) => {
     return (
@@ -16,11 +16,10 @@ const BlogPost = ({ post }) => {
                             <Image
                                 src={post.banner}
                                 alt={post.title}
-                                layout="fill"
-                                objectFit="fill"
                                 className="transition duration-1000 rounded-3xl"
                                 placeholder="blur"
                                 blurDataURL={post.base64}
+                                fill
                             />
                         </div>
                     ) : (

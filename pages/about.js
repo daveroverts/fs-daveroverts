@@ -1,13 +1,13 @@
-import Emoji from 'a11y-react-emoji';
-import { NextSeo } from 'next-seo';
+import Emoji from "a11y-react-emoji";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
-import atc from 'public/static/images/about/atc.png';
-import deef733 from 'public/static/images/about/deef733.png';
-import tra737 from 'public/static/images/about/tra737.png';
+import atc from "public/static/images/about/atc.png";
+import deef733 from "public/static/images/about/deef733.png";
+import tra737 from "public/static/images/about/tra737.png";
 import Layout from "../components/Layout";
 
 export default function About() {
-  const title = 'About'
+  const title = "About";
   return (
     <>
       <NextSeo title={title} />
@@ -15,11 +15,20 @@ export default function About() {
         <article className="py-5">
           <Image src={deef733} alt="PJ-DPI Boeing 737-300" placeholder="blur" />
 
-          <h3 className="text-2xl font-bold">Hello there! <Emoji className="font-medium" symbol="👋" /></h3>
+          <h3 className="text-2xl font-bold">
+            Hello there! <Emoji className="font-medium" symbol="👋" />
+          </h3>
 
-          <p className="py-3">I&apos;m Dave Roverts, 25 years old and from the Netherlands <Emoji symbol="🇳🇱" />. Web developer <Emoji symbol="🖥" /> by day, and flight simmer <Emoji symbol="✈️" /> in the evening.</p>
+          <p className="py-3">
+            I&apos;m Dave Roverts, 26 years old and from the Netherlands{" "}
+            <Emoji symbol="🇳🇱" />. Web developer <Emoji symbol="🖥" /> by day,
+            and flight simmer <Emoji symbol="✈️" /> in the evening.
+          </p>
 
-          <p className="py-3">At the time of writing, I use the following flight sims and aircraft:</p>
+          <p className="py-3">
+            At the time of writing, I use the following flight sims and
+            aircraft:
+          </p>
           <ul className="list-disc list-inside">
             <li>Prepar3D V5</li>
             <ul className="px-8 list-disc list-inside">
@@ -42,15 +51,47 @@ export default function About() {
             </ul>
           </ul>
 
-          <Image src={tra737} alt="Transavia B737-700 final Marrakech GMMX" placeholder="blur" />
+          <Image
+            src={tra737}
+            alt="Transavia B737-700 final Marrakech GMMX"
+            placeholder="blur"
+          />
 
-          <h3 className="py-3 text-2xl font-bold">Online flying / ATC <Emoji className="font-medium" symbol="📡" /></h3>
-          <p className="py-3">All my flights are flown on the <a href="https://www.vatsim.net/" className="text-blue-400 hover:underline">VATSIM network</a></p>
+          <h3 className="py-3 text-2xl font-bold">
+            Online flying / ATC <Emoji className="font-medium" symbol="📡" />
+          </h3>
+          <p className="py-3">
+            All my flights are flown on the{" "}
+            <a
+              href="https://www.vatsim.net/"
+              className="text-blue-400 hover:underline"
+            >
+              VATSIM network
+            </a>
+          </p>
 
-          <p className="py-3">Next to flying, I&apos;m also a controller currently holding both C3 and I1 ratings. My home division is the <a href="https://www.dutchvacc.nl" className="text-blue-400 hover:underline">Dutch VACC</a>.</p>
+          <p className="py-3">
+            Next to flying, I&apos;m also a controller currently holding both C3
+            and I1 ratings. My home division is the{" "}
+            <a
+              href="https://www.dutchvacc.nl"
+              className="text-blue-400 hover:underline"
+            >
+              Dutch VACC
+            </a>
+            .
+          </p>
 
-          <p className="py-3">Usually, you will find me controlling EHAA_CTR, which covers the Netherlands.</p>
-          <Image src={atc} alt="Amsterdam Radar" placeholder="blur" quality={100} />
+          <p className="py-3">
+            Usually, you will find me controlling EHAA_CTR, which covers the
+            Netherlands.
+          </p>
+          <Image
+            src={atc}
+            alt="Amsterdam Radar"
+            placeholder="blur"
+            quality={100}
+          />
         </article>
       </Layout>
     </>

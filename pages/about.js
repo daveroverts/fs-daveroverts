@@ -13,7 +13,7 @@ export default function About() {
       <NextSeo title={title} />
       <Layout title={title}>
         <article className="py-5">
-          <Image src={deef733} alt="PJ-DPI Boeing 737-300" placeholder="blur" />
+          <Image src={deef733} alt="PJ-DPI Boeing 737-300 in X-Plane 11" placeholder="blur" />
 
           <h3 className="text-2xl font-bold">
             Hello there! <Emoji className="font-medium" symbol="👋" />
@@ -26,8 +26,17 @@ export default function About() {
           </p>
 
           <p className="py-3">
-            At the time of writing, I use the following flight sims and
+            At the time of writing, I use Microsoft Flight Simulator 2020 and the following
             aircraft:
+          </p>
+          <ul className="list-disc list-inside">
+            <li>Fenix A320</li>
+            <li>FlyByWire A32NX</li>
+            <li>PMDG 737</li>
+          </ul>
+
+          <p className="py-3">
+            Before 2021, I also used Prepar3D V5 and X-Plane with the following aircraft:
           </p>
           <ul className="list-disc list-inside">
             <li>Prepar3D V5</li>

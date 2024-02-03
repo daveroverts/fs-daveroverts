@@ -18,7 +18,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@heroicons/react": "2.1.1",
@@ -46,7 +46,7 @@
     "autoprefixer": "10.4.17",
     "eslint": "8.56.0",
     "eslint-config-next": "14.1.0",
-    "husky": "8.0.3",
+    "husky": "9.0.10",
     "postcss": "8.4.33",
     "tailwindcss": "3.4.1"
   }

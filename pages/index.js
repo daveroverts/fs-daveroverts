@@ -7,7 +7,7 @@ import { getAllFilesFrontMatter } from "../lib/mdx";
 export default function Index({ posts }) {
   const title = 'Home'
   const layoutTitle = <>Hello there! <Emoji className="font-medium" symbol="👋" /></>
-  const subTitle = <>I&apos;m Dave Roverts, 26 years old and from the Netherlands <Emoji className="font-medium" symbol="🇳🇱" />. Web developer <Emoji className="font-medium" symbol="🖥" /> by day, and flight simmer <Emoji className="font-medium" symbol="✈️" /> in the evening.</>
+  const subTitle = <>I&apos;m Dave Roverts, 27 years old and from the Netherlands <Emoji className="font-medium" symbol="🇳🇱" />. Web developer <Emoji className="font-medium" symbol="🖥" /> by day, and flight simmer <Emoji className="font-medium" symbol="✈️" /> in the evening.</>
   return (
     <>
       <NextSeo title={title} />

@@ -21,7 +21,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@heroicons/react": "2.1.5",
+    "@heroicons/react": "2.2.0",
     "@plaiceholder/next": "2.5.0",
     "a11y-react-emoji": "1.2.0",
     "axios": "1.7.9",

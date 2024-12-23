@@ -28,7 +28,7 @@
     "date-fns": "4.1.0",
     "fathom-client": "3.7.2",
     "gray-matter": "4.0.3",
-    "next": "14.2.20",
+    "next": "14.2.21",
     "next-mdx-remote": "4.4.1",
     "next-remote-watch": "2.0.0",
     "next-seo": "6.6.0",

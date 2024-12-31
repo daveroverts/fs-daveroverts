@@ -10,7 +10,9 @@ _Please note that this post has **not** been created by the Dutch VACC staff. I 
 
 ### Introduction
 
-Starting from AIRAC 2413, the Dutch VACC has made some changes on how the position 'Amsterdam Radar' [EHAA_CTR] is being staffed. It has been quite busy in the EHAA FIR lately, and we want to provide better service to inbound and outbound traffic.
+Starting from AIRAC 2413 [2024-12-26], the Dutch VACC has made some changes on how 'Amsterdam Radar' [EHAA_CTR] is being staffed. It has been quite busy in the EHAA FIR lately, and we want to provide better service to inbound and outbound traffic.
+
+---
 
 ### The old situation
 
@@ -18,9 +20,11 @@ Previously, the first position to open up is EHAA_W_CTR. When no other EHAA wher
 
 It seems that even during regular evenings, it has become too busy to handle overflights in the Maastricht Delta Sector. This is especially the case when there's no Schiphol Approach controller online. In practice, when we don't need to speak to an overflight (no next sector), we just leave them on UNICOM.
 
+During events where we open up EHAA_W_CTR, and EHAA_E_CTR, the Delta sector is evenly split thanks to the old 'Flevo sector'. This was IRL located in the east of the FIR, while Delta is located in the west.
+
 ### The new situation
 
-Starting from AIRAC 2413, two new positions have been introduced:
+Starting from AIRAC 2413 [2024-12-26], two new positions have been introduced:
 
 **EHAA_LOW_CTR [125.750]**
 
@@ -29,3 +33,23 @@ This position now only covers the EHAA FIR from the ground up to FL245, **exclud
 **EHAA_ALL_CTR [134.375]**
 
 This position covers the whole EHAA FIR, **including** the Maastricht Delta sector.
+
+**EHAA_W_CTR [123.705]**
+
+This position now only covers the western part of the FIR [S4 + S5], up to FL245. As stated before, this used to be the position that covered the whole FIR in case no other positions where staffed.
+
+In addition, the Delta sector is now just one sector, the old 'Flevo sector' no longer exists.
+
+### Events
+
+For events, we can now better decide which sectors to open up, and prevent one controller being overloaded with traffic.
+
+Here are some examples on what we could do based on some earlier events:
+
+- Balkan Dutch Gateway:
+  - EHAA_E_CTR [124.880] - covering the eastern part [S1 + S2] of the FIR, up to FL245
+  - EHAA_ALL_CTR [134.375] - covering the rest of the FIR that's not covered [S3 + S4 + S5], and the Maastricht Delta sector [FL245 - FL660]
+- Cross the Pond Eastbound:
+  - EHAA_W_CTR [123.705] - covering the western part [S4 + S5] of the FIR, up to FL245
+  - EHAA_LOW_CTR [125.750] - covering the rest of the FIR that's not covered [S1 + S2]
+  - EDYY_D_CTR [135.960] - covering the Maastricht Delta sector [FL245 - FL660]

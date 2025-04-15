@@ -1,0 +1,76 @@
+---
+title: Getting started with TrackAudio
+date: "2025-04-15"
+tags:
+  - Dutch VACC
+  - Vatsim
+---
+
+_Please note that this post has **not** been created by the Dutch VACC staff. I decided to create this to help users getting started with TrackAudio_
+
+### Introduction
+
+This guide has been written to help you get started with [TrackAudio](https://github.com/pierr3/TrackAudio).
+
+I've written this guide based on the sector files the Dutch VACC uses. In that setup (and most likely others as well), the following plugins are already installed:
+
+- Audio for Vatsim EuroScope Bridge
+- TopSky
+- [RDFPlugin by chembergj](https://github.com/chembergj/RDF)
+
+---
+
+### Requirements
+
+- Euroscope 3.2
+- Some sort of text editor, like Notepad or Visual Studio Code
+- Be able to read this guide step-by-step
+- Before starting, make a backup of your sector files, just in case.
+
+---
+
+### 1. Preparing the new RDF plugin
+
+The current RDF plugin can't be used with TrackAudio. Luckily, there is an alternative that does support it. This plugin also takes over the role of the Audio for Vatsim EuroScope Bridge.
+
+1. Open EuroScope
+2. Click on `OTHER SET` -> `Plug-ins ...`
+3. Select `Audio for Vatsim EuroScope Bridge`, and click on `Unload`
+   ![Unloading the Audio for Vatsim EuroScope Bridge plugin](/static/images/2025-04-15-getting-started-with-trackaudio/unload-bridge.png)
+4. Close EuroScope, and save the changes.
+
+Now, we need to ensure the TopSky's RDF is disabled.
+
+1. Navigate to your sector files folder and then the directory of TopSky (by default `C:\Users\[you]\AppData\Roaming\EuroScope\EHAA\Plugins\TopSky`).
+2. Open `TopSkySettings.txt`
+3. Search for `RDF_MODE`. If you found a result, change it's value to `-1`. If you didn't find it, add the line `RDF_MODE -1` to the file.
+4. Save the file, and close it.
+
+---
+
+### 2. Installing the new RDF plugin
+
+1. Open the repository: [https://github.com/KingfuChan/RDF/releases](https://github.com/KingfuChan/RDF/releases)
+   ![Downloading the new RDF plugin](/static/images/2025-04-15-getting-started-with-trackaudio/download-rdf.png)
+2. Download `RDFPlugin.dll` from the latest release. In the screenshot below, and time of writing, that's v1.4.2. You browser may warn you that the file isn't verified. You can ignore this warning, and continue downloading the file.
+3. Navigate to your sector files folder and then the directory of the old RDF plugin (by default `C:\Users\[you]\AppData\Roaming\EuroScope\EHAA\Plugins\RDF`).
+4. Replace the `RDFPlugin.dll` file with the one you just downloaded. If you don't see the file, make sure you have the option to view hidden files enabled in your file explorer.
+
+---
+
+### 3. Installing TrackAudio
+
+1. Open the repository: [https://github.com/pierr3/TrackAudio/releases](https://github.com/pierr3/TrackAudio/releases)
+   ![Downloading the TrackAudio](/static/images/2025-04-15-getting-started-with-trackaudio/download-trackaudio.png)
+2. Download the latest release. At the time of writing, that's 1.3.1. You may need to scroll down a bit untill you see `Assets`
+3. Install TrackAudio, and setup as needed.
+
+   - Personally, I recommend using `Garex 220` as Radio hardware, as they also use it within LVNL.
+
+4. Profit!
+
+---
+
+Have fun with TrackAudio!
+
+![TrackAudio open as observer](/static/images/2025-04-15-getting-started-with-trackaudio/trackaudio-example.png)

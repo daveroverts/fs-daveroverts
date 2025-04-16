@@ -20,7 +20,7 @@ export default function About() {
           </h3>
 
           <p className="py-3">
-            I&apos;m Dave Roverts, 27 years old and from the Netherlands{" "}
+            I&apos;m Dave Roverts, 28 years old and from the Netherlands{" "}
             <Emoji symbol="🇳🇱" />. Web developer <Emoji symbol="🖥" /> by day,
             and flight simmer <Emoji symbol="✈️" /> in the evening.
           </p>

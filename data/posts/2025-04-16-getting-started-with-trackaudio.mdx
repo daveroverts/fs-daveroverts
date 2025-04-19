@@ -55,6 +55,15 @@ Now, we need to ensure the TopSky's RDF is disabled.
 3. Navigate to your sector files folder and then the directory of the old RDF plugin (by default **C:\Users\\[you]\AppData\Roaming\EuroScope\EHAA\Plugins\RDF**).
 4. Replace the **RDFPlugin.dll** file with the one you just downloaded. If you don't see the file, make sure you have the option to view hidden files enabled in your file explorer.
 
+If the original RDF plugin wasn't loaded in the first place (due to the usage of TopSky), you now need to load in the new RDF plugin.
+
+1. Open EuroScope
+2. Click on **OTHER SET** -> **Plug-ins ...** -> **Load**
+3. Navigate to the directory of the RDF plugin (by default **C:\Users\\[you]\AppData\Roaming\EuroScope\EHAA\Plugins\RDF**), and select **RDFPlugin.dll**.
+4. Allow the plugin to draw on your screen by clicking on the plugin, selecting **Standard ES radar screen** that's now under **Forbidden to draw on types**, and clicking on **&lt;&lt;**. The entry should now be on the left.
+   ![Allowing the plugin to draw on the screen](/static/images/2025-04-16-getting-started-with-trackaudio/load-rdf.png)
+5. Close EuroScope, and save the changes.
+
 ---
 
 ### 3. Installing TrackAudio

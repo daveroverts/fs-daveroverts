@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
 import { useRouter } from "next/router";
-import logo from "../public/logo.png";
+import logo from "@/public/logo.png";
 import Image from "next/image";
 
 export const Navbar = () => {

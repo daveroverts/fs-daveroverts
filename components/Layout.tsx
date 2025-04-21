@@ -1,7 +1,14 @@
+import { ReactNode } from "react";
 import Footer from "./Footer";
 import { Navbar } from "./Navbar";
 
-export default function Layout({ children, title, subtitle }) {
+interface LayoutProps {
+  children?: ReactNode;
+  title?: string;
+  subtitle?: string;
+}
+
+export default function Layout({ children, title, subtitle }: LayoutProps) {
   return (
     <div className="container px-16 py-3 mx-auto text-black dark:text-white">
       <Navbar />

@@ -25,10 +25,6 @@ export const Navbar = () => {
 
   const NAV_ITEMS_RIGHT = [
     {
-      label: "Twitter",
-      href: "https://twitter.com/daveroverts",
-    },
-    {
       label: "Youtube",
       href: "https://youtube.com/daveroverts",
     }

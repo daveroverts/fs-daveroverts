@@ -6,7 +6,7 @@ export const VatsimStatusIndicator = () => {
   const cid = 1186831;
   const { data } = useSWR(`/api/vatsim/online/${cid}`, fetcher);
 
-  const isOnline = data?.callsign !== undefined;
+  const isOnline = data?.callsign !== null;
   const callsign = data?.callsign ?? null;
   const role = data?.role ?? null;
   const roleData = data?.roleData ?? null;

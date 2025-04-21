@@ -1,27 +1,25 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import * as Fathom from 'fathom-client';
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import * as Fathom from "fathom-client";
 
 export const useAnalytics = () => {
-    const router = useRouter();
+  const router = useRouter();
 
-    useEffect(() => {
-        if (process.env.NODE_ENV === 'production') {
-            Fathom.load(process.env.NEXT_PUBLIC_FATHOM_SITE_ID, {
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") {
+      Fathom.load(process.env.NEXT_PUBLIC_FATHOM_SITE_ID, {
+        includedDomains: ["fs.daveroverts.nl"],
+      });
+    }
 
-                // url: process.env.NEXT_PUBLIC_FATHOM_URL,
-                includedDomains: ['fs.daveroverts.nl']
-            });
-        }
+    function onRouteChangeComplete() {
+      Fathom.trackPageview();
+    }
 
-        function onRouteChangeComplete() {
-            Fathom.trackPageview();
-        }
+    router.events.on("routeChangeComplete", onRouteChangeComplete);
 
-        router.events.on('routeChangeComplete', onRouteChangeComplete);
-
-        return () => {
-            router.events.off('routeChangeComplete', onRouteChangeComplete);
-        };
-    }, [router.events]);
+    return () => {
+      router.events.off("routeChangeComplete", onRouteChangeComplete);
+    };
+  }, [router.events]);
 };

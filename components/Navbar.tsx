@@ -36,12 +36,12 @@ export const Navbar = () => {
       <div className="flex justify-between">
         <div>
           <h1 className="flex flex-row items-center justify-center pb-4 space-x-2 text-4xl font-bold dark:text-white">
-            <div>
+            <div className="bg-transparent">
               <Image
                 src={logo}
                 alt="FS Dave Roverts Logo"
-                width={30}
-                height={30}
+                width={75}
+                height={75}
                 className="w-auto h-10 transition-all duration-300 dark:invert"
                 priority
               />

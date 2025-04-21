@@ -4,8 +4,8 @@ import { MDXProvider } from "@mdx-js/react";
 import MDXComponents from "../components/MDXComponents";
 import { DefaultSeo } from "next-seo";
 import SEO from "../../next-seo.config";
-import "tailwindcss/tailwind.css";
 import { useAnalytics } from "@/lib/analytics";
+import "@/styles/global.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   useAnalytics();

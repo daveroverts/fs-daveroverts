@@ -7,7 +7,7 @@ import rehypeExternalLinks from "rehype-external-links";
 
 const root = process.cwd();
 
-export async function getFiles(type: string) {
+export async function getFiles(type: string): Promise<string[]> {
   return fs.readdirSync(path.join(root, "data", type));
 }
 

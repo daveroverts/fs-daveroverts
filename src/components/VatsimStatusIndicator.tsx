@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import fetcher from "lib/fetcher";
+import fetcher from "@/lib/fetcher";
 import Emoji from "a11y-react-emoji";
 
 export const VatsimStatusIndicator = () => {

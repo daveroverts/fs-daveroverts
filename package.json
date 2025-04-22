@@ -13,7 +13,7 @@
     "url": "git+https://github.com/daveroverts/fs-daveroverts.git"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next --turbopack",
     "dev:watch": "next-remote-watch ./data/posts",
     "build": "next build",
     "start": "next start",
@@ -28,17 +28,17 @@
     "date-fns": "4.1.0",
     "fathom-client": "3.7.2",
     "gray-matter": "4.0.3",
-    "next": "14.2.28",
+    "next": "15.3.1",
     "next-mdx-remote": "5.0.0",
     "next-remote-watch": "2.0.0",
     "next-seo": "6.6.0",
     "next-themes": "0.4.6",
     "plaiceholder": "2.5.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "react-lite-youtube-embed": "2.4.0",
     "rehype-external-links": "3.0.0",
-    "sharp": "0.32.6",
+    "sharp": "0.34.1",
     "swr": "2.3.3",
     "typescript": "5.8.3"
   },
@@ -46,12 +46,16 @@
     "@tailwindcss/postcss": "4.1.4",
     "@tailwindcss/typography": "0.5.16",
     "@types/node": "22.14.1",
-    "@types/react": "18.3.1",
-    "@types/react-dom": "18.3.1",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
     "eslint": "8.57.1",
-    "eslint-config-next": "14.2.28",
+    "eslint-config-next": "15.3.1",
     "husky": "9.1.7",
     "postcss": "8.5.3",
     "tailwindcss": "4.1.4"
+  },
+  "overrides": {
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2"
   }
 }

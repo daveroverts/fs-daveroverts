@@ -52,12 +52,9 @@ export const Navbar = () => {
             </div>
           </h1>
         </div>
-        <div>
-          <ThemeSwitcher />
-        </div>
       </div>
       <div className="flex flex-col items-center justify-between space-x-5 space-y-5 md:space-y-0 md:flex-row">
-        <div className="space-x-5">
+        <div className="flex flex-row space-x-5">
           {NAV_ITEMS_LEFT.map((item) => (
             <Link
               key={item.label}
@@ -73,7 +70,7 @@ export const Navbar = () => {
           ))}
         </div>
         <VatsimStatusIndicator />
-        <div className="space-x-5">
+        <div className="flex flex-row space-x-5">
           {NAV_ITEMS_RIGHT.map((item) => (
             <Link
               key={item.label}
@@ -87,6 +84,10 @@ export const Navbar = () => {
               {item.label}
             </Link>
           ))}
+
+          <div>
+            <ThemeSwitcher />
+          </div>
         </div>
       </div>
     </div>

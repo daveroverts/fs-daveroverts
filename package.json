@@ -53,9 +53,5 @@
     "husky": "9.1.7",
     "postcss": "8.5.3",
     "tailwindcss": "4.1.4"
-  },
-  "overrides": {
-    "@types/react": "19.1.2",
-    "@types/react-dom": "19.1.2"
   }
 }

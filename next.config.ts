@@ -1,6 +1,5 @@
-// @ts-check
-
-const { withPlaiceholder } = require("@plaiceholder/next");
+import type { NextConfig } from "next";
+import withPlaiceholder from "@plaiceholder/next";
 
 const ContentSecurityPolicy = `
   default-src 'self';
@@ -50,8 +49,7 @@ const securityHeaders = [
   },
 ];
 
-/** @type {import('next').NextConfig} */
-const nextConfig = withPlaiceholder({
+const nextConfig: NextConfig = withPlaiceholder({
   images: {
     formats: ["image/avif", "image/webp"],
   },

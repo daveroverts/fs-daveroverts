@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-const { withPlaiceholder } = require("@plaiceholder/next");
+import withPlaiceholder from "@plaiceholder/next";
 
 const ContentSecurityPolicy = `
   default-src 'self';

@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@heroicons/react": "2.2.0",
-    "@plaiceholder/next": "2.5.0",
+    "@plaiceholder/next": "3.0.0",
     "a11y-react-emoji": "1.2.0",
     "axios": "1.8.4",
     "date-fns": "4.1.0",
@@ -33,7 +33,7 @@
     "next-remote-watch": "2.0.0",
     "next-seo": "6.6.0",
     "next-themes": "0.4.6",
-    "plaiceholder": "2.5.0",
+    "plaiceholder": "3.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-lite-youtube-embed": "2.4.0",

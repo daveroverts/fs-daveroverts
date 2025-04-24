@@ -4,8 +4,8 @@ import { Navbar } from "./Navbar";
 
 interface LayoutProps {
   children?: ReactNode;
-  title?: string;
-  subtitle?: string;
+  title?: ReactNode | string;
+  subtitle?: ReactNode | string;
 }
 
 export default function Layout({ children, title, subtitle }: LayoutProps) {

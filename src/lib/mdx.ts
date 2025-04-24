@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from "node:fs/promises";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
@@ -53,7 +54,6 @@ export async function getAllFilesFrontMatter(type: string) {
       width: number;
     };
     // Frontmatter properties
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any; // To allow other frontMatter properties
   };
 

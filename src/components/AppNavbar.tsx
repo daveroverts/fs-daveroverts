@@ -26,10 +26,6 @@ export const AppNavbar = () => {
       label: "Specs",
       href: "/specs",
     },
-    {
-      label: "Test",
-      href: "/test",
-    },
   ];
 
   const NAV_ITEMS_RIGHT = [

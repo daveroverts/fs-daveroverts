@@ -22,10 +22,6 @@ export const Navbar = () => {
       label: "Specs",
       href: "/specs",
     },
-    {
-      label: "Test",
-      href: "/test",
-    },
   ];
 
   const NAV_ITEMS_RIGHT = [

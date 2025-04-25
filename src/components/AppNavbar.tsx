@@ -1,13 +1,17 @@
+"use client";
+
 import Emoji from "a11y-react-emoji";
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import logo from "@/public/logo.png";
 import Image from "next/image";
 
-export const Navbar = () => {
-  const router = useRouter();
+export const AppNavbar = () => {
+  const pathname = usePathname();
+
+  console.log(pathname);
 
   const NAV_ITEMS_LEFT = [
     {
@@ -64,7 +68,7 @@ export const Navbar = () => {
               key={item.label}
               href={item.href}
               className={`px-3 py-2 rounded-md ${
-                router.pathname === item.href
+                pathname === item.href
                   ? "bg-gray-200 dark:bg-gray-700 dark:text-white"
                   : "hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
               }`}
@@ -80,7 +84,7 @@ export const Navbar = () => {
               key={item.label}
               href={item.href}
               className={`px-3 py-2 rounded-md ${
-                router.pathname === item.href
+                pathname === item.href
                   ? "bg-gray-200 dark:bg-gray-700 dark:text-white"
                   : "hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
               }`}

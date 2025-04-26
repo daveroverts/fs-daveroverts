@@ -5,7 +5,7 @@ import AppLayout from "@/components/AppLayout";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Home | FS Dave Roverts ✈️",
 };
 
 export default async function Index() {

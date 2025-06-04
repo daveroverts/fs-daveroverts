@@ -1,68 +1,27 @@
-# MDX Remote Example
+# FS Dave Roverts
 
-This example shows how a simple blog might be built using the [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) library, which allows mdx content to be loaded via `getStaticProps` or `getServerSideProps`. The mdx content is loaded from a local folder, but it could be loaded from a database or anywhere else.
+## Project overview
 
-The example also showcases [next-remote-watch](https://github.com/hashicorp/next-remote-watch), a library that allows next.js to watch files outside the `pages` folder that are not explicitly imported, which enables the mdx content here to trigger a live reload on change.
+FS Dave Roverts is a small personal website about flight simulation. Posts and static pages are written in MDX and served using Next.js and TypeScript. The site includes a handful of React components and is styled with Tailwind CSS.
 
-Since `next-remote-watch` uses undocumented Next.js APIs, it doesn't replace the default `dev` script for this example. To use it, run `npm run dev:watch` or `yarn dev:watch`.
+The live version is available at [https://fs.daveroverts.nl](https://fs.daveroverts.nl) and is deployed automatically via Vercel.
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-mdx-remote&project-name=with-mdx-remote&repository-name=with-mdx-remote)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+## How to run locally
 
 ```bash
-npx create-next-app --example with-mdx-remote with-mdx-remote-app
-# or
-yarn create next-app --example with-mdx-remote with-mdx-remote-app
+npm install
+npm run dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Use `npm run build` followed by `npm start` to create and serve a production build.
 
-## Notes
+## Folder structure
 
-### Conditional custom components
+- **data/** – MDX files for pages and blog posts
+- **src/pages/** – Next.js route files
+- **src/components/** – shared React components used across the site
+- **public/** – static assets such as icons and images
 
-When using `next-mdx-remote`, you can pass custom components to the MDX renderer. However, some pages/MDX files might use components that are used infrequently, or only on a single page. To avoid loading those components on every MDX page, you can use `next/dynamic` to conditionally load them.
+## Deployment
 
-For example, here's how you can change `getStaticProps` to pass a list of component names, checking the names in the page render function to see which components need to be dynamically loaded.
-
-```js
-import dynamic from 'next/dynamic'
-
-const SomeHeavyComponent = dynamic(() => import('SomeHeavyComponent'))
-
-// ...
-export function SomePage({ mdxSource, componentNames }) {
-  const components = {
-    ...defaultComponents,
-    SomeHeavyComponent: componentNames.includes('SomeHeavyComponent')
-      ? SomeHeavyComponent
-      : null,
-  }
-
-  return <MDXRemote {...mdxSource} />
-}
-
-export async function getStaticProps() {
-  const { content, data } = matter(source)
-
-  const componentNames = [
-    /<SomeHeavyComponent/.test(content) ? 'SomeHeavyComponent' : null,
-  ].filter(Boolean)
-
-  const mdxSource = await serialize(content)
-
-  return {
-    props: {
-      mdxSource,
-      componentNames,
-    },
-  }
-}
-```
+This project is configured for Vercel. Pushing to the main branch triggers an automatic deployment to the domain mentioned above. You can also run `npm run build` locally to generate an optimized build.

@@ -1,17 +1,20 @@
+import AppLayout from "@/components/AppLayout";
 import Emoji from "a11y-react-emoji";
-import { NextSeo } from "next-seo";
 import Image from "next/image";
+import { Metadata } from "next/types";
 import atc from "public/static/images/about/atc.png";
 import deef733 from "public/static/images/about/deef733.png";
 import tra737 from "public/static/images/about/tra737.png";
-import Layout from "../components/Layout";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 
 export default function About() {
   const title = "About";
   return (
     <>
-      <NextSeo title={title} />
-      <Layout title={title}>
+      <AppLayout title={title}>
         <article className="py-5">
           <Image
             src={deef733}
@@ -107,7 +110,7 @@ export default function About() {
             quality={100}
           />
         </article>
-      </Layout>
+      </AppLayout>
     </>
   );
 }

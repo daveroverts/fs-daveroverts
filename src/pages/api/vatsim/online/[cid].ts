@@ -54,6 +54,7 @@ export default async function handler(
         roleData:
           controller.facility !== 0 ? controller.frequency : "Observing...",
       });
+      return;
     }
 
     const pilot: Pilot | undefined = dataFeedRes.data.pilots.find(
@@ -67,6 +68,7 @@ export default async function handler(
         role: "pilot",
         roleData: `${pilot.flight_plan.departure} - ${pilot.flight_plan.arrival}`,
       });
+      return;
     }
 
     res.status(200).json({

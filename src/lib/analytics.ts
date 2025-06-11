@@ -6,7 +6,10 @@ export const useAnalytics = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (process.env.NODE_ENV === "production") {
+    if (
+      process.env.NODE_ENV === "production" &&
+      process.env.NEXT_PUBLIC_FATHOM_SITE_ID
+    ) {
       Fathom.load(process.env.NEXT_PUBLIC_FATHOM_SITE_ID, {
         includedDomains: ["fs.daveroverts.nl"],
       });

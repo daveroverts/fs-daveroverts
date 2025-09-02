@@ -40,7 +40,7 @@
     "rehype-external-links": "3.0.0",
     "sharp": "0.34.3",
     "swr": "2.3.3",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.4",

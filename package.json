@@ -24,7 +24,7 @@
     "@heroicons/react": "2.2.0",
     "@plaiceholder/next": "3.0.0",
     "a11y-react-emoji": "1.2.0",
-    "axios": "1.11.0",
+    "axios": "1.13.2",
     "date-fns": "4.1.0",
     "fathom-client": "3.7.2",
     "gray-matter": "4.0.3",

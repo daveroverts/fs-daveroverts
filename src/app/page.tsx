@@ -1,22 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { GetStaticProps } from "next";
 import Emoji from "a11y-react-emoji";
-import { NextSeo } from "next-seo";
 import BlogPost from "../components/BlogPost";
-import Layout from "../components/Layout";
 import { getAllFilesFrontMatter } from "../lib/mdx";
+import AppLayout from "@/components/AppLayout";
+import { Metadata } from "next/types";
 
-interface Post {
-  slug: string;
-  [key: string]: any;
-}
+export const metadata: Metadata = {
+  title: "Home | FS Dave Roverts ✈️",
+};
 
-interface IndexProps {
-  posts: Post[];
-}
+export default async function Index() {
+  const posts = await getAllFilesFrontMatter("posts");
 
-export default function Index({ posts }: IndexProps) {
-  const title = "Home";
   const layoutTitle = (
     <>
       Hello there! <Emoji className="font-medium" symbol="👋" />
@@ -32,8 +26,7 @@ export default function Index({ posts }: IndexProps) {
   );
   return (
     <>
-      <NextSeo title={title} />
-      <Layout title={layoutTitle} subtitle={subTitle}>
+      <AppLayout title={layoutTitle} subtitle={subTitle}>
         <div className="py-5">
           <h3 className="text-2xl font-bold">Latest posts</h3>
           <div className="grid space-x-2 lg:grid-cols-2">
@@ -44,12 +37,7 @@ export default function Index({ posts }: IndexProps) {
             ))}
           </div>
         </div>
-      </Layout>
+      </AppLayout>
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getAllFilesFrontMatter("posts");
-  return { props: { posts } };
-};

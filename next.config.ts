@@ -53,6 +53,7 @@ const nextConfig: NextConfig = withPlaiceholder({
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  turbopack: {},
   reactStrictMode: true,
   async headers() {
     return [

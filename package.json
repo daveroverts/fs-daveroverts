@@ -17,7 +17,7 @@
     "dev:watch": "next-remote-watch ./data/posts",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prepare": "husky"
   },
   "dependencies": {

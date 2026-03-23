@@ -24,7 +24,7 @@ export default function Index({ posts }: IndexProps) {
   );
   const subTitle = (
     <>
-      I&apos;m Dave Roverts, 28 years old and from the Netherlands{" "}
+      I&apos;m Dave Roverts, 29 years old and from the Netherlands{" "}
       <Emoji className="font-medium" symbol="🇳🇱" />. Web developer{" "}
       <Emoji className="font-medium" symbol="🖥" /> by day, and flight simmer{" "}
       <Emoji className="font-medium" symbol="✈️" /> in the evening.

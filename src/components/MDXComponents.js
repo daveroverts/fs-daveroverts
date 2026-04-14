@@ -4,7 +4,7 @@ import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 const Youtube = (props) => {
   return (
     <div className="aspect-video">
-      <LiteYouTubeEmbed id={props.id} noCookie={true} />
+      <LiteYouTubeEmbed id={props.id} noCookie={true} {...props} />
     </div>
   );
 };

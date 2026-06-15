@@ -49,7 +49,7 @@
     "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.4",
-    "eslint-config-next": "16.2.6",
+    "eslint-config-next": "16.2.9",
     "husky": "9.1.7",
     "postcss": "8.5.15",
     "tailwindcss": "4.2.4"

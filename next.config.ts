@@ -52,6 +52,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = withPlaiceholder({
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 100],
   },
   turbopack: {},
   reactStrictMode: true,

@@ -22,6 +22,7 @@ const BlogPost = ({ post }: { post: Post }) => {
                 placeholder="blur"
                 blurDataURL={post.base64}
                 fill
+                sizes="(min-width: 1280px) 50vw, 384px"
               />
             </div>
           ) : (

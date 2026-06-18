@@ -1,40 +1,45 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from "node:fs/promises";
 import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
 import path from "node:path";
 import { getPlaiceholder } from "plaiceholder";
-import rehypeExternalLinks from "rehype-external-links";
 
 const root = process.cwd();
+
+export interface FrontMatter {
+  slug?: string | null;
+  title?: string;
+  date?: string;
+  description?: string;
+  banner?: string;
+  [key: string]: unknown;
+}
+
+export interface Post extends FrontMatter {
+  slug: string;
+  base64?: string;
+  img?: {
+    src: string;
+    height: number;
+    width: number;
+  };
+}
 
 export async function getFiles(type: string): Promise<string[]> {
   return await fs.readdir(path.join(root, "data", type));
 }
 
-export async function getFileBySlug(type: string, slug: string) {
+export async function getFileBySlug(
+  type: string,
+  slug: string
+): Promise<{ content: string; frontMatter: FrontMatter }> {
   const source = slug
     ? await fs.readFile(path.join(root, "data", type, `${slug}.mdx`), "utf8")
     : await fs.readFile(path.join(root, "data", `${type}.mdx`), "utf8");
 
   const { data, content } = matter(source);
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [
-        [
-          rehypeExternalLinks,
-          {
-            target: "_blank",
-            rel: "noopener noreferrer",
-          },
-        ],
-      ],
-    },
-  });
 
   return {
-    mdxSource,
+    content,
     frontMatter: {
       slug: slug || null,
       ...data,
@@ -42,20 +47,8 @@ export async function getFileBySlug(type: string, slug: string) {
   };
 }
 
-export async function getAllFilesFrontMatter(type: string) {
+export async function getAllFilesFrontMatter(type: string): Promise<Post[]> {
   const files = await fs.readdir(path.join(root, "data", type));
-  type Post = {
-    slug: string;
-    banner?: string;
-    base64?: string;
-    img?: {
-      src: string;
-      height: number;
-      width: number;
-    };
-    // Frontmatter properties
-    [key: string]: any; // To allow other frontMatter properties
-  };
 
   const sortedFiles = (
     await Promise.all(
@@ -72,7 +65,9 @@ export async function getAllFilesFrontMatter(type: string) {
         };
       })
     )
-  ).sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
+  ).sort(
+    (a, b) => Number(new Date(b.date ?? 0)) - Number(new Date(a.date ?? 0))
+  );
 
   return await Promise.all(
     sortedFiles.map(async (post) => {

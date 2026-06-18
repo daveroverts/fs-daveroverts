@@ -1,35 +1,38 @@
+"use client";
+
 import Emoji from "a11y-react-emoji";
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import logo from "@/public/logo.png";
 import Image from "next/image";
 
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const NAV_ITEMS_LEFT: NavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Specs", href: "/specs" },
+];
+
+const NAV_ITEMS_RIGHT: NavItem[] = [
+  { label: "Youtube", href: "https://youtube.com/daveroverts" },
+];
+
+function navLinkClass(active: boolean): string {
+  return `px-3 py-2 rounded-md ${
+    active
+      ? "bg-gray-200 dark:bg-gray-700 dark:text-white"
+      : "hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
+  }`;
+}
+
 export const Navbar = () => {
-  const router = useRouter();
-
-  const NAV_ITEMS_LEFT = [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "About",
-      href: "/about",
-    },
-    {
-      label: "Specs",
-      href: "/specs",
-    },
-  ];
-
-  const NAV_ITEMS_RIGHT = [
-    {
-      label: "Youtube",
-      href: "https://youtube.com/daveroverts",
-    },
-  ];
+  const pathname = usePathname();
 
   return (
     <div className="px-4 py-8 border-b-2">
@@ -59,11 +62,7 @@ export const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-              className={`px-3 py-2 rounded-md ${
-                router.pathname === item.href
-                  ? "bg-gray-200 dark:bg-gray-700 dark:text-white"
-                  : "hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
-              }`}
+              className={navLinkClass(pathname === item.href)}
             >
               {item.label}
             </Link>
@@ -75,11 +74,7 @@ export const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-              className={`px-3 py-2 rounded-md ${
-                router.pathname === item.href
-                  ? "bg-gray-200 dark:bg-gray-700 dark:text-white"
-                  : "hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
-              }`}
+              className={navLinkClass(pathname === item.href)}
             >
               {item.label}
             </Link>

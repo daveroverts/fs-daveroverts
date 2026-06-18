@@ -75,4 +75,4 @@ const nextConfig: NextConfig = withPlaiceholder({
   },
 });
 
-module.exports = nextConfig;
+export default nextConfig;

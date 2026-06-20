@@ -5,8 +5,9 @@ import rehypeExternalLinks from "rehype-external-links";
 import type { Metadata } from "next";
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
+import PostNav from "@/components/PostNav";
 import { notFound } from "next/navigation";
-import { getFileBySlug, getFiles } from "@/lib/mdx";
+import { getAdjacentPosts, getFileBySlug, getFiles } from "@/lib/mdx";
 
 export const dynamicParams = false;
 
@@ -73,6 +74,8 @@ export default async function PostPage({
     notFound();
   }
 
+  const adjacent = await getAdjacentPosts(slug);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -113,6 +116,7 @@ export default async function PostPage({
             options={mdxOptions}
           />
         </article>
+        <PostNav newer={adjacent.newer} older={adjacent.older} />
       </div>
     </Layout>
   );

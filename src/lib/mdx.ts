@@ -97,6 +97,31 @@ export async function getLatestPosts(count: number): Promise<Post[]> {
   return enrichWithPlaceholders(all.slice(0, count));
 }
 
+export interface AdjacentPost {
+  slug: string;
+  title?: string;
+}
+
+export interface AdjacentPosts {
+  newer?: AdjacentPost;
+  older?: AdjacentPost;
+}
+
+export async function getAdjacentPosts(slug: string): Promise<AdjacentPosts> {
+  const all = await getAllPostsMeta("posts");
+  const index = all.findIndex((post) => post.slug === slug);
+  if (index === -1) return {};
+
+  const toAdjacent = (post?: Post): AdjacentPost | undefined =>
+    post ? { slug: post.slug, title: post.title } : undefined;
+
+  // Sorted newest-first: lower index = newer, higher index = older.
+  return {
+    newer: toAdjacent(all[index - 1]),
+    older: toAdjacent(all[index + 1]),
+  };
+}
+
 export interface PaginatedPosts {
   posts: Post[];
   page: number;

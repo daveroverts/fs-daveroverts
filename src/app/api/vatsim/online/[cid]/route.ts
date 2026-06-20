@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
 
 interface OnlineMember {
   cid: number;
@@ -25,16 +24,19 @@ export async function GET(
   const { cid } = await params;
 
   try {
-    const statusRes = await axios("https://status.vatsim.net/status.json");
-    const dataFeeds: string[] = statusRes.data.data.v3;
+    const statusRes = await fetch("https://status.vatsim.net/status.json", {
+      next: { revalidate: 60 },
+    });
+    const statusJson = await statusRes.json();
+    const dataFeeds: string[] = statusJson.data.v3;
     const dataFeed = dataFeeds[Math.floor(Math.random() * dataFeeds.length)];
 
-    const dataFeedRes = await axios(dataFeed);
+    const dataFeedRes = await fetch(dataFeed, { next: { revalidate: 60 } });
+    const dataFeedJson = await dataFeedRes.json();
 
-    const controller: Controller | undefined =
-      dataFeedRes.data.controllers.find(
-        (member: OnlineMember) => String(member.cid) === cid
-      );
+    const controller: Controller | undefined = dataFeedJson.controllers.find(
+      (member: OnlineMember) => String(member.cid) === cid
+    );
 
     if (controller !== undefined) {
       // Online as a controller or observer
@@ -46,7 +48,7 @@ export async function GET(
       });
     }
 
-    const pilot: Pilot | undefined = dataFeedRes.data.pilots.find(
+    const pilot: Pilot | undefined = dataFeedJson.pilots.find(
       (member: OnlineMember) => String(member.cid) === cid
     );
 

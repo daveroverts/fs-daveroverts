@@ -31,7 +31,12 @@ function navLinkClass(active: boolean): string {
   }`;
 }
 
+function isExternal(href: string): boolean {
+  return /^https?:\/\//i.test(href);
+}
+
 function isActive(pathname: string, href: string): boolean {
+  if (isExternal(href)) return false;
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
@@ -77,15 +82,22 @@ export const Navbar = () => {
         </div>
         <VatsimStatusIndicator />
         <div className="flex flex-row space-x-5">
-          {NAV_ITEMS_RIGHT.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={navLinkClass(isActive(pathname, item.href))}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV_ITEMS_RIGHT.map((item) => {
+            const external = isExternal(item.href);
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={navLinkClass(isActive(pathname, item.href))}
+                {...(external && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
 
           <div>
             <ThemeSwitcher />

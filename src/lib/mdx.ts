@@ -5,6 +5,8 @@ import { getPlaiceholder } from "plaiceholder";
 
 const root = process.cwd();
 
+export const POSTS_PER_PAGE = 12;
+
 export interface FrontMatter {
   slug?: string | null;
   title?: string;
@@ -47,30 +49,32 @@ export async function getFileBySlug(
   };
 }
 
-export async function getAllFilesFrontMatter(type: string): Promise<Post[]> {
+export async function getAllPostsMeta(type: string): Promise<Post[]> {
   const files = await fs.readdir(path.join(root, "data", type));
 
-  const sortedFiles = (
-    await Promise.all(
-      files.map(async (postSlug): Promise<Post> => {
-        const source = await fs.readFile(
-          path.join(root, "data", type, postSlug),
-          "utf8"
-        );
-        const { data } = matter(source);
+  const posts = await Promise.all(
+    files.map(async (postSlug): Promise<Post> => {
+      const source = await fs.readFile(
+        path.join(root, "data", type, postSlug),
+        "utf8"
+      );
+      const { data } = matter(source);
 
-        return {
-          ...data,
-          slug: postSlug.replace(".mdx", ""),
-        };
-      })
-    )
-  ).sort(
-    (a, b) => Number(new Date(b.date ?? 0)) - Number(new Date(a.date ?? 0))
+      return {
+        ...data,
+        slug: postSlug.replace(".mdx", ""),
+      };
+    })
   );
 
-  return await Promise.all(
-    sortedFiles.map(async (post) => {
+  return posts.sort(
+    (a, b) => Number(new Date(b.date ?? 0)) - Number(new Date(a.date ?? 0))
+  );
+}
+
+async function enrichWithPlaceholders(posts: Post[]): Promise<Post[]> {
+  return Promise.all(
+    posts.map(async (post) => {
       if (!post.banner) {
         return post;
       }
@@ -86,4 +90,26 @@ export async function getAllFilesFrontMatter(type: string): Promise<Post[]> {
       return post;
     })
   );
+}
+
+export async function getLatestPosts(count: number): Promise<Post[]> {
+  const all = await getAllPostsMeta("posts");
+  return enrichWithPlaceholders(all.slice(0, count));
+}
+
+export interface PaginatedPosts {
+  posts: Post[];
+  page: number;
+  totalPages: number;
+  totalPosts: number;
+}
+
+export async function getPaginatedPosts(page: number): Promise<PaginatedPosts> {
+  const all = await getAllPostsMeta("posts");
+  const totalPosts = all.length;
+  const totalPages = Math.max(1, Math.ceil(totalPosts / POSTS_PER_PAGE));
+  const start = (page - 1) * POSTS_PER_PAGE;
+  const slice = all.slice(start, start + POSTS_PER_PAGE);
+  const posts = await enrichWithPlaceholders(slice);
+  return { posts, page, totalPages, totalPosts };
 }

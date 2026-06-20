@@ -14,6 +14,7 @@ interface NavItem {
 
 const NAV_ITEMS_LEFT: NavItem[] = [
   { label: "Home", href: "/" },
+  { label: "Archive", href: "/archive" },
   { label: "About", href: "/about" },
   { label: "Specs", href: "/specs" },
 ];
@@ -28,6 +29,11 @@ function navLinkClass(active: boolean): string {
       ? "bg-gray-200 dark:bg-gray-700 dark:text-white"
       : "hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
   }`;
+}
+
+function isActive(pathname: string, href: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export const Navbar = () => {
@@ -63,7 +69,7 @@ export const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-              className={navLinkClass(pathname === item.href)}
+              className={navLinkClass(isActive(pathname, item.href))}
             >
               {item.label}
             </Link>
@@ -75,7 +81,7 @@ export const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-              className={navLinkClass(pathname === item.href)}
+              className={navLinkClass(isActive(pathname, item.href))}
             >
               {item.label}
             </Link>

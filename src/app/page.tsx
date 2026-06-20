@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import BlogPost from "@/components/BlogPost";
+import Link from "next/link";
 import Layout from "@/components/Layout";
-import { getAllFilesFrontMatter } from "@/lib/mdx";
+import PostList from "@/components/PostList";
+import { getLatestPosts } from "@/lib/mdx";
 import { getAge } from "@/lib/age";
+
+const LATEST_COUNT = 5;
 
 export const metadata: Metadata = {
   // `title.template` from the root layout only applies to child segments, and
@@ -11,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const posts = await getAllFilesFrontMatter("posts");
+  const posts = await getLatestPosts(LATEST_COUNT);
 
   const layoutTitle = (
     <>
@@ -43,12 +46,14 @@ export default async function Home() {
     <Layout title={layoutTitle} subtitle={subTitle}>
       <div className="py-5">
         <h3 className="text-2xl font-bold">Latest posts</h3>
-        <div className="grid space-x-2 lg:grid-cols-2">
-          {posts.map((item) => (
-            <div className="py-5" key={item.slug}>
-              <BlogPost post={item} />
-            </div>
-          ))}
+        <PostList posts={posts} />
+        <div className="flex justify-center py-5">
+          <Link
+            href="/archive"
+            className="px-5 py-3 text-lg font-medium border-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800"
+          >
+            See all posts →
+          </Link>
         </div>
       </div>
     </Layout>

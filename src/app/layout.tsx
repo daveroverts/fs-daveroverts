@@ -1,9 +1,22 @@
 import "@/styles/global.css";
 
 import type { Metadata } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { Providers } from "./providers";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
 
 const url = "https://fs.daveroverts.nl";
 const title = "FS Dave Roverts ✈️";
@@ -51,7 +64,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${spaceGrotesk.variable}`}
+    >
       <body className="dark:bg-gray-900">
         <Providers>{children}</Providers>
       </body>

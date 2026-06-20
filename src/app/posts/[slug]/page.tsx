@@ -8,7 +8,12 @@ import MDXComponents from "@/components/MDXComponents";
 import PostNav from "@/components/PostNav";
 import TagList from "@/components/TagList";
 import { notFound } from "next/navigation";
-import { getAdjacentPosts, getFileBySlug, getFiles } from "@/lib/mdx";
+import {
+  getAdjacentPosts,
+  getFileBySlug,
+  getFiles,
+  readingTime,
+} from "@/lib/mdx";
 
 export const dynamicParams = false;
 
@@ -77,6 +82,14 @@ export default async function PostPage({
 
   const adjacent = await getAdjacentPosts(slug);
 
+  const minutes = readingTime(content);
+  const dateLabel = frontMatter.date
+    ? format(parseISO(frontMatter.date), "P", { locale: enGB })
+    : undefined;
+  const subtitle = [dateLabel, `${minutes} min read`]
+    .filter(Boolean)
+    .join(" · ");
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -94,14 +107,7 @@ export default async function PostPage({
   };
 
   return (
-    <Layout
-      title={frontMatter.title}
-      subtitle={
-        frontMatter.date
-          ? format(parseISO(frontMatter.date), "P", { locale: enGB })
-          : undefined
-      }
-    >
+    <Layout title={frontMatter.title} subtitle={subtitle}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

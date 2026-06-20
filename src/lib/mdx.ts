@@ -98,6 +98,20 @@ export async function getLatestPosts(count: number): Promise<Post[]> {
   return enrichWithPlaceholders(all.slice(0, count));
 }
 
+const WORDS_PER_MINUTE = 200;
+
+// Rough word-count estimate; strips MDX/markdown noise so JSX tags,
+// image/link URLs, and code fences don't inflate the count.
+export function readingTime(content: string): number {
+  const text = content
+    .replace(/```[\s\S]*?```/g, " ") // fenced code blocks
+    .replace(/<[^>]+>/g, " ") // JSX / HTML tags
+    .replace(/!?\[[^\]]*\]\([^)]*\)/g, " ") // images and links
+    .replace(/[#>*_`~-]/g, " "); // markdown punctuation
+  const words = text.split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}
+
 export function slugifyTag(tag: string): string {
   return tag
     .toLowerCase()

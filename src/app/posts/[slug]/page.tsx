@@ -46,7 +46,14 @@ export async function generateMetadata({
   }
   const images = frontMatter.banner
     ? [{ url: frontMatter.banner, alt: frontMatter.title }]
-    : [];
+    : [
+        {
+          url: `/posts/${slug}/og`,
+          width: 1200,
+          height: 630,
+          alt: frontMatter.title,
+        },
+      ];
   return {
     title: frontMatter.title,
     description: frontMatter.description,
@@ -99,9 +106,9 @@ export default async function PostPage({
     description: frontMatter.description,
     datePublished: frontMatter.date,
     url: `${baseUrl}/posts/${slug}`,
-    ...(frontMatter.banner && {
-      image: `${baseUrl}${frontMatter.banner}`,
-    }),
+    image: frontMatter.banner
+      ? `${baseUrl}${frontMatter.banner}`
+      : `${baseUrl}/posts/${slug}/og`,
     author: {
       "@type": "Person",
       name: "Dave Roverts",

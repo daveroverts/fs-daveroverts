@@ -1,9 +1,10 @@
 "use client";
 
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+
 import LiteYouTubeEmbed, {
   type LiteYouTubeProps,
 } from "react-lite-youtube-embed";
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
 type YoutubeProps = Omit<LiteYouTubeProps, "title"> & { title?: string };
 

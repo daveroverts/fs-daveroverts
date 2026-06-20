@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import logo from "@/public/logo.png";
+
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
-import { usePathname } from "next/navigation";
-import logo from "@/public/logo.png";
-import Image from "next/image";
 
 interface NavItem {
   label: string;

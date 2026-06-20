@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import Layout from "@/components/Layout";
 import { getAllCategories } from "@/lib/mdx";
 

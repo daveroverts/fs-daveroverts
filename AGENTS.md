@@ -40,15 +40,15 @@ server-component page bodies (it also exports the shared `FrontMatter`/`Post` ty
 
 ### Pages
 
-| Route | File | Notes |
-| --- | --- | --- |
-| `/` | `src/app/page.tsx` | hero + latest 5 posts + link to `/archive` |
-| `/archive` | `src/app/archive/page.tsx` | paginated post list, page 1 |
-| `/archive/page/[num]` | `src/app/archive/page/[num]/page.tsx` | paginated post list, pages 2..N (`POSTS_PER_PAGE` per page) |
-| `/posts/[slug]` | `src/app/posts/[slug]/page.tsx` | blog post detail |
-| `/[slug]` | `src/app/[slug]/page.tsx` | generic MDX page (from `data/pages/`) |
-| `/about` | `src/app/about/page.tsx` | static page |
-| `/api/vatsim/online/[cid]` | `src/app/api/vatsim/online/[cid]/route.ts` | proxies VATSIM data feed |
+| Route                      | File                                       | Notes                                                       |
+| -------------------------- | ------------------------------------------ | ----------------------------------------------------------- |
+| `/`                        | `src/app/page.tsx`                         | hero + latest 5 posts + link to `/archive`                  |
+| `/archive`                 | `src/app/archive/page.tsx`                 | paginated post list, page 1                                 |
+| `/archive/page/[num]`      | `src/app/archive/page/[num]/page.tsx`      | paginated post list, pages 2..N (`POSTS_PER_PAGE` per page) |
+| `/posts/[slug]`            | `src/app/posts/[slug]/page.tsx`            | blog post detail                                            |
+| `/[slug]`                  | `src/app/[slug]/page.tsx`                  | generic MDX page (from `data/pages/`)                       |
+| `/about`                   | `src/app/about/page.tsx`                   | static page                                                 |
+| `/api/vatsim/online/[cid]` | `src/app/api/vatsim/online/[cid]/route.ts` | proxies VATSIM data feed                                    |
 
 Root layout (`src/app/layout.tsx`) holds the `<html>`/`<body>`, global styles,
 favicons, and the site-wide Metadata (replacing `next-seo`); per-page SEO uses

@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
-import matter from "gray-matter";
 import path from "node:path";
+
+import matter from "gray-matter";
 import { getPlaiceholder } from "plaiceholder";
 
 const root = process.cwd();
@@ -34,7 +35,7 @@ export async function getFiles(type: string): Promise<string[]> {
 
 export async function getFileBySlug(
   type: string,
-  slug: string
+  slug: string,
 ): Promise<{ content: string; frontMatter: FrontMatter }> {
   const source = slug
     ? await fs.readFile(path.join(root, "data", type, `${slug}.mdx`), "utf8")
@@ -58,7 +59,7 @@ export async function getAllPostsMeta(type: string): Promise<Post[]> {
     files.map(async (postSlug): Promise<Post> => {
       const source = await fs.readFile(
         path.join(root, "data", type, postSlug),
-        "utf8"
+        "utf8",
       );
       const { data } = matter(source);
 
@@ -66,11 +67,11 @@ export async function getAllPostsMeta(type: string): Promise<Post[]> {
         ...data,
         slug: postSlug.replace(".mdx", ""),
       };
-    })
+    }),
   );
 
   return posts.sort(
-    (a, b) => Number(new Date(b.date ?? 0)) - Number(new Date(a.date ?? 0))
+    (a, b) => Number(new Date(b.date ?? 0)) - Number(new Date(a.date ?? 0)),
   );
 }
 
@@ -90,7 +91,7 @@ async function enrichWithPlaceholders(posts: Post[]): Promise<Post[]> {
         width: metadata.width,
       };
       return post;
-    })
+    }),
   );
 }
 
@@ -152,11 +153,11 @@ export interface CategorizedPosts {
 }
 
 export async function getPostsByCategorySlug(
-  categorySlug: string
+  categorySlug: string,
 ): Promise<CategorizedPosts | null> {
   const all = await getAllPostsMeta("posts");
   const matches = all.filter(
-    (post) => post.category && slugifyTag(post.category) === categorySlug
+    (post) => post.category && slugifyTag(post.category) === categorySlug,
   );
   if (matches.length === 0) return null;
 
@@ -197,11 +198,11 @@ export interface TaggedPosts {
 }
 
 export async function getPostsByTagSlug(
-  tagSlug: string
+  tagSlug: string,
 ): Promise<TaggedPosts | null> {
   const all = await getAllPostsMeta("posts");
   const matches = all.filter((post) =>
-    (post.tags ?? []).some((tag) => slugifyTag(tag) === tagSlug)
+    (post.tags ?? []).some((tag) => slugifyTag(tag) === tagSlug),
   );
   if (matches.length === 0) return null;
 

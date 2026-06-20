@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import type { AdjacentPosts } from "@/lib/mdx";
 
 const PostNav = ({ newer, older }: AdjacentPosts) => {

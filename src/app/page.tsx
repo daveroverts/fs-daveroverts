@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import Layout from "@/components/Layout";
 import PostList from "@/components/PostList";
-import { getLatestPosts } from "@/lib/mdx";
 import { getAge } from "@/lib/age";
+import { getLatestPosts } from "@/lib/mdx";
 
 const LATEST_COUNT = 6;
 

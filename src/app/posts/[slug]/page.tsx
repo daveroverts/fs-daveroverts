@@ -1,14 +1,15 @@
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypeExternalLinks from "rehype-external-links";
-import type { Metadata } from "next";
+
+import CategoryBadge from "@/components/CategoryBadge";
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
 import PostNav from "@/components/PostNav";
 import TagList from "@/components/TagList";
-import CategoryBadge from "@/components/CategoryBadge";
-import { notFound } from "next/navigation";
 import {
   getAdjacentPosts,
   getFileBySlug,

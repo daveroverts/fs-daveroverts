@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
+
 import Layout from "@/components/Layout";
-import PostList from "@/components/PostList";
 import Pagination from "@/components/Pagination";
-import {
-  getAllPostsMeta,
-  getPaginatedPosts,
-  POSTS_PER_PAGE,
-} from "@/lib/mdx";
+import PostList from "@/components/PostList";
+import { getAllPostsMeta, getPaginatedPosts, POSTS_PER_PAGE } from "@/lib/mdx";
 
 export const dynamicParams = false;
 

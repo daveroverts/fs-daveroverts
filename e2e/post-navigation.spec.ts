@@ -1,10 +1,10 @@
-import { test, expect } from "./fixtures";
+import { expect, test } from "./fixtures";
 
 test.describe("Home → post detail", () => {
   test("navigates from a home post card to the post page", async ({ page }) => {
     await page.goto("/");
     await expect(
-      page.getByRole("heading", { level: 2, name: /Hello there/ })
+      page.getByRole("heading", { level: 2, name: /Hello there/ }),
     ).toBeVisible();
 
     // First post card link in the "Latest posts" grid.

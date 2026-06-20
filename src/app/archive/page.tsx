@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+
 import Layout from "@/components/Layout";
-import PostList from "@/components/PostList";
 import Pagination from "@/components/Pagination";
+import PostList from "@/components/PostList";
 import { getPaginatedPosts } from "@/lib/mdx";
 
 export const metadata: Metadata = {

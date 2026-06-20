@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import { unstable_cache } from "next/cache";
+import { NextResponse } from "next/server";
 
 interface OnlineMember {
   cid: number;
@@ -39,7 +39,7 @@ async function fetchOnlineStatus(cid: string): Promise<VatsimStatus> {
   const dataFeedJson = await dataFeedRes.json();
 
   const controller: Controller | undefined = dataFeedJson.controllers.find(
-    (member: OnlineMember) => String(member.cid) === cid
+    (member: OnlineMember) => String(member.cid) === cid,
   );
 
   if (controller !== undefined) {
@@ -53,7 +53,7 @@ async function fetchOnlineStatus(cid: string): Promise<VatsimStatus> {
   }
 
   const pilot: Pilot | undefined = dataFeedJson.pilots.find(
-    (member: OnlineMember) => String(member.cid) === cid
+    (member: OnlineMember) => String(member.cid) === cid,
   );
 
   if (pilot !== undefined) {
@@ -74,12 +74,12 @@ async function fetchOnlineStatus(cid: string): Promise<VatsimStatus> {
 const getCachedOnlineStatus = unstable_cache(
   fetchOnlineStatus,
   ["vatsim-online"],
-  { revalidate: 60 }
+  { revalidate: 60 },
 );
 
 export async function GET(
   _req: Request,
-  { params }: { params: Promise<{ cid: string }> }
+  { params }: { params: Promise<{ cid: string }> },
 ) {
   const { cid } = await params;
 
@@ -95,7 +95,7 @@ export async function GET(
         role: null,
         roleData: null,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

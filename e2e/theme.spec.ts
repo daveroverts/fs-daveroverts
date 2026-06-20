@@ -1,13 +1,11 @@
-import { test, expect } from "./fixtures";
+import { expect, test } from "./fixtures";
 
 test.describe("Theme switch", () => {
   test("toggles dark mode and persists the choice", async ({ page }) => {
     await page.goto("/");
 
     const html = page.locator("html");
-    const wasDark = await html.evaluate((el) =>
-      el.classList.contains("dark")
-    );
+    const wasDark = await html.evaluate((el) => el.classList.contains("dark"));
 
     await page.getByRole("button", { name: "Toggle theme" }).click();
 
@@ -20,7 +18,7 @@ test.describe("Theme switch", () => {
 
     // Preference persisted under next-themes' storageKey.
     const stored = await page.evaluate(() =>
-      localStorage.getItem("nightwind-mode")
+      localStorage.getItem("nightwind-mode"),
     );
     expect(stored).toBe(wasDark ? "light" : "dark");
   });

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import Layout from "@/components/Layout";
 import { getAllTags } from "@/lib/mdx";
 
@@ -25,8 +26,7 @@ export default async function TagsPage() {
                   href={`/tags/${slug}`}
                   className="inline-block px-4 py-2 rounded-full border-2 hover:bg-gray-50 dark:hover:bg-gray-800"
                 >
-                  {tag}{" "}
-                  <span className="opacity-70">({count})</span>
+                  {tag} <span className="opacity-70">({count})</span>
                 </Link>
               </li>
             ))}

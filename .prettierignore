@@ -1,0 +1,11 @@
+.next/
+node_modules/
+out/
+build/
+coverage/
+playwright-report/
+test-results/
+next-env.d.ts
+package-lock.json
+# Blog content — don't reflow MDX prose
+data/

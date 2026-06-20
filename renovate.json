@@ -1,9 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "local>daveroverts/renovate-config",
-    "group:linters"
-  ],
+  "extends": ["local>daveroverts/renovate-config", "group:linters"],
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true

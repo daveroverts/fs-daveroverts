@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypeExternalLinks from "rehype-external-links";
-import type { Metadata } from "next";
+
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
-import { notFound } from "next/navigation";
 import { getFileBySlug, getFiles } from "@/lib/mdx";
 
 export const dynamicParams = false;

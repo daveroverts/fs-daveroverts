@@ -1,7 +1,8 @@
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+
 import CategoryBadge from "@/components/CategoryBadge";
 import type { Post } from "@/lib/mdx";
 

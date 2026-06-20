@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import * as Fathom from "fathom-client";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense, useEffect } from "react";
 
 function FathomTracker() {
   const pathname = usePathname();

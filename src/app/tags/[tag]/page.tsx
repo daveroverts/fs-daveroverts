@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import Layout from "@/components/Layout";
 import PostList from "@/components/PostList";
 import { getAllTags, getPostsByTagSlug } from "@/lib/mdx";

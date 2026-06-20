@@ -1,10 +1,10 @@
-import { test, expect } from "./fixtures";
+import { expect, test } from "./fixtures";
 
 test.describe("Archive pagination", () => {
   test("advances from page 1 to page 2", async ({ page }) => {
     await page.goto("/archive");
     await expect(
-      page.getByRole("heading", { level: 2, name: "Archive" })
+      page.getByRole("heading", { level: 2, name: "Archive" }),
     ).toBeVisible();
 
     const posts = page.locator('article a[href^="/posts/"]');
@@ -18,7 +18,7 @@ test.describe("Archive pagination", () => {
 
     // Previous is now enabled and points back to page 1 (bare basePath).
     await expect(
-      page.getByRole("link", { name: /Previous/ }).first()
+      page.getByRole("link", { name: /Previous/ }).first(),
     ).toHaveAttribute("href", "/archive");
   });
 });

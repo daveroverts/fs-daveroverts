@@ -1,7 +1,8 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
+import type { ReactNode } from "react";
+
 import { Analytics } from "@/lib/analytics";
 
 export function Providers({ children }: { children: ReactNode }) {

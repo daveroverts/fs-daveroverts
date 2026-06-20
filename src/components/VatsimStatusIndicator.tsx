@@ -2,7 +2,6 @@
 
 import useSWR from "swr";
 import fetcher from "@/lib/fetcher";
-import Emoji from "a11y-react-emoji";
 
 interface VatsimStatus {
   callsign: string | null;
@@ -44,7 +43,10 @@ export const VatsimStatusIndicator = () => {
       <div>
         {isLoading || !data ? (
           <div className="text-sm font-semibold text-gray-700 dark:text-white">
-            Loading <Emoji className="font-medium" symbol="⏳" />
+            Loading{" "}
+            <span className="font-medium" aria-hidden>
+              ⏳
+            </span>
           </div>
         ) : isOnline ? (
           <div className="flex flex-col items-center justify-center">
@@ -52,12 +54,15 @@ export const VatsimStatusIndicator = () => {
               {data.callsign}
             </div>
             <div className="text-xs font-medium text-gray-500 dark:text-gray-400">
-              {data.roleData} <Emoji symbol={determineEmoji(data.role)} />
+              {data.roleData} <span aria-hidden>{determineEmoji(data.role)}</span>
             </div>
           </div>
         ) : (
           <div className="text-sm font-semibold text-gray-700 dark:text-white">
-            Offline <Emoji className="font-medium" symbol="😴" />
+            Offline{" "}
+            <span className="font-medium" aria-hidden>
+              😴
+            </span>
           </div>
         )}
       </div>

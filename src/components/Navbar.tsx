@@ -1,6 +1,5 @@
 "use client";
 
-import Emoji from "a11y-react-emoji";
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
@@ -51,7 +50,9 @@ export const Navbar = () => {
             </div>
             <div>FS Dave Roverts</div>
             <div>
-              <Emoji className="font-medium" symbol="✈️" />
+              <span className="font-medium" aria-hidden>
+                ✈️
+              </span>
             </div>
           </h1>
         </div>

@@ -1,4 +1,3 @@
-import Emoji from "a11y-react-emoji";
 import type { Metadata } from "next";
 import BlogPost from "@/components/BlogPost";
 import Layout from "@/components/Layout";
@@ -15,15 +14,27 @@ export default async function Home() {
 
   const layoutTitle = (
     <>
-      Hello there! <Emoji className="font-medium" symbol="👋" />
+      Hello there!{" "}
+      <span className="font-medium" aria-hidden>
+        👋
+      </span>
     </>
   );
   const subTitle = (
     <>
       I&apos;m Dave Roverts, 29 years old and from the Netherlands{" "}
-      <Emoji className="font-medium" symbol="🇳🇱" />. Web developer{" "}
-      <Emoji className="font-medium" symbol="🖥" /> by day, and flight simmer{" "}
-      <Emoji className="font-medium" symbol="✈️" /> in the evening.
+      <span className="font-medium" aria-hidden>
+        🇳🇱
+      </span>
+      . Web developer{" "}
+      <span className="font-medium" aria-hidden>
+        🖥
+      </span>{" "}
+      by day, and flight simmer{" "}
+      <span className="font-medium" aria-hidden>
+        ✈️
+      </span>{" "}
+      in the evening.
     </>
   );
 

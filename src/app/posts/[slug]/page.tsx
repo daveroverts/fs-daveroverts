@@ -29,11 +29,30 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const { frontMatter } = await getFileBySlug("posts", slug);
+  const images = frontMatter.banner
+    ? [{ url: frontMatter.banner, alt: frontMatter.title }]
+    : [];
   return {
     title: frontMatter.title,
+    description: frontMatter.description,
     alternates: { canonical: `/posts/${slug}` },
+    openGraph: {
+      type: "article",
+      title: frontMatter.title,
+      description: frontMatter.description,
+      publishedTime: frontMatter.date,
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontMatter.title,
+      description: frontMatter.description,
+      images,
+    },
   };
 }
+
+const baseUrl = "https://fs.daveroverts.nl";
 
 export default async function PostPage({
   params,
@@ -42,6 +61,22 @@ export default async function PostPage({
 }) {
   const { slug } = await params;
   const { content, frontMatter } = await getFileBySlug("posts", slug);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: frontMatter.title,
+    description: frontMatter.description,
+    datePublished: frontMatter.date,
+    url: `${baseUrl}/posts/${slug}`,
+    ...(frontMatter.banner && {
+      image: `${baseUrl}${frontMatter.banner}`,
+    }),
+    author: {
+      "@type": "Person",
+      name: "Dave Roverts",
+    },
+  };
 
   return (
     <Layout
@@ -52,6 +87,10 @@ export default async function PostPage({
           : undefined
       }
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div>
         {frontMatter.description && (
           <p className="py-5">{frontMatter.description}</p>

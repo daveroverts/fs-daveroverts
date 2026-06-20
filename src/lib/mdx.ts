@@ -16,6 +16,7 @@ export interface FrontMatter {
   banner?: string;
   category?: string;
   tags?: string[];
+  wide?: boolean;
   [key: string]: unknown;
 }
 

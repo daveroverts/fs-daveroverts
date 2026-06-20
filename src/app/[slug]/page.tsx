@@ -59,7 +59,11 @@ export default async function Page({
         {frontMatter.description && (
           <p className="py-5">{frontMatter.description}</p>
         )}
-        <article className="prose lg:prose-xl dark:prose-invert">
+        <article
+          className={`prose lg:prose-xl dark:prose-invert ${
+            frontMatter.wide ? "max-w-none" : ""
+          }`}
+        >
           <MDXRemote
             source={content}
             components={MDXComponents}

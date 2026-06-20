@@ -4,6 +4,7 @@ import atc from "public/static/images/about/atc.png";
 import deef733 from "public/static/images/about/deef733.png";
 import tra737 from "public/static/images/about/tra737.png";
 import Layout from "@/components/Layout";
+import { getAge } from "@/lib/age";
 
 export const metadata: Metadata = {
   title: "About",
@@ -28,7 +29,7 @@ export default function About() {
         </h3>
 
         <p className="py-3">
-          I&apos;m Dave Roverts, 29 years old and from the Netherlands{" "}
+          I&apos;m Dave Roverts, {getAge()} years old and from the Netherlands{" "}
           <span aria-hidden>🇳🇱</span>. Web developer{" "}
           <span aria-hidden>🖥</span> by day, and flight simmer{" "}
           <span aria-hidden>✈️</span> in the evening.

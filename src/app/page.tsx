@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import BlogPost from "@/components/BlogPost";
 import Layout from "@/components/Layout";
 import { getAllFilesFrontMatter } from "@/lib/mdx";
+import { getAge } from "@/lib/age";
 
 export const metadata: Metadata = {
   // `title.template` from the root layout only applies to child segments, and
@@ -22,7 +23,7 @@ export default async function Home() {
   );
   const subTitle = (
     <>
-      I&apos;m Dave Roverts, 29 years old and from the Netherlands{" "}
+      I&apos;m Dave Roverts, {getAge()} years old and from the Netherlands{" "}
       <span className="font-medium" aria-hidden>
         🇳🇱
       </span>

@@ -29,22 +29,26 @@ All content lives in `data/`:
 - `data/posts/*.mdx` — blog posts (sorted by `date` frontmatter field, newest first)
 - `data/pages/*.mdx` — standalone pages
 
-`src/lib/mdx.ts` provides three helpers used by `generateStaticParams` and the
-server-component page bodies (it also exports the shared `FrontMatter`/`Post` types):
+`src/lib/mdx.ts` provides helpers used by `generateStaticParams` and the
+server-component page bodies (it also exports the shared `FrontMatter`/`Post` types and the `POSTS_PER_PAGE` constant):
 
 - `getFiles(type)` — lists files in `data/<type>/`
 - `getFileBySlug(type, slug)` — reads one MDX file, returns its raw `content` and `frontMatter` (the page renders it with `<MDXRemote>` from `next-mdx-remote/rsc`, applying `rehype-external-links`)
-- `getAllFilesFrontMatter(type)` — reads all frontmatter and, if a `banner` field is present, generates a blur placeholder via `plaiceholder`
+- `getAllPostsMeta(type)` — reads and sorts all frontmatter (no blur placeholder; cheap, use for sitemap or counting)
+- `getLatestPosts(count)` — sorted slice of the newest N posts, with blur placeholders applied
+- `getPaginatedPosts(page)` — returns `{ posts, page, totalPages, totalPosts }` for the given 1-indexed page, with blur placeholders applied to the slice
 
 ### Pages
 
-| Route | File | Notes |
-| --- | --- | --- |
-| `/` | `src/app/page.tsx` | lists all posts |
-| `/posts/[slug]` | `src/app/posts/[slug]/page.tsx` | blog post detail |
-| `/[slug]` | `src/app/[slug]/page.tsx` | generic MDX page (from `data/pages/`) |
-| `/about` | `src/app/about/page.tsx` | static page |
-| `/api/vatsim/online/[cid]` | `src/app/api/vatsim/online/[cid]/route.ts` | proxies VATSIM data feed |
+| Route                      | File                                       | Notes                                                       |
+| -------------------------- | ------------------------------------------ | ----------------------------------------------------------- |
+| `/`                        | `src/app/page.tsx`                         | hero + latest 5 posts + link to `/archive`                  |
+| `/archive`                 | `src/app/archive/page.tsx`                 | paginated post list, page 1                                 |
+| `/archive/page/[num]`      | `src/app/archive/page/[num]/page.tsx`      | paginated post list, pages 2..N (`POSTS_PER_PAGE` per page) |
+| `/posts/[slug]`            | `src/app/posts/[slug]/page.tsx`            | blog post detail                                            |
+| `/[slug]`                  | `src/app/[slug]/page.tsx`                  | generic MDX page (from `data/pages/`)                       |
+| `/about`                   | `src/app/about/page.tsx`                   | static page                                                 |
+| `/api/vatsim/online/[cid]` | `src/app/api/vatsim/online/[cid]/route.ts` | proxies VATSIM data feed                                    |
 
 Root layout (`src/app/layout.tsx`) holds the `<html>`/`<body>`, global styles,
 favicons, and the site-wide Metadata (replacing `next-seo`); per-page SEO uses
@@ -54,6 +58,8 @@ the Metadata API (`metadata` export or `generateMetadata`). Client-only context
 ### Key components
 
 - `Layout` — wraps every page; accepts `title` and optional `subtitle` as `ReactNode`
+- `PostList` — grid of `BlogPost` cards; used on home and archive routes
+- `Pagination` — prev/next + numbered links; accepts `current`, `total`, `basePath`. Renders nothing for single-page case
 - `MDXComponents` — passed as the `components` prop to `<MDXRemote>` in the post/page server components; exposes a `<Youtube>` shortcode (uses `react-lite-youtube-embed`)
 - `VatsimStatusIndicator` — polls `/api/vatsim/online/<cid>` with SWR; shows controller/pilot/offline state
 - `ThemeSwitcher` — toggles light/dark via `next-themes` (stores preference under key `nightwind-mode`)

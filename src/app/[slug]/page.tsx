@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypeExternalLinks from "rehype-external-links";
-import type { Metadata } from "next";
+
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
 import { getFileBySlug, getFiles } from "@/lib/mdx";
@@ -26,7 +28,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const { frontMatter } = await getFileBySlug("pages", slug);
+  let frontMatter;
+  try {
+    ({ frontMatter } = await getFileBySlug("pages", slug));
+  } catch {
+    notFound();
+  }
   return {
     title: frontMatter.title,
     alternates: { canonical: `/${slug}` },
@@ -39,7 +46,12 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { content, frontMatter } = await getFileBySlug("pages", slug);
+  let content, frontMatter;
+  try {
+    ({ content, frontMatter } = await getFileBySlug("pages", slug));
+  } catch {
+    notFound();
+  }
 
   return (
     <Layout title={frontMatter.title}>

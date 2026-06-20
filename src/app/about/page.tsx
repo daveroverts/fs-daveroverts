@@ -1,10 +1,11 @@
-import Emoji from "a11y-react-emoji";
 import type { Metadata } from "next";
 import Image from "next/image";
 import atc from "public/static/images/about/atc.png";
 import deef733 from "public/static/images/about/deef733.png";
 import tra737 from "public/static/images/about/tra737.png";
+
 import Layout from "@/components/Layout";
+import { getAge } from "@/lib/age";
 
 export const metadata: Metadata = {
   title: "About",
@@ -22,13 +23,16 @@ export default function About() {
         />
 
         <h3 className="text-2xl font-bold">
-          Hello there! <Emoji className="font-medium" symbol="👋" />
+          Hello there!{" "}
+          <span className="font-medium" aria-hidden>
+            👋
+          </span>
         </h3>
 
         <p className="py-3">
-          I&apos;m Dave Roverts, 29 years old and from the Netherlands{" "}
-          <Emoji symbol="🇳🇱" />. Web developer <Emoji symbol="🖥" /> by day, and
-          flight simmer <Emoji symbol="✈️" /> in the evening.
+          I&apos;m Dave Roverts, {getAge()} years old and from the Netherlands{" "}
+          <span aria-hidden>🇳🇱</span>. Web developer <span aria-hidden>🖥</span>{" "}
+          by day, and flight simmer <span aria-hidden>✈️</span> in the evening.
         </p>
 
         <p className="py-3">
@@ -74,7 +78,10 @@ export default function About() {
         />
 
         <h3 className="py-3 text-2xl font-bold">
-          Online flying / ATC <Emoji className="font-medium" symbol="📡" />
+          Online flying / ATC{" "}
+          <span className="font-medium" aria-hidden>
+            📡
+          </span>
         </h3>
         <p className="py-3">
           All my flights are flown on the{" "}

@@ -1,7 +1,9 @@
+import "@/styles/global.css";
+
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+
 import { Providers } from "./providers";
-import "@/styles/global.css";
 
 const url = "https://fs.daveroverts.nl";
 const title = "FS Dave Roverts ✈️";
@@ -16,6 +18,9 @@ export const metadata: Metadata = {
   description,
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "/rss.xml",
+    },
   },
   openGraph: {
     type: "website",

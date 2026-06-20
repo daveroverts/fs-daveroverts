@@ -1,8 +1,12 @@
-import Emoji from "a11y-react-emoji";
 import type { Metadata } from "next";
-import BlogPost from "@/components/BlogPost";
+import Link from "next/link";
+
 import Layout from "@/components/Layout";
-import { getAllFilesFrontMatter } from "@/lib/mdx";
+import PostList from "@/components/PostList";
+import { getAge } from "@/lib/age";
+import { getLatestPosts } from "@/lib/mdx";
+
+const LATEST_COUNT = 6;
 
 export const metadata: Metadata = {
   // `title.template` from the root layout only applies to child segments, and
@@ -11,19 +15,31 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const posts = await getAllFilesFrontMatter("posts");
+  const posts = await getLatestPosts(LATEST_COUNT);
 
   const layoutTitle = (
     <>
-      Hello there! <Emoji className="font-medium" symbol="👋" />
+      Hello there!{" "}
+      <span className="font-medium" aria-hidden>
+        👋
+      </span>
     </>
   );
   const subTitle = (
     <>
-      I&apos;m Dave Roverts, 29 years old and from the Netherlands{" "}
-      <Emoji className="font-medium" symbol="🇳🇱" />. Web developer{" "}
-      <Emoji className="font-medium" symbol="🖥" /> by day, and flight simmer{" "}
-      <Emoji className="font-medium" symbol="✈️" /> in the evening.
+      I&apos;m Dave Roverts, {getAge()} years old and from the Netherlands{" "}
+      <span className="font-medium" aria-hidden>
+        🇳🇱
+      </span>
+      . Web developer{" "}
+      <span className="font-medium" aria-hidden>
+        🖥
+      </span>{" "}
+      by day, and flight simmer{" "}
+      <span className="font-medium" aria-hidden>
+        ✈️
+      </span>{" "}
+      in the evening.
     </>
   );
 
@@ -31,12 +47,14 @@ export default async function Home() {
     <Layout title={layoutTitle} subtitle={subTitle}>
       <div className="py-5">
         <h3 className="text-2xl font-bold">Latest posts</h3>
-        <div className="grid space-x-2 lg:grid-cols-2">
-          {posts.map((item) => (
-            <div className="py-5" key={item.slug}>
-              <BlogPost post={item} />
-            </div>
-          ))}
+        <PostList posts={posts} />
+        <div className="flex justify-center py-5">
+          <Link
+            href="/archive"
+            className="px-5 py-3 text-lg font-medium border-2 rounded hover:bg-gray-50 dark:hover:bg-gray-800"
+          >
+            See all posts →
+          </Link>
         </div>
       </div>
     </Layout>

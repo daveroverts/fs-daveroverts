@@ -1,12 +1,13 @@
 "use client";
 
-import Emoji from "a11y-react-emoji";
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import logo from "@/public/logo.png";
+
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { VatsimStatusIndicator } from "./VatsimStatusIndicator";
-import { usePathname } from "next/navigation";
-import logo from "@/public/logo.png";
-import Image from "next/image";
 
 interface NavItem {
   label: string;
@@ -15,6 +16,8 @@ interface NavItem {
 
 const NAV_ITEMS_LEFT: NavItem[] = [
   { label: "Home", href: "/" },
+  { label: "Archive", href: "/archive" },
+  { label: "Categories", href: "/category" },
   { label: "About", href: "/about" },
   { label: "Specs", href: "/specs" },
 ];
@@ -29,6 +32,16 @@ function navLinkClass(active: boolean): string {
       ? "bg-gray-200 dark:bg-gray-700 dark:text-white"
       : "hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
   }`;
+}
+
+function isExternal(href: string): boolean {
+  return /^https?:\/\//i.test(href);
+}
+
+function isActive(pathname: string, href: string): boolean {
+  if (isExternal(href)) return false;
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export const Navbar = () => {
@@ -51,7 +64,9 @@ export const Navbar = () => {
             </div>
             <div>FS Dave Roverts</div>
             <div>
-              <Emoji className="font-medium" symbol="✈️" />
+              <span className="font-medium" aria-hidden>
+                ✈️
+              </span>
             </div>
           </h1>
         </div>
@@ -62,7 +77,7 @@ export const Navbar = () => {
             <Link
               key={item.label}
               href={item.href}
-              className={navLinkClass(pathname === item.href)}
+              className={navLinkClass(isActive(pathname, item.href))}
             >
               {item.label}
             </Link>
@@ -70,15 +85,22 @@ export const Navbar = () => {
         </div>
         <VatsimStatusIndicator />
         <div className="flex flex-row space-x-5">
-          {NAV_ITEMS_RIGHT.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={navLinkClass(pathname === item.href)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV_ITEMS_RIGHT.map((item) => {
+            const external = isExternal(item.href);
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={navLinkClass(isActive(pathname, item.href))}
+                {...(external && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
 
           <div>
             <ThemeSwitcher />

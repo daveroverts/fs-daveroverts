@@ -1,11 +1,21 @@
 import { format, parseISO } from "date-fns";
 import { enGB } from "date-fns/locale";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypeExternalLinks from "rehype-external-links";
-import type { Metadata } from "next";
+
+import CategoryBadge from "@/components/CategoryBadge";
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
-import { getFileBySlug, getFiles } from "@/lib/mdx";
+import PostNav from "@/components/PostNav";
+import TagList from "@/components/TagList";
+import {
+  getAdjacentPosts,
+  getFileBySlug,
+  getFiles,
+  readingTime,
+} from "@/lib/mdx";
 
 export const dynamicParams = false;
 
@@ -28,12 +38,36 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const { frontMatter } = await getFileBySlug("posts", slug);
+  let frontMatter;
+  try {
+    ({ frontMatter } = await getFileBySlug("posts", slug));
+  } catch {
+    notFound();
+  }
+  const images = frontMatter.banner
+    ? [{ url: frontMatter.banner, alt: frontMatter.title }]
+    : [];
   return {
     title: frontMatter.title,
+    description: frontMatter.description,
     alternates: { canonical: `/posts/${slug}` },
+    openGraph: {
+      type: "article",
+      title: frontMatter.title,
+      description: frontMatter.description,
+      publishedTime: frontMatter.date,
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: frontMatter.title,
+      description: frontMatter.description,
+      images,
+    },
   };
 }
+
+const baseUrl = "https://fs.daveroverts.nl";
 
 export default async function PostPage({
   params,
@@ -41,18 +75,51 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { content, frontMatter } = await getFileBySlug("posts", slug);
+  let content, frontMatter;
+  try {
+    ({ content, frontMatter } = await getFileBySlug("posts", slug));
+  } catch {
+    notFound();
+  }
+
+  const adjacent = await getAdjacentPosts(slug);
+
+  const minutes = readingTime(content);
+  const dateLabel = frontMatter.date
+    ? format(parseISO(frontMatter.date), "P", { locale: enGB })
+    : undefined;
+  const subtitle = [dateLabel, `${minutes} min read`]
+    .filter(Boolean)
+    .join(" · ");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: frontMatter.title,
+    description: frontMatter.description,
+    datePublished: frontMatter.date,
+    url: `${baseUrl}/posts/${slug}`,
+    ...(frontMatter.banner && {
+      image: `${baseUrl}${frontMatter.banner}`,
+    }),
+    author: {
+      "@type": "Person",
+      name: "Dave Roverts",
+    },
+  };
 
   return (
-    <Layout
-      title={frontMatter.title}
-      subtitle={
-        frontMatter.date
-          ? format(parseISO(frontMatter.date), "P", { locale: enGB })
-          : undefined
-      }
-    >
+    <Layout title={frontMatter.title} subtitle={subtitle}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div>
+        {frontMatter.category && (
+          <div className="pt-2">
+            <CategoryBadge category={frontMatter.category} />
+          </div>
+        )}
         {frontMatter.description && (
           <p className="py-5">{frontMatter.description}</p>
         )}
@@ -63,6 +130,12 @@ export default async function PostPage({
             options={mdxOptions}
           />
         </article>
+        {frontMatter.tags && frontMatter.tags.length > 0 && (
+          <div className="py-5">
+            <TagList tags={frontMatter.tags} />
+          </div>
+        )}
+        <PostNav newer={adjacent.newer} older={adjacent.older} />
       </div>
     </Layout>
   );

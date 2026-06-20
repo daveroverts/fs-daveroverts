@@ -17,13 +17,26 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,yml,yaml,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@heroicons/react": "2.2.0",
     "@plaiceholder/next": "3.0.0",
-    "a11y-react-emoji": "1.2.0",
-    "axios": "^1.13.2",
     "date-fns": "4.1.0",
     "fathom-client": "3.7.2",
     "gray-matter": "4.0.3",
@@ -40,15 +53,26 @@
     "typescript": "6.0.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@tailwindcss/postcss": "4.2.4",
     "@tailwindcss/typography": "0.5.19",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "24.12.4",
     "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
-    "eslint": "9.39.4",
+    "@vitejs/plugin-react": "^6.0.2",
+    "eslint": "^9.39.4",
     "eslint-config-next": "16.2.9",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-simple-import-sort": "^13.0.0",
     "husky": "9.1.7",
+    "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.7",
     "postcss": "8.5.15",
-    "tailwindcss": "4.2.4"
+    "prettier": "^3.8.4",
+    "tailwindcss": "4.2.4",
+    "vitest": "^4.1.9"
   }
 }

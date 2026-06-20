@@ -20,14 +20,41 @@ function determineEmoji(role: string | null) {
   }
 }
 
+// vatsim-radar can locate pilots by CID and active controllers by callsign,
+// but has no useful view for observers — so they get no link.
+function buildRadarUrl(
+  role: string | null,
+  callsign: string | null,
+  cid: number,
+): string | null {
+  if (role === "pilot") return `https://vatsim-radar.com/?pilot=${cid}`;
+  if (role === "controller" && callsign)
+    return `https://vatsim-radar.com/?atc=${encodeURIComponent(callsign)}`;
+  return null;
+}
+
 export const VatsimStatusIndicator = () => {
   const cid = 1186831;
   const { data, isLoading } = useSWR<VatsimStatus>(
     `/api/vatsim/online/${cid}`,
-    fetcher
+    fetcher,
   );
 
   const isOnline = data?.callsign != null;
+  const radarUrl = isOnline
+    ? buildRadarUrl(data.role, data.callsign, cid)
+    : null;
+
+  const statusBody = data && (
+    <>
+      <div className="text-sm font-semibold text-gray-700 dark:text-white">
+        {data.callsign}
+      </div>
+      <div className="text-xs font-medium text-gray-500 dark:text-gray-400">
+        {data.roleData} <span aria-hidden>{determineEmoji(data.role)}</span>
+      </div>
+    </>
+  );
 
   return (
     <div className="flex justify-around px-3 py-2 space-x-1 bg-gray-200 rounded-md cursor-default dark:bg-gray-800">
@@ -49,14 +76,20 @@ export const VatsimStatusIndicator = () => {
             </span>
           </div>
         ) : isOnline ? (
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-sm font-semibold text-gray-700 dark:text-white">
-              {data.callsign}
+          radarUrl ? (
+            <a
+              href={radarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center hover:underline"
+            >
+              {statusBody}
+            </a>
+          ) : (
+            <div className="flex flex-col items-center justify-center">
+              {statusBody}
             </div>
-            <div className="text-xs font-medium text-gray-500 dark:text-gray-400">
-              {data.roleData} <span aria-hidden>{determineEmoji(data.role)}</span>
-            </div>
-          </div>
+          )
         ) : (
           <div className="text-sm font-semibold text-gray-700 dark:text-white">
             Offline{" "}

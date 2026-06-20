@@ -13,6 +13,7 @@ export interface FrontMatter {
   date?: string;
   description?: string;
   banner?: string;
+  category?: string;
   tags?: string[];
   [key: string]: unknown;
 }
@@ -118,6 +119,50 @@ export function slugifyTag(tag: string): string {
     .trim()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+export interface CategoryInfo {
+  category: string;
+  slug: string;
+  count: number;
+}
+
+export async function getAllCategories(): Promise<CategoryInfo[]> {
+  const all = await getAllPostsMeta("posts");
+  const map = new Map<string, CategoryInfo>();
+
+  for (const post of all) {
+    if (!post.category) continue;
+    const slug = slugifyTag(post.category);
+    if (!slug) continue;
+    const existing = map.get(slug);
+    if (existing) {
+      existing.count += 1;
+    } else {
+      map.set(slug, { category: post.category, slug, count: 1 });
+    }
+  }
+
+  return [...map.values()].sort((a, b) => a.category.localeCompare(b.category));
+}
+
+export interface CategorizedPosts {
+  category: string;
+  posts: Post[];
+}
+
+export async function getPostsByCategorySlug(
+  categorySlug: string
+): Promise<CategorizedPosts | null> {
+  const all = await getAllPostsMeta("posts");
+  const matches = all.filter(
+    (post) => post.category && slugifyTag(post.category) === categorySlug
+  );
+  if (matches.length === 0) return null;
+
+  const category = matches[0].category ?? categorySlug;
+  const posts = await enrichWithPlaceholders(matches);
+  return { category, posts };
 }
 
 export interface TagInfo {

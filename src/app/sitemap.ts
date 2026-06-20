@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import {
+  getAllCategories,
   getAllPostsMeta,
   getAllTags,
   getFiles,
@@ -12,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPostsMeta("posts");
   const pages = await getFiles("pages");
   const tags = await getAllTags();
+  const categories = await getAllCategories();
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/posts/${post.slug}`,
@@ -40,10 +42,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
+  const categoryEntries: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/category`, lastModified: new Date() },
+    ...categories.map((c) => ({
+      url: `${baseUrl}/category/${c.slug}`,
+      lastModified: new Date(),
+    })),
+  ];
+
   return [
     { url: baseUrl, lastModified: new Date() },
     { url: `${baseUrl}/about`, lastModified: new Date() },
     ...archiveEntries,
+    ...categoryEntries,
     ...tagEntries,
     ...postEntries,
     ...pageEntries,

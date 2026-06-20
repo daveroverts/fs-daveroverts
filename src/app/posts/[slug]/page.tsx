@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
 import PostNav from "@/components/PostNav";
 import TagList from "@/components/TagList";
+import CategoryBadge from "@/components/CategoryBadge";
 import { notFound } from "next/navigation";
 import {
   getAdjacentPosts,
@@ -113,6 +114,11 @@ export default async function PostPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div>
+        {frontMatter.category && (
+          <div className="pt-2">
+            <CategoryBadge category={frontMatter.category} />
+          </div>
+        )}
         {frontMatter.description && (
           <p className="py-5">{frontMatter.description}</p>
         )}

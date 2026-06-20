@@ -11,5 +11,7 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./vitest.setup.ts"],
     include: ["**/*.{test,spec}.{ts,tsx}"],
+    // Playwright owns the e2e/ dir; keep Vitest out of it.
+    exclude: ["**/node_modules/**", "**/.next/**", "e2e/**"],
   },
 });

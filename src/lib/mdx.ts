@@ -13,6 +13,7 @@ export interface FrontMatter {
   date?: string;
   description?: string;
   banner?: string;
+  tags?: string[];
   [key: string]: unknown;
 }
 
@@ -95,6 +96,61 @@ async function enrichWithPlaceholders(posts: Post[]): Promise<Post[]> {
 export async function getLatestPosts(count: number): Promise<Post[]> {
   const all = await getAllPostsMeta("posts");
   return enrichWithPlaceholders(all.slice(0, count));
+}
+
+export function slugifyTag(tag: string): string {
+  return tag
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export interface TagInfo {
+  tag: string;
+  slug: string;
+  count: number;
+}
+
+export async function getAllTags(): Promise<TagInfo[]> {
+  const all = await getAllPostsMeta("posts");
+  const map = new Map<string, TagInfo>();
+
+  for (const post of all) {
+    for (const tag of post.tags ?? []) {
+      const slug = slugifyTag(tag);
+      if (!slug) continue;
+      const existing = map.get(slug);
+      if (existing) {
+        existing.count += 1;
+      } else {
+        map.set(slug, { tag, slug, count: 1 });
+      }
+    }
+  }
+
+  return [...map.values()].sort((a, b) => a.tag.localeCompare(b.tag));
+}
+
+export interface TaggedPosts {
+  tag: string;
+  posts: Post[];
+}
+
+export async function getPostsByTagSlug(
+  tagSlug: string
+): Promise<TaggedPosts | null> {
+  const all = await getAllPostsMeta("posts");
+  const matches = all.filter((post) =>
+    (post.tags ?? []).some((tag) => slugifyTag(tag) === tagSlug)
+  );
+  if (matches.length === 0) return null;
+
+  // Display the tag using its first-seen original casing.
+  const displayTag =
+    matches[0].tags?.find((tag) => slugifyTag(tag) === tagSlug) ?? tagSlug;
+  const posts = await enrichWithPlaceholders(matches);
+  return { tag: displayTag, posts };
 }
 
 export interface AdjacentPost {

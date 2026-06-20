@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
 import PostNav from "@/components/PostNav";
+import TagList from "@/components/TagList";
 import { notFound } from "next/navigation";
 import { getAdjacentPosts, getFileBySlug, getFiles } from "@/lib/mdx";
 
@@ -116,6 +117,11 @@ export default async function PostPage({
             options={mdxOptions}
           />
         </article>
+        {frontMatter.tags && frontMatter.tags.length > 0 && (
+          <div className="py-5">
+            <TagList tags={frontMatter.tags} />
+          </div>
+        )}
         <PostNav newer={adjacent.newer} older={adjacent.older} />
       </div>
     </Layout>

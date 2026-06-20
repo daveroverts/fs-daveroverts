@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import {
   getAllPostsMeta,
+  getAllTags,
   getFiles,
   POSTS_PER_PAGE,
 } from "@/lib/mdx";
@@ -10,6 +11,7 @@ const baseUrl = "https://fs.daveroverts.nl";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPostsMeta("posts");
   const pages = await getFiles("pages");
+  const tags = await getAllTags();
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/posts/${post.slug}`,
@@ -30,10 +32,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
+  const tagEntries: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/tags`, lastModified: new Date() },
+    ...tags.map((t) => ({
+      url: `${baseUrl}/tags/${t.slug}`,
+      lastModified: new Date(),
+    })),
+  ];
+
   return [
     { url: baseUrl, lastModified: new Date() },
     { url: `${baseUrl}/about`, lastModified: new Date() },
     ...archiveEntries,
+    ...tagEntries,
     ...postEntries,
     ...pageEntries,
   ];

@@ -5,7 +5,7 @@ import PostList from "@/components/PostList";
 import { getLatestPosts } from "@/lib/mdx";
 import { getAge } from "@/lib/age";
 
-const LATEST_COUNT = 5;
+const LATEST_COUNT = 6;
 
 export const metadata: Metadata = {
   // `title.template` from the root layout only applies to child segments, and

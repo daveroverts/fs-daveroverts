@@ -12,6 +12,7 @@ export interface FrontMatter {
   slug?: string | null;
   title?: string;
   date?: string;
+  updated?: string;
   description?: string;
   banner?: string;
   category?: string;

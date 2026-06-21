@@ -1,6 +1,7 @@
 ---
 title: Getting started with TrackAudio
 date: "2025-04-16"
+updated: "2026-06-21"
 category: Tutorial
 tags:
   - Dutch VACC
@@ -10,7 +11,7 @@ tags:
 
 This guide has been written to help you get started with [TrackAudio](https://github.com/pierr3/TrackAudio).
 
-I've written this guide based on the sector files the Dutch VACC uses. In that setup (and most likely others as well), the following plugins are already installed:
+I've written this guide based on the sector files the [Dutch VACC](https://www.dutchvacc.nl/) uses. In that setup (and most likely others as well), the following plugins are already installed:
 
 - Audio for Vatsim EuroScope Bridge
 - TopSky
@@ -23,7 +24,8 @@ I've written this guide based on the sector files the Dutch VACC uses. In that s
 - Euroscope 3.2
 - Some sort of text editor, like Notepad or Visual Studio Code
 - Be able to read this guide step-by-step
-- Known where you sector files are located. By default, they are located here: **C:\Users\\[you]\AppData\Roaming\EuroScope\EHAA**.
+- Know where your sector files are located. By default, they are located here: **C:\Users\\[you]\AppData\Roaming\EuroScope\EHAA**.
+
 - Before starting, make a backup of your sector files, just in case.
 
 ---
@@ -69,13 +71,41 @@ If the original RDF plugin wasn't loaded in the first place (due to the usage of
 ### 3. Installing TrackAudio
 
 1. Open the repository: [https://github.com/pierr3/TrackAudio/releases](https://github.com/pierr3/TrackAudio/releases)
-2. Download the latest release. At the time of writing, that's 1.3.1. You may need to scroll down a bit untill you see **Assets**
+2. Download the latest release. At the time of writing, that's 1.3.3. You may need to scroll down a bit until you see **Assets** . I highly recommend downloading a stable version (not beta).
    ![Downloading the TrackAudio](/static/images/2025-04-16-getting-started-with-trackaudio/download-trackaudio.png)
 3. Install TrackAudio, and setup as needed.
 
    - Personally, I recommend using **Garex 220** as Radio hardware, as they also use it within LVNL.
 
 4. Profit!
+
+---
+
+### 4. Sector file updates
+
+_This section has been added on 21/06/2026_
+
+Ever since AeroNav removed the ability to make use of automated updates for sector files in Euroscope, some users have been experiencing issues after such an update.
+Long story short, automatic updates cannot change loaded plugins / `.dll` files. However, because we now manually replace the files, it's easy to overwrite the RDF plugin with the old one, which will break TrackAudio.
+
+When you update your sector files, I highly recommend you DON'T overwrite the whole `plugins` folder. Instead, do the following:
+
+
+1. Navigate to your sector files folder (by default **C:\Users\\[you]\AppData\Roaming\EuroScope**) using your file explorer. I also highly recommend opening this folder in something like Visual Studio Code
+2. Open the downloaded .zip file of the sector files update.
+3. Copy only the `.ese` and `.sct` files to the folder.
+4. In the editor, perform a find + replace for the following:
+
+   - Find: The old `.sct` file, example: `EHAA-EuroScope_20260517180716-260501-0001.sct`
+   - Replace with: The new `.sct` file, example: `EHAA-EuroScope_20260612144155-260601-0001.sct`
+4. Open the FIR folder (`EHAA` in the case of Dutch VACC)
+5. Copy everything except the `Plugins` folder to the FIR folder in your sector files folder.
+6. Open the `Plugins` folder in both the downloaded sector files update and your sector files folder.
+7. Copy everything excepct the `RDF` folder to your sector files folder.
+
+In case you're wondering "why also do the extra work of editing the `.prf` file"? If you don't there is a high chance that the old sector file will still be loaded in, even if it's removed. From what I can see, ES still references the old file.
+
+For TopSky users, make sure to also check the `TopSkySettings.txt` file after the update, as it may reset the `RDF_MODE` value to `0`, which will break TrackAudio.
 
 ---
 

@@ -17,17 +17,29 @@ const escapeXml = (value: string): string =>
 export async function GET(): Promise<Response> {
   const posts = await getAllPostsMeta("posts");
 
+  const lastBuild = posts
+    .flatMap((post) => [post.updated, post.date].filter(Boolean) as string[])
+    .map((d) => new Date(d).getTime())
+    .reduce((max, t) => Math.max(max, t), 0);
+  const lastBuildDate = lastBuild
+    ? new Date(lastBuild).toUTCString()
+    : undefined;
+
   const items = posts
     .map((post) => {
       const url = `${baseUrl}/posts/${post.slug}`;
       const summary = post.description ?? post.title ?? "";
       const pubDate = post.date ? new Date(post.date).toUTCString() : undefined;
+      const updated = post.updated
+        ? new Date(post.updated).toISOString()
+        : undefined;
       return [
         "    <item>",
         `      <title>${escapeXml(post.title ?? "")}</title>`,
         `      <link>${url}</link>`,
         `      <guid isPermaLink="true">${url}</guid>`,
         pubDate ? `      <pubDate>${pubDate}</pubDate>` : "",
+        updated ? `      <atom:updated>${updated}</atom:updated>` : "",
         post.category
           ? `      <category>${escapeXml(post.category)}</category>`
           : "",
@@ -45,7 +57,11 @@ export async function GET(): Promise<Response> {
     <title>${escapeXml(title)}</title>
     <link>${baseUrl}</link>
     <description>${escapeXml(description)}</description>
-    <language>en-gb</language>
+    <language>en-gb</language>${
+      lastBuildDate
+        ? `\n    <lastBuildDate>${lastBuildDate}</lastBuildDate>`
+        : ""
+    }
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml" />
 ${items}
   </channel>

@@ -63,6 +63,7 @@ export async function generateMetadata({
       title: frontMatter.title,
       description: frontMatter.description,
       publishedTime: frontMatter.date,
+      modifiedTime: frontMatter.updated,
       images,
     },
     twitter: {
@@ -95,7 +96,10 @@ export default async function PostPage({
   const dateLabel = frontMatter.date
     ? format(parseISO(frontMatter.date), "P", { locale: enGB })
     : undefined;
-  const subtitle = [dateLabel, `${minutes} min read`]
+  const updatedLabel = frontMatter.updated
+    ? `Updated ${format(parseISO(frontMatter.updated), "P", { locale: enGB })}`
+    : undefined;
+  const subtitle = [dateLabel, updatedLabel, `${minutes} min read`]
     .filter(Boolean)
     .join(" · ");
 
@@ -105,6 +109,7 @@ export default async function PostPage({
     headline: frontMatter.title,
     description: frontMatter.description,
     datePublished: frontMatter.date,
+    dateModified: frontMatter.updated ?? frontMatter.date,
     url: `${baseUrl}/posts/${slug}`,
     image: frontMatter.banner
       ? `${baseUrl}${frontMatter.banner}`

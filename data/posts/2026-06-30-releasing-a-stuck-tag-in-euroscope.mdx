@@ -1,0 +1,29 @@
+---
+title: Releasing a stuck tag in EuroScope
+date: "2026-06-30"
+category: Tutorial
+tags:
+  - Dutch VACC
+  - EuroScope
+---
+
+### The problem
+
+Sometimes you'll find an aircraft whose tag is still **assumed** by another controller, even though they shouldn't have it anymore. Maybe they dropped the tag a while ago, or a connection issue left it stuck in an `assumed` state on your screen.
+
+While the tag is stuck like this, you can't do much with that aircraft. Assigning a gate, or assuming the tag yourself, won't work.
+
+---
+
+### The fix
+
+There's a quick way to force EuroScope to re-check the tag:
+
+1. Ensure the chat is empty, press **ESC** if needed.
+2. Press the **F4** button. EuroScope fills in `.qx` on the command line for you.
+3. Add ` /ok` after it, so the command line reads `.qx /ok`.
+4. Click on the aircraft.
+
+EuroScope will now drop the tag. If the aircraft really is no longer assumed by anyone, the tag stays dropped, and your normal actions, like assigning gates or assuming the tag yourself, work again.
+
+If you prefer to type the whole thing yourself, you can skip F4 and type `.qx /ok` directly before clicking the aircraft.

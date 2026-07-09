@@ -10,8 +10,10 @@ import CategoryBadge from "@/components/CategoryBadge";
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
 import PostNav from "@/components/PostNav";
+import TableOfContents from "@/components/TableOfContents";
 import TagList from "@/components/TagList";
 import {
+  extractToc,
   getAdjacentPosts,
   getFileBySlug,
   getFiles,
@@ -94,6 +96,7 @@ export default async function PostPage({
 
   const adjacent = await getAdjacentPosts(slug);
 
+  const tocItems = frontMatter.toc ? extractToc(content) : [];
   const minutes = readingTime(content);
   const dateLabel = frontMatter.date
     ? format(parseISO(frontMatter.date), "P", { locale: enGB })
@@ -137,6 +140,7 @@ export default async function PostPage({
         {frontMatter.description && (
           <p className="py-5">{frontMatter.description}</p>
         )}
+        {tocItems.length > 0 && <TableOfContents items={tocItems} />}
         <article className="prose lg:prose-xl dark:prose-invert">
           <MDXRemote
             source={content}

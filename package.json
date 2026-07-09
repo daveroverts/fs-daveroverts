@@ -39,6 +39,7 @@
     "@plaiceholder/next": "3.0.0",
     "date-fns": "4.1.0",
     "fathom-client": "3.7.2",
+    "github-slugger": "^2.0.0",
     "gray-matter": "4.0.3",
     "next": "16.2.10",
     "next-mdx-remote": "6.0.0",

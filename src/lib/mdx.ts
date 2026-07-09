@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import GithubSlugger from "github-slugger";
 import matter from "gray-matter";
 import { getPlaiceholder } from "plaiceholder";
 
@@ -18,7 +19,47 @@ export interface FrontMatter {
   category?: string;
   tags?: string[];
   wide?: boolean;
+  toc?: boolean;
   [key: string]: unknown;
+}
+
+export interface TocItem {
+  level: number;
+  text: string;
+  slug: string;
+}
+
+// Build a table of contents from the raw MDX by scanning ATX headings.
+// Slugs are produced with github-slugger in document order so they match
+// the ids rehype-slug generates at render time (including its de-duplication
+// of repeated headings). Only h2/h3 are surfaced, but every heading is fed
+// to the slugger so the de-dup counters stay in sync.
+export function extractToc(content: string): TocItem[] {
+  const slugger = new GithubSlugger();
+  const items: TocItem[] = [];
+  let inFence = false;
+
+  for (const line of content.split(/\r?\n/)) {
+    if (/^\s{0,3}(```|~~~)/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+
+    const match = /^\s{0,3}(#{1,6})\s+(.*?)\s*#*\s*$/.exec(line);
+    if (!match) continue;
+
+    const level = match[1].length;
+    // Strip inline code backticks so the text matches rehype-slug's input.
+    const text = match[2].replace(/`/g, "").trim();
+    const slug = slugger.slug(text);
+
+    if (level >= 2 && level <= 3) {
+      items.push({ level, text, slug });
+    }
+  }
+
+  return items;
 }
 
 export interface Post extends FrontMatter {

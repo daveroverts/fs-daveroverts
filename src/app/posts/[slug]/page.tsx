@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeSlug from "rehype-slug";
 
 import CategoryBadge from "@/components/CategoryBadge";
 import Layout from "@/components/Layout";
@@ -22,6 +23,7 @@ export const dynamicParams = false;
 const mdxOptions: MDXRemoteProps["options"] = {
   mdxOptions: {
     rehypePlugins: [
+      rehypeSlug,
       [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }],
     ],
   },

@@ -15,8 +15,10 @@ test.describe("Home → post detail", () => {
     await firstPostLink.click();
     await expect(page).toHaveURL(new RegExp(`${href}$`));
 
-    // The post title renders as the Layout <h2>; proves the async Server
-    // Component rendered (the gap unit tests can't cover).
-    await expect(page.getByRole("heading", { level: 2 })).toBeVisible();
+    // The post title renders as the Layout <h2> at the top of <main>; proves
+    // the async Server Component rendered (the gap unit tests can't cover).
+    // Scoped to .first() because posts may add further level-2 headings (e.g.
+    // the Table of Contents and MDX section headings).
+    await expect(page.getByRole("heading", { level: 2 }).first()).toBeVisible();
   });
 });

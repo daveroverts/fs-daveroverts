@@ -20,7 +20,7 @@ const BlogPost = ({ post }: { post: Post }) => {
         className="group hover:underline rounded-3xl"
       >
         <div className="transition duration-1000 transform group-hover:scale-105">
-          <div className="relative h-64 w-96 xl:w-full xl:h-96">
+          <div className="relative w-full aspect-video">
             <Image
               src={post.banner ?? `/posts/${post.slug}/og`}
               alt={post.title ?? ""}
@@ -29,7 +29,7 @@ const BlogPost = ({ post }: { post: Post }) => {
                 ? { placeholder: "blur" as const, blurDataURL: post.base64 }
                 : {})}
               fill
-              sizes="(min-width: 1280px) 50vw, 384px"
+              sizes="(min-width: 1024px) 50vw, 100vw"
             />
           </div>
         </div>

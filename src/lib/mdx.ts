@@ -4,6 +4,7 @@ import path from "node:path";
 import GithubSlugger from "github-slugger";
 import matter from "gray-matter";
 import { getPlaiceholder } from "plaiceholder";
+import { cache } from "react";
 
 const root = process.cwd();
 
@@ -95,7 +96,11 @@ export async function getFileBySlug(
   };
 }
 
-export async function getAllPostsMeta(type: string): Promise<Post[]> {
+// Wrapped in React `cache()` so the read + parse of every MDX file happens at
+// most once per render pass. Many helpers below (taxonomy, adjacency,
+// pagination) and several routes all derive from this during a single SSG
+// build, so deduping the disk work is a meaningful win.
+export const getAllPostsMeta = cache(async (type: string): Promise<Post[]> => {
   const files = await fs.readdir(path.join(root, "data", type));
 
   const posts = await Promise.all(
@@ -116,7 +121,7 @@ export async function getAllPostsMeta(type: string): Promise<Post[]> {
   return posts.sort(
     (a, b) => Number(new Date(b.date ?? 0)) - Number(new Date(a.date ?? 0)),
   );
-}
+});
 
 async function enrichWithPlaceholders(posts: Post[]): Promise<Post[]> {
   return Promise.all(
@@ -127,13 +132,18 @@ async function enrichWithPlaceholders(posts: Post[]): Promise<Post[]> {
 
       const buffer = await fs.readFile(path.join("./public", post.banner));
       const { metadata, base64 } = await getPlaiceholder(buffer, { size: 10 });
-      post.base64 = base64;
-      post.img = {
-        src: post.banner,
-        height: metadata.height,
-        width: metadata.width,
+      // Return a new object rather than mutating `post`: the array from
+      // `getAllPostsMeta` is now shared (cache()d), so mutating in place would
+      // leak placeholder data into every other caller of the same render.
+      return {
+        ...post,
+        base64,
+        img: {
+          src: post.banner,
+          height: metadata.height,
+          width: metadata.width,
+        },
       };
-      return post;
     }),
   );
 }

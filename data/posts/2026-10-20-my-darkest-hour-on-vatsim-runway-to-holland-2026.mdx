@@ -1,0 +1,178 @@
+---
+title: "My darkest hour on VATSIM: Runway to Holland 2026"
+date: "2026-10-20"
+category: Debrief
+toc: true
+tags:
+  - Dutch VACC
+  - Vatsim
+  - EuroScope
+---
+
+I've been controlling on VATSIM with the Dutch VACC since 2013. In all those years, I've had busy shifts, messy shifts and shifts where I made mistakes. But [Runway to Holland](/posts/2026-10-17-runway-to-holland) on Saturday 17 October was something else. For a little over an hour, I lost control of my sector.
+
+This post is my attempt to explain what happened, how it felt, and what I think could have prevented it. If you only want the short version, jump to the [lessons](#lessons).
+
+All times are in Zulu (UTC).
+
+## The event
+
+Runway to Holland is an event the Dutch VACC organises once or twice a year. The idea is simple: Schiphol operates on a **single runway**, on purpose. This edition, that was 36C. There is no booking or slot system, so anyone can fly in.
+
+A single runway that handles both arrivals and departures can't take that much. With every arrival, we also need to get a departure out. My rough guess is that we can land around 15 aircraft per hour, a bit more if we create extra gaps to land several aircraft in a row before releasing another departure.
+
+According to the briefing, the secondary runway would only open at 1930z.
+
+## My position
+
+The event was fully staffed: delivery, three ground controllers, two tower controllers, two or three approach controllers and up to four centre controllers. I was on **EHAA_E_CTR**, the east side of the Dutch airspace.
+
+On top of the sector itself, I was responsible for two holding stacks:
+
+- **ARTIP**, the default stack for traffic from the east.
+- **NARSO**, further east, used as overflow when **ARTIP** is full.
+
+The other default stacks are **RIVER** (south) and **SUGOL** (west). Traffic from the east came to me via three entry points:
+
+- **NORKU**, from **EDYY_MEC_CTR**.
+- **BLUFA**, from **EDWW_ALR_CTR**.
+- **RKN**, from **EDDL_APP** (up to FL160) and **EDGG_N_CTR** (FL180 to FL240).
+
+According to the Letter of Agreement (LoA), aircraft via **NORKU** and **BLUFA** enter our airspace at **FL260**. Remember that number; it becomes important.
+
+Normally, a dedicated holding controller (**EHAA_H_CTR**) comes online for the busiest sector to take over its holding. In this case, that would be **ARTIP**.
+
+### The "tool"
+
+Holding releases are managed with a shared Google Sheet listing all Schiphol inbounds, plus various pages and settings. As a controller, you mostly look at your own view: a **release time** for each aircraft, and a **released** checkmark that ticks itself once that time has passed. The holding windows you see in the screenshots below aren't the tool. They're a radar plugin that shows the levels in each stack, which levels are free, and where an aircraft is vertically.
+
+## The timeline
+
+### Before 1813z: a quiet start
+
+![The situation at 1809z before the chaos](/static/images/2026-10-20-my-darkest-hour-on-vatsim-runway-to-holland-2026/1809z-before-the-chaos.png)
+
+Honestly, the first part of the shift went very well. My sector wasn't very busy with inbounds, and I hadn't needed to delay anyone.
+
+### 1813z: "We need to hold"
+
+![The situation at 1817z when holding started](/static/images/2026-10-20-my-darkest-hour-on-vatsim-runway-to-holland-2026/1817z-artip-holding-started.png)
+
+At 1813z, I was told we had to start holding. The approach sector had become too busy. It came without any warning.
+
+I was streaming the shift, so you can [watch it from this moment](https://www.youtube.com/live/mcH2ATG2Wbo?t=2723). The news came in via Discord, so you won't hear it on stream, but you will hear me start handing out the holdings.
+
+Seven aircraft went into the hold at **ARTIP**. For each one, the instruction was:
+
+> Hold at **ARTIP** as published.
+
+At this point, **ARTIP** was enough. **NARSO** wasn't needed yet.
+
+### 1832z: the tool swaps two aircraft
+
+The first sign of trouble came from the sheet. It released **RCC329** at FL110 while **TRA28U** was still below him at FL100. Aircraft leave a stack from the bottom, so **TRA28U** should have gone first. The tool had swapped the two aircraft.
+
+I noticed because of the altitude difference, cancelled the wrong release and released the correct aircraft. A close call, but caught.
+
+### 1838z: ARTIP full
+
+![NARSO holding started](/static/images/2026-10-20-my-darkest-hour-on-vatsim-runway-to-holland-2026/1842z-narso-holding-started.png)
+
+By 1838z, the **ARTIP** stack was full, from FL070 up to FL260. Most inbounds arrive at FL260, so from then on I had to send every new arrival from **BLUFA**, **NORKU** or **RKN** straight to **NARSO**, using FL150 to FL260.
+
+According to the AIP and charts, the lowest level in **NARSO** is actually FL200. As it got more crowded, I used the levels below it to buy myself some extra time. Looking back, that wasn't correct.
+
+The plan was that, once **EHAA_H_CTR** was online, the **ARTIP** stack would be worked down. As soon as FL150 was free in **ARTIP**, I would send the lowest aircraft from **NARSO** across at FL150, and it would continue down from there. The problem is that, with **ARTIP** full from FL070, eight aircraft had to leave before FL150 freed up, and that took a long time.
+
+### 1840z: the tool crashes
+
+Then the sheet crashed entirely. I no longer had release times, so I switched to the only thing I could think of: releasing an aircraft roughly every four minutes. That also meant I could no longer give out Estimated Approach Times.
+
+I honestly don't know if the sheet ever came back. With two stacks to handle, I didn't look at it again.
+
+### 1844z: help on ARTIP, and a request for a second runway
+
+At 1844z, a controller logged on as **EHAA_H_CTR** and took over the **ARTIP** stack. That helped a lot, because I had completely lost track of it by then. Looking back, I should have asked for this earlier, but I simply didn't have time to coordinate it.
+
+Around the same time, I told the events manager we needed to open a second runway **right away**, because the situation was becoming unworkable. From my side, it felt like that was shrugged off, and the briefing said 1930z, so nothing changed. I could be wrong about how it was received, but that's how it felt in the moment.
+
+### 1852z: NARSO full
+
+![NARSO and ARTIP holdings at 1852z](/static/images/2026-10-20-my-darkest-hour-on-vatsim-runway-to-holland-2026/1852z-narso-full.png)
+
+By 1852z, **NARSO** was full too. You can see nine aircraft in the **NARSO** holding list, and both holding windows filling up. One of them, **KLM58N**, is already on its way out: after coordinating with **EHAA_H_CTR**, I had recleared it into the **ARTIP** stack.
+
+That leaves eight aircraft for twelve levels (FL150 to FL260). That might not sound full, but an aircraft that is descending blocks every level between where it is and where it's cleared to. I can't clear aircraft through each other, so each one has to wait until the levels below it are free. In the screenshot, **KLM36Z** is passing FL215, cleared to FL190, so every level from FL190 up to where it is now is blocked. **SAS031** at FL240 is cleared to FL230, and can't go any lower until **KLM36Z** is further down.
+
+### 1900z: stuck
+
+This is the moment I'd call my darkest hour on VATSIM.
+
+![Conflicts in the NARSO holding around 1900z](/static/images/2026-10-20-my-darkest-hour-on-vatsim-runway-to-holland-2026/1900z-conflicts.png)
+
+Every level in **NARSO** was taken. **ARTIP** couldn't take anyone from me. And new aircraft kept arriving from Germany at FL260, exactly as agreed, with nowhere to go. I couldn't descend them, and I couldn't send them anywhere.
+
+The result: **five conflicts in the NARSO holding**, with many aircraft at FL260 and less than 1000 ft between them. I'll be honest about this: at that point, I gave up on keeping them separated. I felt helpless. I did send a few new arrivals to **SUGOL** and **RIVER** to stop it from growing, but that didn't solve the conflicts already there.
+
+The frequency was congested. I had to repeat calls. One pilot complained that he had a TCAS traffic alert, but luckily, the others understood the situation and didn't mention anything.
+
+What I should have done is ask my neighbours to hand traffic over at a higher level, or hold the aircraft at **NORKU** or **BLUFA**. A higher level wouldn't have prevented the conflicts, but it would have bought some room, and holding before the border would have kept new traffic out of **NARSO** altogether. Again, there just wasn't time to set it up.
+
+### 1904z: a second arrival controller
+
+At 1904z, a second arrival controller came online in the TMA (the approach sector). From around 1910z, aircraft left the **ARTIP** stack noticeably faster than before.
+
+### 1915z: help from outside
+
+The way out came from a controller who **wasn't even online**. He was following along, had a much better overview than I did, and helped me over Discord. He basically told me what to say to the pilots: which aircraft to send to **ARTIP**, whose holds to cancel, who to vector and descend.
+
+With **ARTIP** now emptying faster, I could finally send traffic there again.
+
+### 1920z: holding at NORKU
+
+![EDYY_MEC_CTR holding at NORKU, 1921z](/static/images/2026-10-20-my-darkest-hour-on-vatsim-runway-to-holland-2026/1921z-norku-hold.png)
+
+**EDYY_MEC_CTR** had already asked at 1905z whether we'd benefit from a hold at **NORKU**. I only saw that message very, very late. The same Discord helper arranged it for me, and from 1920z EDYY held traffic at **NORKU**. That stopped new aircraft from entering my mess and made the clean-up possible. There wasn't much traffic from **BLUFA**, so EDWW didn't need to hold.
+
+### 1921z–1929z: cleaning up
+
+![Situation at 1921z, last aircraft leaving NARSO](/static/images/2026-10-20-my-darkest-hour-on-vatsim-runway-to-holland-2026/1921z-narso-hold-cancelled.png)
+
+At 1921z, the last aircraft left **NARSO**. Using some small delaying vectors, I eventually got the remaining aircraft to **ARTIP** and onwards.
+
+According to the footage, the first aircraft landed on the secondary runway, **36R**, at 1924z. Once open, 36R is mainly used for traffic from the east, so it took its arrivals straight from **ARTIP**, and the stack emptied quickly.
+
+![The situation at 1927z, almost back to normal](/static/images/2026-10-20-my-darkest-hour-on-vatsim-runway-to-holland-2026/1927z-situation-cleared.png)
+
+At 1929z, **ARTIP** was empty too. No more holding needed.
+
+## After the storm
+
+I kept controlling until 2045z, when the event ended. I was exhausted and frustrated.
+
+What hurt most is that I worked the same position during the [November 2025 edition](/posts/2025-11-22-runway-to-holland). It was busy then too, but there were no conflicts. This edition was simply horrible.
+
+If you want to see it for yourself, the [livestream](https://www.youtube.com/live/mcH2ATG2Wbo?t=2723) has the full story with audio, and the [ACC / Centre view](https://youtu.be/1J1xp_y9gN0) of the timelapse shows the whole thing from above, from 1813z to 1929z. The [Runway to Holland post](/posts/2026-10-17-runway-to-holland) has all the other views.
+
+## The debrief meeting
+
+There was a debrief afterwards with all controllers and the events manager. I showed the screenshots from this post. That was the moment the events manager, and some others, really understood how it had felt on my position.
+
+I've heard the team will look into how Runway to Holland works for the next edition. What that will mean, I don't know yet.
+
+## What could have prevented this
+
+A single-runway event is meant to be challenging. That's the point. But two things would have made a big difference.
+
+**Opening the second runway when it was needed, not when the briefing said.** The first landing on 36R was at 1924z. Once it happened, **ARTIP** was empty within five minutes. 36R mainly takes traffic from the east, exactly where the problem was. If it had opened shortly after 1844z, when I asked, **NARSO** would have started emptying much sooner, and I don't think the conflicts around 1900z would have happened.
+
+**Flow measures through ECFMP.** ECFMP is the system VATSIM uses to publish flow measures, and as far as I know, nothing was prepared. A **Miles in Trail (MIT)** restriction of at least 20 NM from the neighbouring sectors, or even a **Minimum Departure Interval (MDI)** of at least 5 minutes at the busiest departure airports, would have spread the inbounds out. The neighbours did exactly what the LoA says: hand traffic over at FL260. The problem was the volume. A MIT wouldn't have reduced the total number of arrivals, but it would have spread them out and bought time, and time was exactly what I was short of. I raised this during the debrief.
+
+## Lessons
+
+- **Call for help early.** That's the one thing I'd do differently. The difficult part is that it happens so fast. One moment the shift is quiet; half an hour later, you have no time to type a message. If you feel things slipping, ask straight away, even if it seems early.
+- **Don't rely on the tool alone.** The swapped release at 1832z was caught because the levels didn't make sense. Always check what the tool tells you against what you see on the scope.
+- **Read your messages.** EDYY offered a **NORKU** hold at 1905z. I saw it far too late. When you're overloaded, coordination messages are the first thing you miss, and often the thing that would have helped most.
+- **For event planning: plan the flow, not just the staffing.** We had plenty of controllers. What we didn't have was any limit on how much traffic arrived at our borders.
+
+I'm sharing this not to blame anyone, but because I think it's useful for other controllers and event organisers to see what happens when a single-runway event meets no flow control. I hope the next Runway to Holland is a lot calmer. For everyone.

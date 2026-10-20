@@ -87,8 +87,9 @@ the Metadata API (`metadata` export or `generateMetadata`). Client-only context
 - `PostNav` — newer/older post links at the foot of a post; takes an `AdjacentPosts`
 - `TableOfContents` — inline "Contents" box from `extractToc` items; hides itself for fewer than 2 headings
 - `CategoryBadge` / `TagList` — link a post's category / tags to their taxonomy routes
-- `MdxImage` — async server component rendering a blur-placeholder `next/image` from a `public/` path (used for MDX images)
-- `MDXComponents` — passed as the `components` prop to `<MDXRemote>` in the post/page server components; exposes a `<Youtube>` shortcode (uses `react-lite-youtube-embed`)
+- `MdxImage` — async server component rendering a blur-placeholder `next/image` from a `public/` path (used for MDX images, both `<Img>` and markdown `![alt](src)`); wraps it in a `GalleryItem`
+- `ImageGallery` / `GalleryItem` — client components; `ImageGallery` wraps the MDX `<article>` on post/page routes, `GalleryItem`s register with it via context, and clicking one opens a `yet-another-react-lightbox` gallery (captions, counter, zoom) of all of them in document order. The lightbox itself (`GalleryLightbox`) is loaded with `next/dynamic` (preloaded on hover/focus). Images inside a link are flagged `data-no-lightbox` by the `rehypeLinkedImages` plugin (`src/lib/rehype-linked-images.ts`) and stay plain links. Slides load through the Next image optimizer via `toSlide` in `src/lib/lightbox.ts`
+- `MDXComponents` — passed as the `components` prop to `<MDXRemote>` in the post/page server components; exposes a `<Youtube>` shortcode (uses `react-lite-youtube-embed`) and maps markdown `img` to `MarkdownImage`, which uses `MdxImage` for existing files in `public/` and a plain `<img>` otherwise
 - `VatsimStatusIndicator` — polls `/api/vatsim/online/<cid>` with SWR; shows controller/pilot/offline state
 - `ThemeSwitcher` — toggles light/dark via `next-themes` (stores preference under key `nightwind-mode`)
 - `Age` — renders the author's current age (from `src/lib/age.ts`), used in MDX prose

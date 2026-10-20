@@ -7,6 +7,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeSlug from "rehype-slug";
 
 import CategoryBadge from "@/components/CategoryBadge";
+import { ImageGallery } from "@/components/ImageGallery";
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
 import PostNav from "@/components/PostNav";
@@ -19,12 +20,14 @@ import {
   getFiles,
   readingTime,
 } from "@/lib/mdx";
+import rehypeLinkedImages from "@/lib/rehype-linked-images";
 
 export const dynamicParams = false;
 
 const mdxOptions: MDXRemoteProps["options"] = {
   mdxOptions: {
     rehypePlugins: [
+      rehypeLinkedImages,
       rehypeSlug,
       [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }],
     ],
@@ -141,13 +144,15 @@ export default async function PostPage({
           <p className="py-5">{frontMatter.description}</p>
         )}
         {tocItems.length > 0 && <TableOfContents items={tocItems} />}
-        <article className="prose lg:prose-xl dark:prose-invert">
-          <MDXRemote
-            source={content}
-            components={MDXComponents}
-            options={mdxOptions}
-          />
-        </article>
+        <ImageGallery>
+          <article className="prose lg:prose-xl dark:prose-invert">
+            <MDXRemote
+              source={content}
+              components={MDXComponents}
+              options={mdxOptions}
+            />
+          </article>
+        </ImageGallery>
         {frontMatter.tags && frontMatter.tags.length > 0 && (
           <div className="py-5">
             <TagList tags={frontMatter.tags} />

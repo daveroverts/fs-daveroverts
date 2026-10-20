@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 
 import { Age } from "./Age";
-import { MdxImage } from "./MdxImage";
+import { MarkdownImage, MdxImage } from "./MdxImage";
 import { Youtube } from "./Youtube";
 
 const Kbd = ({ className = "", ...props }: ComponentPropsWithoutRef<"kbd">) => (
@@ -14,6 +14,7 @@ const Kbd = ({ className = "", ...props }: ComponentPropsWithoutRef<"kbd">) => (
 const MDXComponents = {
   Age,
   Img: MdxImage,
+  img: MarkdownImage,
   Youtube,
   kbd: Kbd,
 };

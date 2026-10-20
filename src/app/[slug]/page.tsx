@@ -4,15 +4,18 @@ import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeSlug from "rehype-slug";
 
+import { ImageGallery } from "@/components/ImageGallery";
 import Layout from "@/components/Layout";
 import MDXComponents from "@/components/MDXComponents";
 import { getFileBySlug, getFiles } from "@/lib/mdx";
+import rehypeLinkedImages from "@/lib/rehype-linked-images";
 
 export const dynamicParams = false;
 
 const mdxOptions: MDXRemoteProps["options"] = {
   mdxOptions: {
     rehypePlugins: [
+      rehypeLinkedImages,
       rehypeSlug,
       [rehypeExternalLinks, { target: "_blank", rel: "noopener noreferrer" }],
     ],
@@ -61,17 +64,19 @@ export default async function Page({
         {frontMatter.description && (
           <p className="py-5">{frontMatter.description}</p>
         )}
-        <article
-          className={`prose lg:prose-xl dark:prose-invert ${
-            frontMatter.wide ? "max-w-none" : ""
-          }`}
-        >
-          <MDXRemote
-            source={content}
-            components={MDXComponents}
-            options={mdxOptions}
-          />
-        </article>
+        <ImageGallery>
+          <article
+            className={`prose lg:prose-xl dark:prose-invert ${
+              frontMatter.wide ? "max-w-none" : ""
+            }`}
+          >
+            <MDXRemote
+              source={content}
+              components={MDXComponents}
+              options={mdxOptions}
+            />
+          </article>
+        </ImageGallery>
       </div>
     </Layout>
   );
